@@ -17,7 +17,6 @@ public class Main extends Application {
         Controller controller = fxmlLoader.getController();
         Scene scene = new Scene(root);
 
-
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -39,7 +38,7 @@ public class Main extends Application {
 
             }
         });
-        stage.setTitle("Симуляция налоговой");
+        stage.setTitle("Симулятор пчёл");
         stage.setScene(scene);
         stage.show();
     }

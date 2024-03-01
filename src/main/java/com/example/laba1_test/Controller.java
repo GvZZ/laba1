@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -17,13 +19,11 @@ import javafx.util.Duration;
 
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0");
+    @FXML
+    private Label cout1 = new Label();
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
+    private Label cout2 = new Label();
     @FXML
     private AnchorPane SceneTwo_Background;
 
@@ -34,18 +34,15 @@ public class Controller {
     private Canvas canvas; // Добавление Canvas для отображения объектов
 
     private Habitat habitat;
-    private long startTime;
-
-    public String getTimerValue() {
-        return time.getCurrentTime();
-    }
-
 
     @FXML
     void Hide_Show() {
-        if (timer.isVisible()) {
+        if (timer.isVisible())
+        {
             timer.setVisible(false);
-        } else {
+        }
+        else
+        {
             timer.setVisible(true);
         }
     }
@@ -53,6 +50,13 @@ public class Controller {
     @FXML
     void exit() throws IOException {
         new SceneSwitch(SceneTwo_Background, "end.fxml");
+        if (habitat != null) {
+            // Установка значений в Label
+            cout1.setText(Integer.toString(habitat.getDroneCount()));
+            System.out.println(habitat.getDroneCount());
+            cout2.setText(Integer.toString(habitat.getWorkerCount()));
+            System.out.println(habitat.getWorkerCount());
+        }
     }
 
     @FXML
@@ -75,7 +79,6 @@ public class Controller {
     @FXML
     void initialize() {
         habitat = new Habitat();
-        startTime = System.nanoTime();
     }
 
     private void drawObjects() {
@@ -86,16 +89,18 @@ public class Controller {
             double x = obj.getX();
             double y = obj.getY();
 
-            if (obj instanceof PhysicalPerson) {
-                drawImage(gc, "C:/Users/zemeo/IdeaProjects/laba1_test/src/main/resources/physical_person.png", x, y);
-            } else if (obj instanceof LegalPerson) {
-                drawImage(gc, "C:/Users/zemeo/IdeaProjects/laba1_test/src/main/resources/legal_person.png", x, y);
+            if (obj instanceof Drone) {
+                drawImage(gc, "IMGDrone.png", x, y);
+            } else if (obj instanceof Worker) {
+                drawImage(gc, "IMGWorker.png", x, y);
             }
         }
     }
 
+
+
     private void drawImage(GraphicsContext gc, String imagePath, double x, double y) {
-        Image image = new Image("file:///" + imagePath);
-        gc.drawImage(image, x, y, 40, 40);
+        Image image = new Image(imagePath);
+        gc.drawImage(image, x, y, 100, 100);
     }
 }
