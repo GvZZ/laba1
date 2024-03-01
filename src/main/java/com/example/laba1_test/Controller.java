@@ -1,20 +1,14 @@
 package com.example.laba1_test;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Controller {
@@ -43,20 +37,23 @@ public class Controller {
 
     @FXML
     void Hide_Show() {
-        if (timer.isVisible())
+        if (!cout1.isVisible())
         {
-            timer.setVisible(false);
-        }
-        else
-        {
-            timer.setVisible(true);
+            if (timer.isVisible())
+            {
+                timer.setVisible(false);
+            }
+            else
+            {
+                timer.setVisible(true);
+            }
         }
     }
 
     @FXML
     void exit() throws IOException {
         /*new SceneSwitch(SceneTwo_Background, "end.fxml");*/
-        if (habitat != null) {
+        if (habitat != null && !cout1.isVisible()) {
             canvas.setVisible(false);
             timer.setVisible(false);
             cout1.setVisible(true);
