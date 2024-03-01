@@ -30,9 +30,9 @@ public class Controller {
     @FXML
     private Label FinalTime;
     @FXML
-    private Label WorkerName;
+    private Label LegalPerson;
     @FXML
-    private Label DroneName;
+    private Label PhysicalPerson;
 
     @FXML
     private Canvas canvas; // Добавление Canvas для отображения объектов
@@ -41,27 +41,26 @@ public class Controller {
 
     @FXML
     void Hide_Show() {
-        if (timer.isVisible())
-        {
-            timer.setVisible(false);
-        }
-        else
-        {
-            timer.setVisible(true);
+        if (!cout1.isVisible()) {
+            if (timer.isVisible()) {
+                timer.setVisible(false);
+            } else {
+                timer.setVisible(true);
+            }
         }
     }
 
     @FXML
     void exit() throws IOException {
         /*new SceneSwitch(SceneTwo_Background, "end.fxml");*/
-        if (habitat != null) {
+        if (habitat != null && !cout1.isVisible()) {
             canvas.setVisible(false);
             timer.setVisible(false);
             cout1.setVisible(true);
             cout2.setVisible(true);
             FinalTime.setVisible(true);
-            DroneName.setVisible(true);
-            WorkerName.setVisible(true);
+            PhysicalPerson.setVisible(true);
+            LegalPerson.setVisible(true);
             cout1.setText(Integer.toString(habitat.getPhysicalPersonCount()));
             cout2.setText(Integer.toString(habitat.getLegalPersonCount()));
             FinalTime.setText(time.getCurrentTime());
@@ -90,8 +89,8 @@ public class Controller {
         cout1.setVisible(false);
         cout2.setVisible(false);
         FinalTime.setVisible(false);
-        DroneName.setVisible(false);
-        WorkerName.setVisible(false);
+        PhysicalPerson.setVisible(false);
+        LegalPerson.setVisible(false);
         habitat = new Habitat();
     }
 
