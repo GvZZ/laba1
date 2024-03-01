@@ -8,11 +8,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class Controller2 {
 
-    String TimerValue;
-    public void setTimerValue(String timerValue) {
-        TimerValue = timerValue;
-    }
-
     private Habitat habitat;
 
     @FXML
@@ -40,14 +35,9 @@ public class Controller2 {
 
     @FXML
     void initialize() {
-
-
-        // Проверка наличия habitat
         if (habitat != null) {
-            // Установка значений в Label
             cout1.setText(Integer.toString(habitat.getPhysicalPersonCount()));
             cout2.setText(Integer.toString(habitat.getLegalPersonCount()));
-            timer.setText(TimerValue);
         }
     }
 

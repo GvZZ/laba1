@@ -19,27 +19,15 @@ public class Controller {
     AnimationTimer time = new AnimationTimer("0:0");
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private AnchorPane SceneTwo_Background;
 
     @FXML
     private Label timer;
 
     @FXML
-    private Canvas canvas; // Добавление Canvas для отображения объектов
+    private Canvas canvas;
 
     private Habitat habitat;
-    private long startTime;
-
-    public String getTimerValue() {
-        return time.getCurrentTime();
-    }
-
 
     @FXML
     void Hide_Show() {
@@ -75,7 +63,6 @@ public class Controller {
     @FXML
     void initialize() {
         habitat = new Habitat();
-        startTime = System.nanoTime();
     }
 
     private void drawObjects() {
@@ -87,15 +74,15 @@ public class Controller {
             double y = obj.getY();
 
             if (obj instanceof PhysicalPerson) {
-                drawImage(gc, "C:/Users/zemeo/IdeaProjects/laba1_test/src/main/resources/physical_person.png", x, y);
+                drawImage(gc, "legal_person.png", x, y);
             } else if (obj instanceof LegalPerson) {
-                drawImage(gc, "C:/Users/zemeo/IdeaProjects/laba1_test/src/main/resources/legal_person.png", x, y);
+                drawImage(gc, "physical_person.png", x, y);
             }
         }
     }
 
     private void drawImage(GraphicsContext gc, String imagePath, double x, double y) {
-        Image image = new Image("file:///" + imagePath);
-        gc.drawImage(image, x, y, 40, 40);
+        Image image = new Image(imagePath);
+        gc.drawImage(image, x, y, 60, 60);
     }
 }
