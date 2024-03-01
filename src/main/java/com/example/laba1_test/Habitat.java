@@ -24,13 +24,13 @@ public class Habitat {
 
         // Генерация трутней
         if (DroneCount <= WorkerCount * K * 0.01) {
-            objects.add(new Drone(rand.nextDouble() * 1100, rand.nextDouble() * 650));
+            objects.add(new Drone(rand.nextDouble() * 500, rand.nextDouble() * 500));
             DroneCount++;
         }
 
         // Генерация рабочих пчёл
         if ((rand.nextDouble() < P2) && (second % N2 == 0)) {
-            objects.add(new Worker(rand.nextDouble() * 1100, rand.nextDouble() * 650));
+            objects.add(new Worker(rand.nextDouble() * 500, rand.nextDouble() * 500));
             WorkerCount++;
         }
 
