@@ -16,6 +16,8 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         Controller controller = fxmlLoader.getController();
         Scene scene = new Scene(root);
+
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -41,9 +43,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-        // Настройка обработчиков клавиш и отображение сцены
-        // Добавьте здесь обработчики клавиш и настройку сцены
         public static void main(String[] args) {
             launch();
         }

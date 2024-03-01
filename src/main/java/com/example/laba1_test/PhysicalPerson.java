@@ -9,6 +9,6 @@ public class PhysicalPerson extends AbstractObject implements IBehaviour {
     @Override
     public void move(double elapsedTime) {
         // Реализация движения для физических лиц
-        moveRandomly(10); // Пример: физические лица двигаются на расстояние 10 каждый раз
+        moveRandomly(10);
     }
 }

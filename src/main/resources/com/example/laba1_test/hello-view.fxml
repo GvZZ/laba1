@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="SceneTwo_Background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.laba1_test.Controller">
     <children>
-        <Canvas fx:id="canvas" width="800.0" height="600.0" />
+        <Canvas fx:id="canvas" width="1200.0" height="700.0" />
         <Label fx:id="timer" alignment="CENTER" onKeyPressed="#Hide_Show" prefHeight="31.0" prefWidth="109.0" text="0:0">
             <font>
                 <Font name="Comic Sans MS Italic" size="21.0" />

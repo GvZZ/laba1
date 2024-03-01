@@ -3,10 +3,17 @@ package com.example.laba1_test;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 public class Controller2 {
+
+    String TimerValue;
+    public void setTimerValue(String timerValue) {
+        TimerValue = timerValue;
+    }
+
+    private Habitat habitat;
 
     @FXML
     private ResourceBundle resources;
@@ -15,14 +22,33 @@ public class Controller2 {
     private URL location;
 
     @FXML
-    private GridPane End_Panel;
+    private AnchorPane SceneThree_Background;
 
     @FXML
-    private AnchorPane SceneThree_Background;
+    private Label cout1;
+
+    @FXML
+    private Label cout2;
+
+    @FXML
+    private Label timer;
+
+
+    public void setHabitat(Habitat habitat) {
+        this.habitat = habitat;
+    }
 
     @FXML
     void initialize() {
 
+
+        // Проверка наличия habitat
+        if (habitat != null) {
+            // Установка значений в Label
+            cout1.setText(Integer.toString(habitat.getPhysicalPersonCount()));
+            cout2.setText(Integer.toString(habitat.getLegalPersonCount()));
+            timer.setText(TimerValue);
+        }
     }
 
 }

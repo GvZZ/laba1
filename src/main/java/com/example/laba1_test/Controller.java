@@ -36,6 +36,11 @@ public class Controller {
     private Habitat habitat;
     private long startTime;
 
+    public String getTimerValue() {
+        return time.getCurrentTime();
+    }
+
+
     @FXML
     void Hide_Show() {
         if (timer.isVisible()) {
@@ -58,7 +63,7 @@ public class Controller {
                             e -> {
                                 time.OneSecondPassed();
                                 timer.setText(time.getCurrentTime());
-                                habitat.update(1); // Обновление среды каждую секунду (предполагается)
+                                habitat.update(time.Second); // Обновление среды каждую секунду
                                 drawObjects();
                             }));
             timer.setText(time.getCurrentTime());
@@ -91,6 +96,6 @@ public class Controller {
 
     private void drawImage(GraphicsContext gc, String imagePath, double x, double y) {
         Image image = new Image("file:///" + imagePath);
-        gc.drawImage(image, x, y, 40, 40); // Adjust the size as needed
+        gc.drawImage(image, x, y, 40, 40);
     }
 }
