@@ -13,5 +13,30 @@
                 <Font name="Comic Sans MS Italic" size="21.0" />
             </font>
         </Label>
+      <Label fx:id="cout1" alignment="CENTER" layoutX="469.0" layoutY="286.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="cout2" alignment="CENTER" layoutX="600.0" layoutY="286.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="DroneName" alignment="CENTER" layoutX="469.0" layoutY="214.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Drones">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="WorkerName" alignment="CENTER" layoutX="600.0" layoutY="214.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Workers">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="FinalTime" alignment="CENTER" layoutX="469.0" layoutY="358.0" prefHeight="72.0" prefWidth="262.0" style="-fx-border-color: black;" text="t">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

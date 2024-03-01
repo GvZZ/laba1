@@ -11,7 +11,7 @@
                 <Font name="Calibri" size="24.0" />
             </font>
         </Label>
-      <Label fx:id="cout1" alignment="CENTER" layoutX="377.0" layoutY="250.0" prefHeight="100.0" prefWidth="140.0" style="-fx-border-color: black;" text="1">
+      <Label fx:id="cout1" alignment="CENTER" layoutX="377.0" layoutY="250.0" prefHeight="100.0" prefWidth="140.0" style="-fx-border-color: black;" text="0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
@@ -21,7 +21,7 @@
             <Font name="Calibri" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="cout2" alignment="CENTER" layoutX="577.0" layoutY="250.0" prefHeight="100.0" prefWidth="140.0" style="-fx-border-color: black;" text="2">
+      <Label fx:id="cout2" alignment="CENTER" layoutX="577.0" layoutY="250.0" prefHeight="100.0" prefWidth="140.0" style="-fx-border-color: black;" text="0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>

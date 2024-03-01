@@ -20,15 +20,21 @@ import javafx.util.Duration;
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0");
     @FXML
-    private Label cout1 = new Label();
+    private Label cout1;
 
     @FXML
-    private Label cout2 = new Label();
+    private Label cout2;
     @FXML
     private AnchorPane SceneTwo_Background;
 
     @FXML
     private Label timer;
+    @FXML
+    private Label FinalTime;
+    @FXML
+    private Label WorkerName;
+    @FXML
+    private Label DroneName;
 
     @FXML
     private Canvas canvas; // Добавление Canvas для отображения объектов
@@ -49,13 +55,20 @@ public class Controller {
 
     @FXML
     void exit() throws IOException {
-        new SceneSwitch(SceneTwo_Background, "end.fxml");
+        /*new SceneSwitch(SceneTwo_Background, "end.fxml");*/
         if (habitat != null) {
-            // Установка значений в Label
+            canvas.setVisible(false);
+            timer.setVisible(false);
+            cout1.setVisible(true);
+            cout2.setVisible(true);
+            FinalTime.setVisible(true);
+            DroneName.setVisible(true);
+            WorkerName.setVisible(true);
             cout1.setText(Integer.toString(habitat.getDroneCount()));
             System.out.println(habitat.getDroneCount());
             cout2.setText(Integer.toString(habitat.getWorkerCount()));
             System.out.println(habitat.getWorkerCount());
+            FinalTime.setText(time.getCurrentTime());
         }
     }
 
@@ -78,6 +91,11 @@ public class Controller {
 
     @FXML
     void initialize() {
+        cout1.setVisible(false);
+        cout2.setVisible(false);
+        FinalTime.setVisible(false);
+        DroneName.setVisible(false);
+        WorkerName.setVisible(false);
         habitat = new Habitat();
     }
 
