@@ -17,30 +17,55 @@ import javafx.util.Duration;
 
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0");
+    @FXML
+    private Label cout1;
 
+    @FXML
+    private Label cout2;
     @FXML
     private AnchorPane SceneTwo_Background;
 
     @FXML
     private Label timer;
+    @FXML
+    private Label FinalTime;
+    @FXML
+    private Label WorkerName;
+    @FXML
+    private Label DroneName;
 
     @FXML
-    private Canvas canvas;
+    private Canvas canvas; // Добавление Canvas для отображения объектов
 
     private Habitat habitat;
 
     @FXML
     void Hide_Show() {
-        if (timer.isVisible()) {
+        if (timer.isVisible())
+        {
             timer.setVisible(false);
-        } else {
+        }
+        else
+        {
             timer.setVisible(true);
         }
     }
 
     @FXML
     void exit() throws IOException {
-        new SceneSwitch(SceneTwo_Background, "end.fxml");
+        /*new SceneSwitch(SceneTwo_Background, "end.fxml");*/
+        if (habitat != null) {
+            canvas.setVisible(false);
+            timer.setVisible(false);
+            cout1.setVisible(true);
+            cout2.setVisible(true);
+            FinalTime.setVisible(true);
+            DroneName.setVisible(true);
+            WorkerName.setVisible(true);
+            cout1.setText(Integer.toString(habitat.getPhysicalPersonCount()));
+            cout2.setText(Integer.toString(habitat.getLegalPersonCount()));
+            FinalTime.setText(time.getCurrentTime());
+        }
     }
 
     @FXML
@@ -62,6 +87,11 @@ public class Controller {
 
     @FXML
     void initialize() {
+        cout1.setVisible(false);
+        cout2.setVisible(false);
+        FinalTime.setVisible(false);
+        DroneName.setVisible(false);
+        WorkerName.setVisible(false);
         habitat = new Habitat();
     }
 
@@ -83,6 +113,6 @@ public class Controller {
 
     private void drawImage(GraphicsContext gc, String imagePath, double x, double y) {
         Image image = new Image(imagePath);
-        gc.drawImage(image, x, y, 60, 60);
+        gc.drawImage(image, x, y, 150, 150);
     }
 }

@@ -25,12 +25,12 @@ public class Habitat {
         Random rand = new Random();
 
         if ((rand.nextDouble() < P1) && (second % N1 == 0)) {
-            objects.add(new PhysicalPerson(rand.nextDouble() * 1100, rand.nextDouble() * 650));
+            objects.add(new PhysicalPerson(rand.nextDouble() * 1000, rand.nextDouble() * 600));
             physicalPersonCount++;
         }
 
         if ((rand.nextDouble() < P2) && (second % N2 == 0)) {
-            objects.add(new LegalPerson(rand.nextDouble() * 1100, rand.nextDouble() * 650));
+            objects.add(new LegalPerson(rand.nextDouble() * 1000, rand.nextDouble() * 600));
             legalPersonCount++;
         }
 

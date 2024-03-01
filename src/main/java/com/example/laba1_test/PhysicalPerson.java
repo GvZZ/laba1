@@ -8,6 +8,6 @@ public class PhysicalPerson extends AbstractObject {
 
     @Override
     public void move(double elapsedTime) {
-        moveRandomly(10);
+        moveRandomly(100);
     }
 }

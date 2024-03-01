@@ -5,14 +5,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="SceneTwo_Background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.laba1_test.Controller">
+<AnchorPane fx:id="SceneTwo_Background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #58e8c2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.laba1_test.Controller">
     <children>
-        <Canvas fx:id="canvas" width="1200.0" height="700.0" />
+        <Canvas fx:id="canvas" height="700.0" width="1200.0" />
         <Label fx:id="timer" alignment="CENTER" onKeyPressed="#Hide_Show" prefHeight="31.0" prefWidth="109.0" text="0:0">
             <font>
                 <Font name="Comic Sans MS Italic" size="21.0" />
             </font>
         </Label>
+        <Label fx:id="cout1" alignment="CENTER" layoutX="469.0" layoutY="286.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="cout2" alignment="CENTER" layoutX="600.0" layoutY="286.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="DroneName" alignment="CENTER" layoutX="469.0" layoutY="214.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Drones">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="WorkerName" alignment="CENTER" layoutX="600.0" layoutY="214.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Workers">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="FinalTime" alignment="CENTER" layoutX="469.0" layoutY="358.0" prefHeight="72.0" prefWidth="262.0" style="-fx-border-color: black;" text="t">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>
-
