@@ -13,7 +13,6 @@ public class Habitat {
     private int DroneCount;
     private int WorkerCount;
     public Habitat() {
-
         objects = new ArrayList<>();
         DroneCount = 0;
         WorkerCount = 0;
@@ -21,29 +20,21 @@ public class Habitat {
 
     public void update(int second) {
         Random rand = new Random();
-
-        // Генерация трутней
-        if (DroneCount <= WorkerCount * K * 0.01) {
-            objects.add(new Drone(rand.nextDouble() * 500, rand.nextDouble() * 500));
-            DroneCount++;
-        }
-
-        // Генерация рабочих пчёл
         if ((rand.nextDouble() < P2) && (second % N2 == 0)) {
             objects.add(new Worker(rand.nextDouble() * 500, rand.nextDouble() * 500));
             WorkerCount++;
         }
-
-        // Дополнительные действия по обновлению объектов и их положения
+        if (DroneCount <= WorkerCount * K * 0.01) {
+            objects.add(new Drone(rand.nextDouble() * 500, rand.nextDouble() * 500));
+            DroneCount++;
+        }
         for (AbstractObject obj : objects) {
             obj.move(second);
         }
     }
-    // Геттеры для получения количества объектов
     public int getDroneCount() {
         return DroneCount;
     }
-
     public int getWorkerCount() {
         return WorkerCount;
     }

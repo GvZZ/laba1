@@ -3,6 +3,8 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -39,8 +41,19 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="1708.0" layoutY="44.0" mnemonicParsing="false" onAction="#start" text="Старт" />
-      <Button layoutX="1648.0" layoutY="44.0" mnemonicParsing="false" onAction="#exit" text="Стоп" />
-      <Button layoutX="1683.0" layoutY="78.0" mnemonicParsing="false" onAction="#Hide_Show" text="show/hide" />
+      <Button fx:id="StartB" layoutX="1708.0" layoutY="44.0" mnemonicParsing="false" onAction="#start" text="Старт">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="StopB" layoutX="1648.0" layoutY="44.0" mnemonicParsing="false" onAction="#exit" text="Стоп">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <ToggleButton fx:id="ShowTimeB" layoutX="1648.0" layoutY="83.0" mnemonicParsing="false" onAction="#ButtonControlVisible" prefHeight="25.0" prefWidth="121.0" selected="true" text="Показать таймер">
+         <toggleGroup>
+            <ToggleGroup fx:id="TimeSwitch" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="HideTimeB" layoutX="1647.0" layoutY="117.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" prefHeight="25.0" prefWidth="121.0" text="Скрыть таймер" toggleGroup="$TimeSwitch" />
     </children>
 </AnchorPane>
