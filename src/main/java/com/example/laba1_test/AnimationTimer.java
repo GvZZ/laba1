@@ -1,15 +1,16 @@
-package com.example.demo;
+package com.example.laba1_test;
 
-public class Time {
+
+public class AnimationTimer {
     int Minute;
     int Second;
 
-    public Time(int minute, int second){
+    public AnimationTimer(int minute, int second){
         this.Minute = minute;
         this.Second = second;
     }
 
-    public Time(String CurrentTime){
+    public AnimationTimer(String CurrentTime){
         String[] time = CurrentTime.split(":");
         Minute = Integer.parseInt(time[0]);
         Second = Integer.parseInt(time[1]);

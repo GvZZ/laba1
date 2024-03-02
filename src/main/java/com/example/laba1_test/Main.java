@@ -1,5 +1,4 @@
-package com.example.demo;
-
+package com.example.laba1_test;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Main extends Application {
@@ -17,6 +15,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         Controller controller = fxmlLoader.getController();
         Scene scene = new Scene(root);
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -38,12 +37,11 @@ public class Main extends Application {
 
             }
         });
-        stage.setTitle("Симуляция пчёл");
+        stage.setTitle("Симулятор пчёл");
         stage.setScene(scene);
         stage.show();
     }
-
-    public static void main(String[] args) {
-        launch();
-    }
+        public static void main(String[] args) {
+            launch();
+        }
 }
