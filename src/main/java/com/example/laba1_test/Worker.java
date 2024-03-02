@@ -1,7 +1,7 @@
 package com.example.laba1_test;
 
 
-public class Worker extends AbstractObject implements IBehaviour {
+public class Worker extends AbstractObject {
     public Worker(double initialX, double initialY) {
         super(initialX, initialY);
     }
