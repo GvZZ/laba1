@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/BeeMovie.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Почти вторая лаба">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +82,38 @@
       <option name="presentableId" value="Default" />
       <updated>1709309984722</updated>
     </task>
+    <task id="LOCAL-00001" summary="Почти вторая лаба">
+      <option name="closed" value="true" />
+      <created>1709454789609</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709454789609</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="98" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="114" />
+                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="114" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Почти вторая лаба" />
+    <option name="LAST_COMMIT_MESSAGE" value="Почти вторая лаба" />
   </component>
 </project>

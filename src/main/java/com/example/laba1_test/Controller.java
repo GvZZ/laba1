@@ -3,16 +3,13 @@ package com.example.laba1_test;
 import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
 public class Controller {
@@ -41,7 +38,8 @@ public class Controller {
     private ToggleButton ShowTimeB;
     @FXML
     private Canvas canvas; // Добавление Canvas для отображения объектов
-
+    @FXML
+    private Button Report;
     private Habitat habitat;
 
     @FXML
@@ -62,6 +60,7 @@ public class Controller {
     void ButtonControlVisible(){
         timer.setVisible(true);
         ShowTimeB.setSelected(true);
+
     }
     @FXML
     void ButtonControlNonVisible(){
@@ -69,10 +68,17 @@ public class Controller {
         HideTimeB.setSelected(true);
     }
     @FXML
-    void pauseGen() {
-        status = 2;
-        timeline.pause();
-        ModalWindow.newWindow("Отчёт генерации", Controller.this, habitat);
+    void pauseGen() throws IOException {
+        if (Report.getText().equals("Скрыть отчёт")) {
+            status = 2;
+            timeline.pause();
+            ModalWindow.newWindow("Отчёт генерации", Controller.this, habitat);
+        }
+        else
+        {
+            exit();
+        }
+
     }
     @FXML
     void continueGen() {
@@ -81,11 +87,12 @@ public class Controller {
     }
     @FXML
     void exit() throws IOException {
-        if (status == 1) {
+        if (status != 0) {
             StopB.setDisable(true);
             StartB.setDisable(true);
             ShowTimeB.setDisable(true);
             HideTimeB.setDisable(true);
+            Report.setDisable(true);
             canvas.setVisible(false);
             timer.setVisible(false);
             cout1.setVisible(true);
@@ -100,12 +107,23 @@ public class Controller {
         }
     }
     @FXML
+    void SetReportVisibility(){
+        if (Report.getText().equals("Скрыть отчёт"))
+        {
+            Report.setText("Показать отчёт");
+        }
+        else
+        {
+            Report.setText("Скрыть отчёт");
+        }
+    }
+
+    @FXML
     void start() {
         status = 1;
         StartB.setDisable(true);
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0")) {
-            habitat = new Habitat(); // Ленивая инициализация?
             timeline = new Timeline(
                     new KeyFrame(Duration.seconds(1),
                             e -> {
@@ -121,6 +139,7 @@ public class Controller {
     }
     @FXML
     void initialize() {
+        habitat = ModalWindow.HelloWindow("Привет, пчеловод!", Controller.this);
         status = 0;
         cout1.setVisible(false);
         cout2.setVisible(false);

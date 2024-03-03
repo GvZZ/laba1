@@ -62,5 +62,6 @@
          </toggleGroup>
       </ToggleButton>
       <ToggleButton fx:id="HideTimeB" layoutX="1647.0" layoutY="117.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" prefHeight="25.0" prefWidth="121.0" text="Скрыть таймер" toggleGroup="$TimeSwitch" />
+      <Button fx:id="Report" layoutX="1647.0" layoutY="155.0" mnemonicParsing="false" onAction="#SetReportVisibility" prefHeight="25.0" prefWidth="121.0" text="Скрыть отчёт" />
     </children>
 </AnchorPane>
