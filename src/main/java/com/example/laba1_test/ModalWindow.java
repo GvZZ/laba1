@@ -1,17 +1,16 @@
 package com.example.laba1_test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
-
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 
 public class ModalWindow {
     public static boolean isNumericInt(String str) {
@@ -62,7 +61,6 @@ public class ModalWindow {
         window.showAndWait();
     }
     public static Habitat HelloWindow(String Name, Controller Controller) {
-        double a = 0.9;
         int b = 1;
         Font CS = new Font("Comic Sans MS Italic", 12.0);
         Stage window = new Stage();
@@ -84,17 +82,20 @@ public class ModalWindow {
         text.setLayoutX(45);
         text.setLayoutY(100);
         text.setFont(CS);
-        TextArea varA = new TextArea("Введите шанс появления пчелы(стандартно 1)");
-        varA.setPrefHeight(15);
+        TextArea varA = new TextArea("Введите интервал появления пчел.\nВыберите шанс их появления.");
+        varA.setPrefHeight(50);
         varA.setPrefWidth(280);
         varA.setLayoutX(180);
         varA.setLayoutY(350);
-        TextArea varB = new TextArea("Период появления пчёл(целое число, секунды)");
+        ObservableList<String> percents = FXCollections.observableArrayList("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%");
+        ComboBox<String> varB = new ComboBox<String>(percents);
+        varB.setValue("90%");
+
 
         varB.setPrefHeight(15);
         varB.setPrefWidth(280);
         varB.setLayoutX(180);
-        varB.setLayoutY(450);
+        varB.setLayoutY(400);
         pane.getChildren().addAll(BtnOK);
         pane.getChildren().addAll(text);
         pane.getChildren().addAll(varA);
@@ -103,9 +104,7 @@ public class ModalWindow {
         window.setScene(scene);
         window.setTitle(Name);
         window.showAndWait();
-        if (isNumericInt(varB.getText()) && parseInt(varB.getText()) > 0 && parseInt(varB.getText()) <= 60) {
-            b = parseInt(varB.getText());
-        }
+        double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
         System.out.println(a);
         System.out.println(b);
         return new Habitat(b, a);
