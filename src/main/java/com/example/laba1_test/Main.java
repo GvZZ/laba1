@@ -15,7 +15,6 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         Controller controller = fxmlLoader.getController();
         Scene scene = new Scene(root);
-
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

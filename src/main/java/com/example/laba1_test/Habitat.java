@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class Habitat {
     private static final int K = 30;
-    private static final int N2 =1; // интервал для рабочих в секундах
-    private static final double P2 = 1; // вероятность спавна рабочих
+    private static final int N2 = 1; // интервал для рабочих в секундах
+    private static final double P2 = 0.9; // вероятность спавна рабочих
 
     private List<AbstractObject> objects;
     private int DroneCount;

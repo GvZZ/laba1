@@ -36,8 +36,6 @@ public class Controller {
     @FXML
     private Label DroneName;
     @FXML
-    private ToggleGroup TimeSwitch;
-    @FXML
     private ToggleButton HideTimeB;
     @FXML
     private ToggleButton ShowTimeB;
@@ -61,14 +59,25 @@ public class Controller {
         }
     }
     @FXML
-    void ButtonControlVisible(ActionEvent event){
+    void ButtonControlVisible(){
         timer.setVisible(true);
         ShowTimeB.setSelected(true);
     }
     @FXML
-    void ButtonControlNonVisible(ActionEvent event){
+    void ButtonControlNonVisible(){
         timer.setVisible(false);
         HideTimeB.setSelected(true);
+    }
+    @FXML
+    void pauseGen() {
+        status = 2;
+        timeline.pause();
+        ModalWindow.newWindow("Отчёт генерации", Controller.this, habitat);
+    }
+    @FXML
+    void continueGen() {
+        status = 1;
+        timeline.play();
     }
     @FXML
     void exit() throws IOException {
@@ -85,10 +94,9 @@ public class Controller {
             DroneName.setVisible(true);
             WorkerName.setVisible(true);
             cout1.setText(Integer.toString(habitat.getDroneCount()));
-            System.out.println(habitat.getDroneCount());
             cout2.setText(Integer.toString(habitat.getWorkerCount()));
-            System.out.println(habitat.getWorkerCount());
             FinalTime.setText(time.getCurrentTime());
+            timeline.stop();
         }
     }
     @FXML
@@ -98,7 +106,7 @@ public class Controller {
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0")) {
             habitat = new Habitat(); // Ленивая инициализация?
-            Timeline timeline = new Timeline(
+            timeline = new Timeline(
                     new KeyFrame(Duration.seconds(1),
                             e -> {
                                 time.OneSecondPassed();
@@ -125,7 +133,6 @@ public class Controller {
     private void drawObjects() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
         for (AbstractObject obj : habitat.getObjects()) {
             double x = obj.getX();
             double y = obj.getY();
