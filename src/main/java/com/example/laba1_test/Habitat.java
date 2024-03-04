@@ -1,23 +1,20 @@
 package com.example.laba1_test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Habitat {
     private static final int K = 30;
     private int N = 1; // интервал для рабочих в секундах
     private double P = 0.9; // вероятность спавна рабочих
 
-    private List<AbstractObject> objects;
+    private ArrayList<AbstractObject> objects;
+    private HashSet<String> IDSet;
+    private TreeMap<AbstractObject, String> SpawnSet;
     private int DroneCount;
     private int WorkerCount;
-    public Habitat() {
-        objects = new ArrayList<>();
-        DroneCount = 0;
-        WorkerCount = 0;
-    }
     public Habitat(int a, double b) {
+        SpawnSet = new TreeMap<AbstractObject, String>();
+        IDSet = new HashSet<String>();
         objects = new ArrayList<>();
         DroneCount = 0;
         WorkerCount = 0;
@@ -26,14 +23,16 @@ public class Habitat {
 
     }
 
-    public void update(int second) {
+    public void update(int second, AnimationTimer time, int LifeT) {
         Random rand = new Random();
         if ((rand.nextDouble() < P) && (second % N == 0)) {
-            objects.add(new Worker(rand.nextDouble() * 500, rand.nextDouble() * 500));
+            objects.add(new Worker(rand.nextDouble() * 500, rand.nextDouble() * 500, LifeT, IDSet));
+            SpawnSet.put(objects.getLast(), time.getCurrentTime());
             WorkerCount++;
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
-            objects.add(new Drone(rand.nextDouble() * 500, rand.nextDouble() * 500));
+            objects.add(new Drone(rand.nextDouble() * 500, rand.nextDouble() * 500, LifeT, IDSet));
+            SpawnSet.put(objects.getLast(), time.getCurrentTime());
             DroneCount++;
         }
         for (AbstractObject obj : objects) {
@@ -46,8 +45,9 @@ public class Habitat {
     public int getWorkerCount() {
         return WorkerCount;
     }
-    public List<AbstractObject> getObjects() {
+    public ArrayList<AbstractObject> getObjects() {
         return objects;
     }
-
+    public HashSet<String> getIDSet() {return IDSet;}
+    public TreeMap<AbstractObject, String> getSpawnSet() {return SpawnSet;}
 }

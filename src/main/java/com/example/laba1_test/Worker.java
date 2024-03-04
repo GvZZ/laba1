@@ -1,9 +1,11 @@
 package com.example.laba1_test;
 
 
-public class Worker extends AbstractObject implements IBehaviour {
-    public Worker(double initialX, double initialY) {
-        super(initialX, initialY);
+import java.util.HashSet;
+
+public class Worker extends AbstractObject{
+    public Worker(double initialX, double initialY, int LifeT, HashSet<String> Set) {
+        super(initialX, initialY, LifeT, Set);
     }
 
     @Override

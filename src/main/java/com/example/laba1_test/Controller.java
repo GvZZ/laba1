@@ -15,9 +15,12 @@ import javafx.util.Duration;
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0");
     Timeline timeline = new Timeline();
+    int LifeTime = 10;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
     @FXML
     private Button StartB;
+    @FXML
+    private Button ObjStateBtn;
     @FXML
     private Button StopB;
     @FXML
@@ -129,7 +132,7 @@ public class Controller {
                             e -> {
                                 time.OneSecondPassed();
                                 timer.setText(time.getCurrentTime());
-                                habitat.update(time.Second);
+                                habitat.update(time.Second, time, LifeTime); // Че за хуйня блять
                                 drawObjects();
                             }));
             timer.setText(time.getCurrentTime());
@@ -148,6 +151,12 @@ public class Controller {
         WorkerName.setVisible(false);
         StopB.setDisable(true);
 
+    }
+    @FXML
+    public void ShowCurrentObjectsState() throws IOException {
+        status = 2;
+        timeline.pause();
+        ModalWindow.ObjShow("Отчёт генерации", Controller.this, habitat);
     }
     private void drawObjects() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
