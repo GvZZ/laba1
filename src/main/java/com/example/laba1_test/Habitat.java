@@ -2,6 +2,8 @@ package com.example.laba1_test;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+
 public class Habitat {
     private static final int K = 30;
     private int N = 1; // интервал для рабочих в секундах
@@ -9,11 +11,11 @@ public class Habitat {
 
     private ArrayList<AbstractObject> objects;
     private HashSet<String> IDSet;
-    private TreeMap<AbstractObject, String> SpawnSet;
+    private TreeMap<String, AbstractObject> SpawnSet;
     private int DroneCount;
     private int WorkerCount;
     public Habitat(int a, double b) {
-        SpawnSet = new TreeMap<AbstractObject, String>();
+        SpawnSet = new TreeMap<String, AbstractObject>();
         IDSet = new HashSet<String>();
         objects = new ArrayList<>();
         DroneCount = 0;
@@ -27,12 +29,15 @@ public class Habitat {
         Random rand = new Random();
         if ((rand.nextDouble() < P) && (second % N == 0)) {
             objects.add(new Worker(rand.nextDouble() * 500, rand.nextDouble() * 500, LifeT, IDSet));
-            SpawnSet.put(objects.getLast(), time.getCurrentTime());
+            SpawnSet.put(time.getCurrentTime(), objects.getLast());
+            System.out.println(SpawnSet);
             WorkerCount++;
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
             objects.add(new Drone(rand.nextDouble() * 500, rand.nextDouble() * 500, LifeT, IDSet));
-            SpawnSet.put(objects.getLast(), time.getCurrentTime());
+            String doptime = time.Minute + ":" + time.Second + ":" + Integer.toString(abs(rand.nextInt() % 20) + 1);
+            SpawnSet.put(doptime, objects.getLast());
+            System.out.println(SpawnSet);
             DroneCount++;
         }
         for (AbstractObject obj : objects) {
@@ -49,5 +54,5 @@ public class Habitat {
         return objects;
     }
     public HashSet<String> getIDSet() {return IDSet;}
-    public TreeMap<AbstractObject, String> getSpawnSet() {return SpawnSet;}
+    public TreeMap<String, AbstractObject> getSpawnSet() {return SpawnSet;}
 }

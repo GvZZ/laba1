@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 public class Controller {
-    AnimationTimer time = new AnimationTimer("0:0");
+    AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime = 10;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
@@ -126,13 +126,16 @@ public class Controller {
         status = 1;
         StartB.setDisable(true);
         StopB.setDisable(false);
-        if (time.getCurrentTime().equals("0:0")) {
+        if (time.getCurrentTime().equals("0:0:0")) {
             timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(1),
+                    new KeyFrame(Duration.seconds(0.01),
                             e -> {
                                 time.OneSecondPassed();
                                 timer.setText(time.getCurrentTime());
-                                habitat.update(time.Second, time, LifeTime); // Че за хуйня блять
+                                if (time.MSecond == 0)
+                                {
+                                    habitat.update(time.Second, time, LifeTime); // Че за хуйня блять
+                                }
                                 drawObjects();
                             }));
             timer.setText(time.getCurrentTime());

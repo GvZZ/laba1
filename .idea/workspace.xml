@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Почти вторая лаба">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Надо сделать логику дерева в ModalWindow 141 стр.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AnimationTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AnimationTimer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/IBehaviour.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Drone.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Drone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/IBehaviour.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +88,31 @@
       <option name="project" value="LOCAL" />
       <updated>1709454789609</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Надо сделать логику дерева в ModalWindow 141 стр.">
+      <option name="closed" value="true" />
+      <created>1709569923079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709569923079</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Надо сделать логику дерева в ModalWindow 141 стр.">
+      <option name="closed" value="true" />
+      <created>1709569933234</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709569933234</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Надо сделать логику дерева в ModalWindow 141 стр.">
+      <option name="closed" value="true" />
+      <created>1709569937186</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709569937186</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +136,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Почти вторая лаба" />
-    <option name="LAST_COMMIT_MESSAGE" value="Почти вторая лаба" />
+    <MESSAGE value="Надо сделать логику дерева в ModalWindow 141 стр." />
+    <option name="LAST_COMMIT_MESSAGE" value="Надо сделать логику дерева в ModalWindow 141 стр." />
   </component>
 </project>

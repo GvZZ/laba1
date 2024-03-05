@@ -135,10 +135,9 @@ public class ModalWindow {
         Button BtnContinue = new Button("Ясно.");
         BtnContinue.setOnAction(event -> {
             window.close();
-            Controller.continueGen();
         });
-        TextArea text = new TextArea("Время рождения\tID пчелы\n");
-        TreeMap<AbstractObject, String> t = habitat.getSpawnSet();
+        TreeMap<String, AbstractObject> t = habitat.getSpawnSet();
+        TextArea text = new TextArea("Время рождения\tID пчелы\n" + t);
         text.setEditable(false);
         text.setFont(CS);
         BtnContinue.setLayoutX(340);
@@ -151,5 +150,6 @@ public class ModalWindow {
         window.setScene(scene);
         window.setTitle(Name);
         window.showAndWait();
+        Controller.continueGen();
     }
 }
