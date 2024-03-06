@@ -136,8 +136,21 @@ public class ModalWindow {
         BtnContinue.setOnAction(event -> {
             window.close();
         });
-        TreeMap<String, AbstractObject> t = habitat.getSpawnSet();
-        TextArea text = new TextArea("Время рождения\tID пчелы\n" + t);
+        TreeMap<String, String> t = habitat.getSpawnSet();
+        TextArea text;
+        if (t.isEmpty())
+        {
+            text = new TextArea("Вперёд батьки не лезь...");
+        }
+        else
+        {
+            text = new TextArea("Время рождения\t\tID пчелы\n");
+        }
+        while (!t.isEmpty())
+        {
+            text.appendText(t.firstKey() + "\t\t\t\t" + t.get(t.firstKey()) + '\n');
+            t.remove(t.firstKey());
+        }
         text.setEditable(false);
         text.setFont(CS);
         BtnContinue.setLayoutX(340);

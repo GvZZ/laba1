@@ -27,7 +27,7 @@ public class AnimationTimer {
     }
 
     public void OneSecondPassed(){
-        MSecond++;
+        MSecond += 100;
         if (MSecond == 100) {
             Second++;
             MSecond = 0;

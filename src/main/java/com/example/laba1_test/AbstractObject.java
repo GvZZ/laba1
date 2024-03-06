@@ -33,6 +33,7 @@ public abstract class AbstractObject {
             Random rand = new Random();
             int a = rand.nextInt();
             String StringID = Integer.toBinaryString(a);
+            ID = StringID;
             Set.add(StringID);
         }
     }
@@ -43,11 +44,18 @@ public abstract class AbstractObject {
     protected void moveRandomly(double distance) {
         Random rand = new Random();
         double angle = rand.nextDouble() * 2 * Math.PI; // случайный угол
-        double deltaX = distance * Math.cos(angle);
-        double deltaY = distance * Math.sin(angle);
-
+        x += distance * Math.cos(angle);
+        y += distance * Math.sin(angle);
         // Перемещаем объект на новые координаты
-        x += deltaX;
-        y += deltaY;
+        while (x > 1386 || x < 0 || y < 0 || y > 900)
+        {
+            x -= distance * Math.cos(angle);
+            y -= distance * Math.sin(angle);
+            rand = new Random();
+            angle = rand.nextDouble() * 2 * Math.PI; // случайный угол
+            x += distance * Math.cos(angle);
+            y += distance * Math.sin(angle);
+        }
+
     }
 }

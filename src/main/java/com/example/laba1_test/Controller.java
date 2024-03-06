@@ -15,7 +15,7 @@ import javafx.util.Duration;
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
-    int LifeTime = 10;
+    int LifeTime = 5;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
     @FXML
     private Button StartB;
@@ -128,7 +128,7 @@ public class Controller {
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0:0")) {
             timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(0.01),
+                    new KeyFrame(Duration.seconds(1),
                             e -> {
                                 time.OneSecondPassed();
                                 timer.setText(time.getCurrentTime());
