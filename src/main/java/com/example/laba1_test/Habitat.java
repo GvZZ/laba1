@@ -34,42 +34,39 @@ public class Habitat {
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
             objects.addLast(new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet));
-            String doptime = time.Minute + ":" + time.Second + ":" + abs(rand.nextInt() % 20) + 1;
-            SpawnSet.putLast(doptime, objects.getLast().getID());
+            String doptime = time.Minute + ":" + time.Second + ":" + 15;
+            SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
         }
-        String[] vremya = SpawnSet.firstKey().split(":");
+        String[] vremya = time.getCurrentTime().split(":");
         int min = Integer.parseInt(vremya[0]);
         int sec = Integer.parseInt(vremya[1]);
         int ms = Integer.parseInt(vremya[2]);
         int finmin = min;
-        int finsec = sec + 5;
-        if (finsec >= 60)
+        int finsec = sec - objects.getFirst().getLifeTime();
+        if (finsec < 0)
         {
-            finsec %= 60;
-            finmin++;
+            finsec = 60 - objects.getFirst().getLifeTime();
+            finmin--;
         }
-        String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
-        System.out.println(fintime);
-        while (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
+        if (finmin >= 0)
         {
-            IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
-            SpawnSet.remove(fintime);
-            objects.remove(objects.getFirst());
-            vremya = SpawnSet.firstKey().split(":");
-            min = Integer.parseInt(vremya[0]);
-            sec = Integer.parseInt(vremya[1]);
-            ms = Integer.parseInt(vremya[2]);
-            finmin = min;
-            finsec = sec + 5;
-            if (finsec >= 60)
+            String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
+            System.out.println(fintime);
+            if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
             {
-                finsec %= 60;
-                finmin++;
+                IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
+                SpawnSet.remove(fintime);
+                objects.remove(objects.getFirst());
             }
-            fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
+            fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
+            if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
+            {
+                IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
+                SpawnSet.remove(fintime);
+                objects.remove(objects.getFirst());
+            }
         }
-
         for (AbstractObject obj : objects) {
             obj.move(second);
         }

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Всё идеально работает. Осталось лишь задебажить модал виндов и сделать так, чтобы SpawnSet нормально записывал в себя значения">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709748366979</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Всё идеально работает. Осталось лишь задебажить модал виндов и сделать так, чтобы SpawnSet нормально записывал в себя значения">
+      <option name="closed" value="true" />
+      <created>1709877697625</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709877697625</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +160,7 @@
     <MESSAGE value="Надо сделать логику дерева в ModalWindow 141 стр." />
     <MESSAGE value="Тестовое представление вывода информации об объектах. Почти 3я лаба" />
     <MESSAGE value="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время" />
-    <option name="LAST_COMMIT_MESSAGE" value="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время" />
+    <MESSAGE value="Всё идеально работает. Осталось лишь задебажить модал виндов и сделать так, чтобы SpawnSet нормально записывал в себя значения" />
+    <option name="LAST_COMMIT_MESSAGE" value="Всё идеально работает. Осталось лишь задебажить модал виндов и сделать так, чтобы SpawnSet нормально записывал в себя значения" />
   </component>
 </project>
