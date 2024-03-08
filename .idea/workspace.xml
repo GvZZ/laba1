@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Тестовое представление вывода информации об объектах. Почти 3я лаба">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AnimationTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AnimationTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AnimationTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AnimationTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709623747929</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время">
+      <option name="closed" value="true" />
+      <created>1709748366979</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709748366979</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +153,7 @@
     <MESSAGE value="Почти вторая лаба" />
     <MESSAGE value="Надо сделать логику дерева в ModalWindow 141 стр." />
     <MESSAGE value="Тестовое представление вывода информации об объектах. Почти 3я лаба" />
-    <option name="LAST_COMMIT_MESSAGE" value="Тестовое представление вывода информации об объектах. Почти 3я лаба" />
+    <MESSAGE value="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время" />
+    <option name="LAST_COMMIT_MESSAGE" value="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время" />
   </component>
 </project>
