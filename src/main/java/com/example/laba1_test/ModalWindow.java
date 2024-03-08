@@ -13,18 +13,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
 public class ModalWindow {
-    public static boolean isNumericDouble(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     public static boolean isNumericInt(String str) {
         try {
             Integer.parseInt(str);
@@ -147,10 +140,8 @@ public class ModalWindow {
         {
             text = new TextArea("Время рождения\t\tID пчелы\n");
         }
-        while (!t.isEmpty())
-        {
-            text.appendText(t.firstKey() + "\t\t\t\t" + t.get(t.firstKey()) + '\n');
-            t.remove(t.firstKey());
+        for (Map.Entry<String, String> entry : t.entrySet()) {
+            text.appendText(entry.getKey() + "\t\t\t\t" + entry.getValue() + "\n");
         }
         text.setEditable(false);
         text.setFont(CS);
