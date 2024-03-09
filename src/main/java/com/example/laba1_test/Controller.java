@@ -128,7 +128,7 @@ public class Controller {
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0:0")) {
             timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(1),
+                    new KeyFrame(Duration.seconds(0.1),
                             e -> {
                                 time.OneSecondPassed();
                                 timer.setText(time.getCurrentTime());

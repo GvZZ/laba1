@@ -12,6 +12,7 @@ public class Habitat {
     private ArrayList<AbstractObject> objects;
     private HashSet<String> IDSet;
     private TreeMap<String, String> SpawnSet;
+    private ArrayList<Thread> ThreadList;
     private int DroneCount;
     private int WorkerCount;
     public Habitat(int a, double b) {
@@ -20,6 +21,7 @@ public class Habitat {
         objects = new ArrayList<>();
         DroneCount = 0;
         WorkerCount = 0;
+        ThreadList = new ArrayList<Thread>();
         this.N = a;
         this.P = b;
 
@@ -28,15 +30,19 @@ public class Habitat {
     public void update(int second, AnimationTimer time, int LifeT) {
         Random rand = new Random();
         if ((rand.nextDouble() < P) && (second % N == 0)) {
-            objects.addLast(new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet));
+            Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
+            objects.addLast(new_Worker);
             SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
             WorkerCount++;
+            ThreadList.add(new_Worker.everything(new_Worker));
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
-            objects.addLast(new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet));
+            Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
+            objects.addLast(new_Drone);
             String doptime = time.Minute + ":" + time.Second + ":" + 15;
             SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
+            ThreadList.add(new_Drone.everything(new_Drone));
         }
         String[] vremya = time.getCurrentTime().split(":");
         int min = Integer.parseInt(vremya[0]);
@@ -57,6 +63,7 @@ public class Habitat {
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
                 objects.remove(objects.getFirst());
+                System.out.println("Ликвидирован");
             }
             fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
             if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
@@ -64,11 +71,16 @@ public class Habitat {
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
                 objects.remove(objects.getFirst());
+                System.out.println("Ликвидирован");
+
             }
         }
-        for (AbstractObject obj : objects) {
-            obj.move(second);
-        }
+        /*for (Thread obj : ThreadList) {
+            if (!obj.isAlive()) {
+                System.out.println("Поток повис...");
+                obj.start();
+            }
+        }*/
     }
     public int getDroneCount() {
         return DroneCount;
