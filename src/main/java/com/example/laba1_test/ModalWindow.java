@@ -119,6 +119,10 @@ public class ModalWindow {
         {
             Controller.LifeTime = Integer.parseInt(varLifeTime.getText());
         }
+        if (ModalWindow.isNumericInt(varA.getText()) && Integer.parseInt(varA.getText()) > 0)
+        {
+            b = Integer.parseInt(varA.getText());
+        }
         return new Habitat(b, a);
     }
     public static void ObjShow(String Name, Controller Controller, Habitat habitat){
