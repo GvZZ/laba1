@@ -4,12 +4,14 @@ import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 public class Controller {
@@ -130,7 +132,7 @@ public class Controller {
             timeline = new Timeline(
                     new KeyFrame(Duration.seconds(0.1),
                             e -> {
-                                time.OneSecondPassed();
+                                time.OneTick();
                                 timer.setText(time.getCurrentTime());
                                 if (time.MSecond == 0)
                                 {
@@ -170,7 +172,8 @@ public class Controller {
 
             if (obj instanceof Drone) {
                 drawImage(gc, "IMGDrone.png", x, y);
-            } else if (obj instanceof Worker) {
+            }
+            else if (obj instanceof Worker) {
                 drawImage(gc, "IMGWorker.png", x, y);
             }
         }

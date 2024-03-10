@@ -40,7 +40,4 @@ public abstract class AbstractObject extends BaseAI{
     }
     public int getLifeTime() {return LifeTime;}
     public String getID() {return ID;}
-
-
-    public abstract void run();
 }

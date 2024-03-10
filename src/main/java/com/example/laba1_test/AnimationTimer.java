@@ -26,8 +26,8 @@ public class AnimationTimer {
         return Minute + ":" + Second + ":" + MSecond;
     }
 
-    public void OneSecondPassed(){
-        MSecond += 100;
+    public void OneTick(){
+        MSecond += 10;
         if (MSecond == 100) {
             Second++;
             MSecond = 0;

@@ -16,16 +16,16 @@ public class Drone extends AbstractObject{
         {
             Random rand = new Random();
             double angle = rand.nextDouble() * 2 * Math.PI; // случайный угол
-            x += (speed * Math.cos(angle)) / 100;
-            y += (speed * Math.sin(angle)) / 100;
+            x += (speed * Math.cos(angle)) / 5000;
+            y += (speed * Math.sin(angle)) / 5000;
             // Перемещаем объект на новые координаты
             while (x > 1386 || x < 0 || y < 0 || y > 900) {
-                x -= (speed * Math.cos(angle)) / 100;
-                y -= (speed * Math.sin(angle)) / 100;
+                x -= (speed * Math.cos(angle)) / 5000;
+                y -= (speed * Math.sin(angle)) / 5000;
                 rand = new Random();
                 angle = rand.nextDouble() * 2 * Math.PI; // случайный угол
-                x += (speed * Math.cos(angle)) / 100;
-                y += (speed * Math.sin(angle)) / 100;
+                x += (speed * Math.cos(angle)) / 5000;
+                y += (speed * Math.sin(angle)) / 5000;
             }
         }
     }
