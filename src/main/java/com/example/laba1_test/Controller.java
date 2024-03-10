@@ -20,6 +20,8 @@ public class Controller {
     int LifeTime = 5;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
     @FXML
+    private AnchorPane SceneTwo_Background;
+    @FXML
     private Button StartB;
     @FXML
     private Button ObjStateBtn;
@@ -137,6 +139,7 @@ public class Controller {
                                 if (time.MSecond == 0)
                                 {
                                     habitat.update(time.Second, time, LifeTime); // Че за хуйня блять
+
                                 }
                                 drawObjects();
                             }));
@@ -174,7 +177,8 @@ public class Controller {
                 drawImage(gc, "IMGDrone.png", x, y);
             }
             else if (obj instanceof Worker) {
-                drawImage(gc, "IMGWorker.png", x, y);
+                /*drawImage(gc, "IMGWorker.png", x, y);*/
+                obj.run(SceneTwo_Background, Controller.this, x, y);
             }
         }
     }

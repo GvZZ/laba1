@@ -69,7 +69,6 @@ public class Habitat {
                     IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                     SpawnSet.remove(fintime);
                     objects.remove(objects.getFirst());
-                    System.out.println("Ликвидирован");
                 }
                 fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
                 if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
@@ -77,7 +76,6 @@ public class Habitat {
                     IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                     SpawnSet.remove(fintime);
                     objects.remove(objects.getFirst());
-                    System.out.println("Ликвидирован");
 
                 }
             }
