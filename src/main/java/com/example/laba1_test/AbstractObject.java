@@ -18,6 +18,7 @@ public abstract class AbstractObject extends BaseAI{
         this.LifeTime = LifeT;
         SetID(Set);
     }
+    public AbstractObject(){}
     public double getX() {
         return x;
     }
@@ -38,6 +39,10 @@ public abstract class AbstractObject extends BaseAI{
             Set.add(StringID);
         }
     }
+    public void allstop(){
+    }
     public int getLifeTime() {return LifeTime;}
     public String getID() {return ID;}
+    public void StopTransition(){}
+    public void ContinueTransition(){}
 }

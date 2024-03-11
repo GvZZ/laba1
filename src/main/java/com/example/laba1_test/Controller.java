@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -19,6 +20,8 @@ public class Controller {
     Timeline timeline = new Timeline();
     int LifeTime = 5;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
+    private int AIStatusDrone = 1;
+    private int AIStatusWorker = 1;
     @FXML
     private AnchorPane SceneTwo_Background;
     @FXML
@@ -47,6 +50,10 @@ public class Controller {
     private Canvas canvas; // Добавление Canvas для отображения объектов
     @FXML
     private Button Report;
+    @FXML
+    private Button DroneControl;
+    @FXML
+    private Button WorkerControl;
     private Habitat habitat;
 
     @FXML
@@ -75,7 +82,7 @@ public class Controller {
         HideTimeB.setSelected(true);
     }
     @FXML
-    void pauseGen() throws IOException {
+    void pauseGen() throws IOException, InterruptedException {
         if (Report.getText().equals("Скрыть отчёт")) {
             status = 2;
             timeline.pause();
@@ -91,10 +98,19 @@ public class Controller {
     void continueGen() {
         status = 1;
         timeline.play();
+        try {
+            habitat.ContinueThreads();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     @FXML
     void exit() throws IOException {
         if (status != 0) {
+            for (AbstractObject x : habitat.getObjects())
+            {
+                x.allstop();
+            }
             StopB.setDisable(true);
             StartB.setDisable(true);
             ShowTimeB.setDisable(true);
@@ -102,6 +118,11 @@ public class Controller {
             Report.setDisable(true);
             canvas.setVisible(false);
             timer.setVisible(false);
+            try {
+                habitat.StopThreads();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             cout1.setVisible(true);
             cout2.setVisible(true);
             FinalTime.setVisible(true);
@@ -138,7 +159,7 @@ public class Controller {
                                 timer.setText(time.getCurrentTime());
                                 if (time.MSecond == 0)
                                 {
-                                    habitat.update(time.Second, time, LifeTime); // Че за хуйня блять
+                                    habitat.update(time.Second, time, LifeTime, SceneTwo_Background, Controller.this); // Че за хуйня блять
 
                                 }
                                 drawObjects();
@@ -178,12 +199,59 @@ public class Controller {
             }
             else if (obj instanceof Worker) {
                 /*drawImage(gc, "IMGWorker.png", x, y);*/
-                obj.run(SceneTwo_Background, Controller.this, x, y);
+            }
+        }
+    }
+    @FXML
+    public void PauseAiDrone(){
+        Drone new_Drone = new Drone();
+        if (AIStatusDrone == 1) {
+            AIStatusDrone = 0;
+            for (AbstractObject x : habitat.getObjects()) {
+                if (x.getClass() == new_Drone.getClass()) {
+                    x.StopTransition();
+                }
+            }
+        }
+        else
+        {
+            AIStatusDrone = 1;
+            for (AbstractObject x : habitat.getObjects()) {
+                if (x.getClass() == new_Drone.getClass()) {
+                    x.ContinueTransition();
+                }
+            }
+        }
+    }
+    @FXML
+    public void PauseAiWorker(){
+        Worker new_Worker = new Worker();
+        if (AIStatusWorker == 1) {
+            AIStatusWorker = 0;
+            for (AbstractObject x : habitat.getObjects()) {
+                if (x.getClass() == new_Worker.getClass()) {
+                    x.StopTransition();
+                }
+            }
+        }
+        else
+        {
+            AIStatusDrone = 1;
+            for (AbstractObject x : habitat.getObjects()) {
+                if (x.getClass() == new_Worker.getClass()) {
+                    x.ContinueTransition();
+                }
             }
         }
     }
     private void drawImage(GraphicsContext gc, String imagePath, double x, double y) {
         Image image = new Image(imagePath);
         gc.drawImage(image, x, y, 100, 100);
+    }
+    public int getAIStatusWorker(){
+        return AIStatusWorker;
+    }
+    public int getAIStatusDrone(){
+        return AIStatusDrone;
     }
 }

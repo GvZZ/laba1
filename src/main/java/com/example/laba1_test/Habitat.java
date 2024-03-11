@@ -1,5 +1,10 @@
 package com.example.laba1_test;
 
+import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
 import java.util.*;
 
 import static java.lang.Math.abs;
@@ -27,7 +32,7 @@ public class Habitat {
 
     }
 
-    public void update(int second, AnimationTimer time, int LifeT) {
+    public void update(int second, AnimationTimer time, int LifeT, AnchorPane Scene, Controller controller) {
         Random rand = new Random();
         if ((rand.nextDouble() < P) && (second % N == 0)) {
             Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
@@ -35,6 +40,13 @@ public class Habitat {
             SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
             WorkerCount++;
             ThreadList.add(new_Worker.everything(new_Worker));
+            Image image = new Image("IMGWorker.png");
+            ImageView imgview = new ImageView(image);
+            imgview.setFitHeight(100);
+            imgview.setFitWidth(100);
+            imgview.setX(objects.getLast().x);
+            imgview.setY(objects.getLast().y);
+            objects.getLast().run(Scene, controller, imgview, controller.getAIStatusWorker());
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
             Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
@@ -68,6 +80,8 @@ public class Habitat {
                 {
                     IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                     SpawnSet.remove(fintime);
+                    objects.getFirst().interrupt();
+                    objects.getFirst().allstop();
                     objects.remove(objects.getFirst());
                 }
                 fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
@@ -75,6 +89,7 @@ public class Habitat {
                 {
                     IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                     SpawnSet.remove(fintime);
+                    objects.getFirst().allstop();
                     objects.remove(objects.getFirst());
 
                 }
@@ -98,4 +113,16 @@ public class Habitat {
     }
     public HashSet<String> getIDSet() {return IDSet;}
     public TreeMap<String, String> getSpawnSet() {return SpawnSet;}
+    public void StopThreads() throws InterruptedException {
+        for (AbstractObject x : objects)
+        {
+            x.StopTransition();
+        }
+    }
+    public void ContinueThreads() throws InterruptedException {
+        for (AbstractObject x : objects)
+        {
+            x.ContinueTransition();
+        }
+    }
 }

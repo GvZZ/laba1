@@ -26,7 +26,7 @@ public class ModalWindow {
             return false;
         }
     }
-    public static void newWindow(String Name, Controller Controller, Habitat habitat) {
+    public static void newWindow(String Name, Controller Controller, Habitat habitat) throws InterruptedException {
         Font CS = new Font("Comic Sans MS Italic", 21.0);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -37,9 +37,9 @@ public class ModalWindow {
         Button BtnContinue = new Button("Отмена");
         BtnContinue.setLayoutX(350);
         BtnContinue.setLayoutY(450);
+        habitat.StopThreads();
         BtnStop.setOnAction(event -> {
             try {
-
                 Controller.exit();
                 window.close();
             } catch (IOException e) {
@@ -48,6 +48,12 @@ public class ModalWindow {
         });
         BtnContinue.setOnAction(event -> {
             window.close();
+            try {
+                habitat.ContinueThreads();
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             Controller.continueGen();
         });
         TextArea text = new TextArea("Количество рабочих пчёл: " + habitat.getWorkerCount() + "\nКоличество трутней: " + habitat.getDroneCount() + "\nТекущее время симуляции: " + Controller.time.getCurrentTime());
@@ -131,7 +137,17 @@ public class ModalWindow {
         window.initModality(Modality.APPLICATION_MODAL);
         Pane pane = new Pane();
         Button BtnContinue = new Button("Ясно.");
+        try {
+            habitat.StopThreads();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         BtnContinue.setOnAction(event -> {
+            try {
+                habitat.ContinueThreads();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             window.close();
         });
         TreeMap<String, String> t = habitat.getSpawnSet();
