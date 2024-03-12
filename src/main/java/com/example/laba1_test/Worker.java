@@ -1,4 +1,6 @@
 package com.example.laba1_test;
+
+
 import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,8 +15,9 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.util.HashSet;
+
 public class Worker extends AbstractObject{
-    double speed = 20;
+    double speed = 10;
     Thread Worker_thread;
     PathTransition pathTransition = new PathTransition();
     ImageView img;
@@ -25,14 +28,14 @@ public class Worker extends AbstractObject{
 
     public void run(AnchorPane pane, Controller controller, ImageView imgview, int Status){
         this.img = imgview;
-        pathTransition.setDuration(Duration.millis(1000));
+        pathTransition.setDuration(Duration.millis(10000));
         Path path = new Path();
         MoveTo moveTo = new MoveTo(BirthX, BirthY);
         LineTo lineTo = new LineTo(1486 - imgview.getFitWidth() / 2, 1000 - imgview.getFitHeight() / 2);
         pathTransition.setNode(img);
         path.getElements().addAll(moveTo, lineTo);
         pane.getChildren().add(img);
-        pathTransition.setCycleCount(pathTransition.INDEFINITE);
+        pathTransition.setCycleCount(5);
         pathTransition.setAutoReverse(true);
         pathTransition.setPath(path);
         if (Status == 1)

@@ -55,6 +55,13 @@ public class Habitat {
             SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
             ThreadList.add(new_Drone.everything(new_Drone));
+            Image image = new Image("IMGDrone.png");
+            ImageView imgview = new ImageView(image);
+            imgview.setFitHeight(100);
+            imgview.setFitWidth(100);
+            imgview.setX(objects.getLast().x);
+            imgview.setY(objects.getLast().y);
+            objects.getLast().run(Scene, controller, imgview, controller.getAIStatusDrone());
         }
         if (!objects.isEmpty())
         {

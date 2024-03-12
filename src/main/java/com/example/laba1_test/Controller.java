@@ -162,7 +162,6 @@ public class Controller {
                                     habitat.update(time.Second, time, LifeTime, SceneTwo_Background, Controller.this); // Че за хуйня блять
 
                                 }
-                                drawObjects();
                             }));
             timer.setText(time.getCurrentTime());
             timeline.setCycleCount(Timeline.INDEFINITE);
@@ -187,21 +186,7 @@ public class Controller {
         timeline.pause();
         ModalWindow.ObjShow("Отчёт генерации", Controller.this, habitat);
     }
-    private void drawObjects() {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (AbstractObject obj : habitat.getObjects()) {
-            double x = obj.getX();
-            double y = obj.getY();
 
-            if (obj instanceof Drone) {
-                drawImage(gc, "IMGDrone.png", x, y);
-            }
-            else if (obj instanceof Worker) {
-                /*drawImage(gc, "IMGWorker.png", x, y);*/
-            }
-        }
-    }
     @FXML
     public void PauseAiDrone(){
         Drone new_Drone = new Drone();
@@ -244,10 +229,7 @@ public class Controller {
             }
         }
     }
-    private void drawImage(GraphicsContext gc, String imagePath, double x, double y) {
-        Image image = new Image(imagePath);
-        gc.drawImage(image, x, y, 100, 100);
-    }
+
     public int getAIStatusWorker(){
         return AIStatusWorker;
     }
