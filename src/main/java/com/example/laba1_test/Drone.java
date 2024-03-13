@@ -38,8 +38,9 @@ public class Drone extends AbstractObject{
             path.getElements().addAll(moveTo, lineTo);
             pathTransition.setCycleCount(1);
             pathTransition.setPath(path);
-            if (Status) {
-                pathTransition.play();
+            pathTransition.play();
+            if (!Status){
+                pathTransition.pause();
             }
             img.setX(x);
             img.setY(y);

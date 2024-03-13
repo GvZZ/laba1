@@ -40,12 +40,6 @@ public class Habitat {
             SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
             WorkerCount++;
             ThreadList.add(new_Worker.everything(new_Worker));
-/*            Image image = new Image("IMGWorker.png");
-            ImageView imgview = new ImageView(image);
-            imgview.setFitHeight(100);
-            imgview.setFitWidth(100);
-            imgview.setX(objects.getLast().x);
-            imgview.setY(objects.getLast().y);*/
             objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
@@ -55,15 +49,9 @@ public class Habitat {
             SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
             ThreadList.add(new_Drone.everything(new_Drone));
-            /*Image image = new Image("IMGDrone.png");
-            ImageView imgview = new ImageView(image);
-            imgview.setFitHeight(100);
-            imgview.setFitWidth(100);
-            imgview.setX(objects.getLast().x);
-            imgview.setY(objects.getLast().y);
-            Scene.getChildren().add(imgview);*/
             Scene.getChildren().add(objects.getLast().getImg());
-            objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
+            objects.getLast().run(Scene, controller, controller.getAIStatusDrone());
+
         }
         if (!objects.isEmpty())
         {

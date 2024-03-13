@@ -69,6 +69,7 @@ public class ModalWindow {
         Scene scene = new Scene(pane, 700, 500);
         window.setScene(scene);
         window.setTitle(Name);
+        window.setResizable(false);
         window.showAndWait();
     }
     public static Habitat HelloWindow(String Name, Controller Controller) {
@@ -120,6 +121,7 @@ public class ModalWindow {
         Scene scene = new Scene(pane, 700, 500);
         window.setScene(scene);
         window.setTitle(Name);
+        window.setResizable(false);
         window.showAndWait();
         double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
         if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0)
@@ -175,6 +177,7 @@ public class ModalWindow {
         Scene scene = new Scene(pane, 700, 500);
         window.setScene(scene);
         window.setTitle(Name);
+        window.setResizable(false);
         window.showAndWait();
         Controller.continueGen();
     }

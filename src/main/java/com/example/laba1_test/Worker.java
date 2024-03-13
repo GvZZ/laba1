@@ -34,12 +34,12 @@ public class Worker extends AbstractObject{
         pathTransition.setNode(img);
         path.getElements().addAll(moveTo, lineTo);
         pane.getChildren().add(img);
-        pathTransition.setCycleCount(5);
+        pathTransition.setCycleCount(-1);
         pathTransition.setAutoReverse(true);
         pathTransition.setPath(path);
-        if (Status)
-        {
-            pathTransition.play();
+        pathTransition.play();
+        if (!Status){
+            pathTransition.pause();
         }
     }
     @Override
@@ -65,6 +65,7 @@ public class Worker extends AbstractObject{
     }
     public void StopTransition() {
         this.pathTransition.pause();
+        System.out.println("kekw");
     }
     public void ContinueTransition(){
         this.pathTransition.play();
