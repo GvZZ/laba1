@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="47 Drone альтернативу wait, а то там пиздец">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51__Changes_.xml" beforeDir="false" />
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Пчелиный эсколатор">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Astolfo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Пчёлки.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +41,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -61,6 +70,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suxov\IdeaProjects\laba1\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\suxov\IdeaProjects\laba1\src\main\resources" />
+      <recent name="C:\Users\suxov\IdeaProjects\laba1\src\main\resources\com\example\laba1_test" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.laba1_test" />

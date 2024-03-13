@@ -26,19 +26,18 @@ public class Worker extends AbstractObject{
     }
     public Worker(){}
 
-    public void run(AnchorPane pane, Controller controller, ImageView imgview, int Status){
-        this.img = imgview;
-        pathTransition.setDuration(Duration.millis(10000));
+    public void run(AnchorPane pane, Controller controller, Boolean Status){
+        pathTransition.setDuration(Duration.millis(speed * 100));
         Path path = new Path();
         MoveTo moveTo = new MoveTo(BirthX, BirthY);
-        LineTo lineTo = new LineTo(1486 - imgview.getFitWidth() / 2, 1000 - imgview.getFitHeight() / 2);
+        LineTo lineTo = new LineTo(1486 - img.getFitWidth() / 2, 1000 - img.getFitHeight() / 2);
         pathTransition.setNode(img);
         path.getElements().addAll(moveTo, lineTo);
         pane.getChildren().add(img);
         pathTransition.setCycleCount(5);
         pathTransition.setAutoReverse(true);
         pathTransition.setPath(path);
-        if (Status == 1)
+        if (Status)
         {
             pathTransition.play();
         }
@@ -50,9 +49,19 @@ public class Worker extends AbstractObject{
         this.img.setImage(null);
     }
     public Thread everything(AbstractObject x){
+        Image image = new Image("IMGWorker.png");
+        ImageView imgv = new ImageView(image);
+        imgv.setX(BirthX);
+        imgv.setY(BirthY);
+        imgv.setFitHeight(100);
+        imgv.setFitWidth(100);
+        this.img = imgv;
         Worker_thread = new Thread(x);
         /*Worker_thread.start();*/
         return Worker_thread;
+    }
+    public ImageView getImg(){
+        return this.img;
     }
     public void StopTransition() {
         this.pathTransition.pause();

@@ -1,7 +1,9 @@
 package com.example.laba1_test;
 
 
+import javafx.animation.Animation;
 import javafx.animation.PathTransition;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.LineTo;
@@ -22,24 +24,25 @@ public class Drone extends AbstractObject{
     }
     public Drone(){}
     @Override
-    public void run(AnchorPane pane, Controller controller, ImageView imgview, int Status){
-        this.img = imgview;
-        pathTransition.setDuration(Duration.millis(speed * 100));
-        Path path = new Path();
-        MoveTo moveTo = new MoveTo(BirthX, BirthY);
-        Random rand = new Random();
-        double angle = rand.nextDouble(); // случайный угол
-        x = (speed * Math.cos(angle)) * 100;
-        y = (speed * Math.sin(angle)) * 100;
-        LineTo lineTo = new LineTo(x, y);
-        pathTransition.setNode(img);
-        path.getElements().addAll(moveTo, lineTo);
-        pane.getChildren().add(img);
-        pathTransition.setCycleCount(pathTransition.INDEFINITE);
-        pathTransition.setPath(path);
-        if (Status == 1)
-        {
-            pathTransition.play();
+    public void run(AnchorPane pane, Controller controller, Boolean Status){
+        while(pathTransition.getStatus() == Animation.Status.STOPPED) {
+            pathTransition.setDuration(Duration.millis(speed * 100));
+            Path path = new Path();
+            MoveTo moveTo = new MoveTo(img.getX(), img.getY());
+            Random rand = new Random();
+            double angle = rand.nextDouble(); // случайный угол
+            x = (speed * Math.cos(angle)) * 100;
+            y = (speed * Math.sin(angle)) * 100;
+            LineTo lineTo = new LineTo(x, y);
+            pathTransition.setNode(img);
+            path.getElements().addAll(moveTo, lineTo);
+            pathTransition.setCycleCount(1);
+            pathTransition.setPath(path);
+            if (Status) {
+                pathTransition.play();
+            }
+            img.setX(x);
+            img.setY(y);
         }
     }
     @Override
@@ -49,8 +52,18 @@ public class Drone extends AbstractObject{
         this.img.setImage(null);
     }
     public Thread everything(AbstractObject x){
+        Image image = new Image("IMGDrone.png");
+        ImageView imgv = new ImageView(image);
+        imgv.setX(BirthX);
+        imgv.setY(BirthY);
+        imgv.setFitHeight(100);
+        imgv.setFitWidth(100);
+        this.img = imgv;
         Drone_thread = new Thread(x);
         return Drone_thread;
+    }
+    public ImageView getImg(){
+        return this.img;
     }
     public void StopTransition(){this.pathTransition.pause();}
     public void ContinueTransition(){this.pathTransition.play();}

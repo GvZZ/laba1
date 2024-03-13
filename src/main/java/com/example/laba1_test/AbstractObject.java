@@ -1,4 +1,7 @@
 package com.example.laba1_test;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
@@ -9,6 +12,7 @@ public abstract class AbstractObject extends BaseAI{
     double BirthX;
     double BirthY;
     int LifeTime;
+    ImageView img;
     String ID;
     public AbstractObject(double initialX, double initialY, int LifeT, HashSet<String> Set) {
         this.x = initialX;
@@ -39,7 +43,11 @@ public abstract class AbstractObject extends BaseAI{
             Set.add(StringID);
         }
     }
+
     public void allstop(){
+    }
+    public ImageView getImg(){
+        return img;
     }
     public int getLifeTime() {return LifeTime;}
     public String getID() {return ID;}

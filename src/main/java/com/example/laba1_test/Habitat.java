@@ -40,13 +40,13 @@ public class Habitat {
             SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
             WorkerCount++;
             ThreadList.add(new_Worker.everything(new_Worker));
-            Image image = new Image("IMGWorker.png");
+/*            Image image = new Image("IMGWorker.png");
             ImageView imgview = new ImageView(image);
             imgview.setFitHeight(100);
             imgview.setFitWidth(100);
             imgview.setX(objects.getLast().x);
-            imgview.setY(objects.getLast().y);
-            objects.getLast().run(Scene, controller, imgview, controller.getAIStatusWorker());
+            imgview.setY(objects.getLast().y);*/
+            objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
         }
         if (DroneCount <= WorkerCount * K * 0.01) {
             Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
@@ -55,13 +55,15 @@ public class Habitat {
             SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
             ThreadList.add(new_Drone.everything(new_Drone));
-            Image image = new Image("IMGDrone.png");
+            /*Image image = new Image("IMGDrone.png");
             ImageView imgview = new ImageView(image);
             imgview.setFitHeight(100);
             imgview.setFitWidth(100);
             imgview.setX(objects.getLast().x);
             imgview.setY(objects.getLast().y);
-            objects.getLast().run(Scene, controller, imgview, controller.getAIStatusDrone());
+            Scene.getChildren().add(imgview);*/
+            Scene.getChildren().add(objects.getLast().getImg());
+            objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
         }
         if (!objects.isEmpty())
         {
@@ -71,15 +73,15 @@ public class Habitat {
             int ms = Integer.parseInt(vremya[2]);
             int finmin = min;
             int finsec = sec - objects.getFirst().getLifeTime();
+
             if (finsec < 0)
             {
-                finsec = 60 - objects.getFirst().getLifeTime();
+                finsec =  60 - abs(finsec);
                 finmin--;
-            }
-            if (finsec >= 60)
-            {
-                finsec -= 60;
-                finmin++;
+                if (finmin < 0)
+                {
+                    finmin = 0;
+                }
             }
             if (finmin >= 0) {
                 String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
@@ -101,13 +103,21 @@ public class Habitat {
 
                 }
             }
-        }
-        /*for (Thread obj : ThreadList) {
-            if (!obj.isAlive()) {
-                System.out.println("Поток повис...");
-                obj.start();
+            String[] checktime = time.getCurrentTime().split(":");
+            int checkmin = Integer.parseInt(vremya[0]);
+            int checksec = Integer.parseInt(vremya[1]);
+            int checkms = Integer.parseInt(vremya[2]);
+            if (checkms == 0 && controller.getAIStatusDrone())
+            {
+                for (AbstractObject x : objects)
+                {
+                    Drone drn = new Drone();
+                    if (x.getClass() == drn.getClass()) {
+                        x.run(Scene, controller, controller.getAIStatusWorker());
+                    }
+                }
             }
-        }*/
+        }
     }
     public int getDroneCount() {
         return DroneCount;

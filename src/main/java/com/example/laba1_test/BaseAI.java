@@ -11,7 +11,7 @@ public abstract class BaseAI extends Thread implements Runnable{
     public void run(){
 
     }
-    public void run(AnchorPane pane, Controller controller, ImageView imgview, int s){
+    public void run(AnchorPane pane, Controller controller, Boolean s){
     }
     public void StopTransition() throws InterruptedException {}
 }

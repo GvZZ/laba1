@@ -64,7 +64,12 @@
       <ToggleButton fx:id="HideTimeB" layoutX="1647.0" layoutY="117.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" prefHeight="25.0" prefWidth="121.0" text="Скрыть таймер" toggleGroup="$TimeSwitch" />
       <Button fx:id="Report" layoutX="1647.0" layoutY="155.0" mnemonicParsing="false" onAction="#SetReportVisibility" prefHeight="25.0" prefWidth="121.0" text="Скрыть отчёт" />
       <Button fx:id="ObjStateBtn" layoutX="1648.0" layoutY="191.0" mnemonicParsing="false" onAction="#ShowCurrentObjectsState" prefHeight="25.0" prefWidth="121.0" text="Текущие объекты" />
-      <Button fx:id="DroneControl" layoutX="1647.0" layoutY="230.0" mnemonicParsing="false" onAction="#PauseAiDrone" prefHeight="25.0" prefWidth="121.0" text="Дроны спать" />
+      <Button fx:id="DroneControl" layoutX="1647.0" layoutY="230.0" mnemonicParsing="false" onAction="#PauseAiDrone" prefHeight="25.0" prefWidth="121.0" text="Трутни спать" />
       <Button fx:id="WorkerControl" layoutX="1648.0" layoutY="267.0" mnemonicParsing="false" onAction="#PauseAiWorker" prefHeight="25.0" prefWidth="121.0" text="Рабочие спать" />
+      <ImageView fitHeight="210.0" fitWidth="144.0" layoutX="1341.0" layoutY="795.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Astolfo.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

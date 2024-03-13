@@ -4,24 +4,21 @@ import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+
 
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime = 5;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
-    private int AIStatusDrone = 1;
-    private int AIStatusWorker = 1;
+    private Boolean AIStatusDrone = true;
+    private Boolean AIStatusWorker = true;
     @FXML
     private AnchorPane SceneTwo_Background;
     @FXML
@@ -47,7 +44,7 @@ public class Controller {
     @FXML
     private ToggleButton ShowTimeB;
     @FXML
-    private Canvas canvas; // Добавление Canvas для отображения объектов
+    private Canvas canvas;
     @FXML
     private Button Report;
     @FXML
@@ -190,8 +187,9 @@ public class Controller {
     @FXML
     public void PauseAiDrone(){
         Drone new_Drone = new Drone();
-        if (AIStatusDrone == 1) {
-            AIStatusDrone = 0;
+        if (AIStatusDrone) {
+            DroneControl.setText("Трутни бегать");
+            AIStatusDrone = false;
             for (AbstractObject x : habitat.getObjects()) {
                 if (x.getClass() == new_Drone.getClass()) {
                     x.StopTransition();
@@ -200,7 +198,8 @@ public class Controller {
         }
         else
         {
-            AIStatusDrone = 1;
+            DroneControl.setText("Трутни спать");
+            AIStatusDrone = true;
             for (AbstractObject x : habitat.getObjects()) {
                 if (x.getClass() == new_Drone.getClass()) {
                     x.ContinueTransition();
@@ -211,8 +210,9 @@ public class Controller {
     @FXML
     public void PauseAiWorker(){
         Worker new_Worker = new Worker();
-        if (AIStatusWorker == 1) {
-            AIStatusWorker = 0;
+        if (AIStatusWorker) {
+            WorkerControl.setText("Рабочие работать");
+            AIStatusWorker = false;
             for (AbstractObject x : habitat.getObjects()) {
                 if (x.getClass() == new_Worker.getClass()) {
                     x.StopTransition();
@@ -221,7 +221,8 @@ public class Controller {
         }
         else
         {
-            AIStatusDrone = 1;
+            WorkerControl.setText("Рабочие спать");
+            AIStatusWorker = true;
             for (AbstractObject x : habitat.getObjects()) {
                 if (x.getClass() == new_Worker.getClass()) {
                     x.ContinueTransition();
@@ -230,10 +231,10 @@ public class Controller {
         }
     }
 
-    public int getAIStatusWorker(){
+    public Boolean getAIStatusWorker(){
         return AIStatusWorker;
     }
-    public int getAIStatusDrone(){
+    public Boolean getAIStatusDrone(){
         return AIStatusDrone;
     }
 }
