@@ -1,0 +1,184 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]/shelved.patch	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
++++ /dev/null	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
+@@ -1,54 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0231e1f4-bbd7-43d6-ad22-64ea6147f2ce\" name=\"Changes\" comment=\"Почти вторая лаба\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2d5tttT0FQVnMx254SArGJh685H\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"BeeBranch\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/suxov/IdeaProjects/laba1/src/main/resources\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\suxov\\IdeaProjects\\laba1\\src\\main\\resources\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"com.example.laba1_test\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0231e1f4-bbd7-43d6-ad22-64ea6147f2ce\" name=\"Changes\" comment=\"\" />\r\n      <created>1709309984722</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1709309984722</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Почти вторая лаба\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709454789609</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709454789609</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"COLUMN_ID_WIDTH\">\r\n                <map>\r\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"98\" />\r\n                  <entry key=\"Table.Default.Date.ColumnIdWidth\" value=\"114\" />\r\n                  <entry key=\"Table.Space.CommitStatus.ColumnIdWidth\" value=\"114\" />\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Почти вторая лаба\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Почти вторая лаба\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 2340b00c138428a55e8508b411331c1664866435)
+-+++ b/.idea/workspace.xml	(date 1709467710283)
+-@@ -4,15 +4,8 @@
+-     <option name="autoReloadType" value="SELECTIVE" />
+-   </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Почти вторая лаба">
+-+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Комбобокс(5 за 250)">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Controller.class" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -90,7 +83,15 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1709454789609</updated>
+-     </task>
+--    <option name="localTasksCounter" value="2" />
+-+    <task id="LOCAL-00002" summary="Комбобокс(5 за 250)">
+-+      <option name="closed" value="true" />
+-+      <created>1709462204094</created>
+-+      <option name="number" value="00002" />
+-+      <option name="presentableId" value="LOCAL-00002" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1709462204094</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="3" />
+-     <servers />
+-   </component>
+-   <component name="Vcs.Log.Tabs.Properties">
+-@@ -114,6 +115,7 @@
+-   </component>
+-   <component name="VcsManagerConfiguration">
+-     <MESSAGE value="Почти вторая лаба" />
+--    <option name="LAST_COMMIT_MESSAGE" value="Почти вторая лаба" />
+-+    <MESSAGE value="Комбобокс(5 за 250)" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Комбобокс(5 за 250)" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51__Changes_.xml	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
++++ /dev/null	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]" date="1709560305390" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2024_20_51_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04.03.2024 20:51 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0231e1f4-bbd7-43d6-ad22-64ea6147f2ce\" name=\"Changes\" comment=\"BeeЗумие нахуй\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/AnimationTimer.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/AnimationTimer.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2d5tttT0FQVnMx254SArGJh685H\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;BeeBranch&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/suxov/IdeaProjects/laba1/src/main/resources&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\suxov\\IdeaProjects\\laba1\\src\\main\\resources\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"com.example.laba1_test\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0231e1f4-bbd7-43d6-ad22-64ea6147f2ce\" name=\"Changes\" comment=\"\" />\r\n      <created>1709309984722</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1709309984722</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Почти вторая лаба\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709454789609</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709454789609</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Надо сделать логику дерева в ModalWindow 141 стр.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709569923079</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709569923079</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Надо сделать логику дерева в ModalWindow 141 стр.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709569933234</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709569933234</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Надо сделать логику дерева в ModalWindow 141 стр.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709569937186</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709569937186</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Тестовое представление вывода информации об объектах. Почти 3я лаба\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709623747929</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709623747929</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709748366979</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709748366979</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Всё идеально работает. Осталось лишь задебажить модал виндов и сделать так, чтобы SpawnSet нормально записывал в себя значения\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709877697625</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709877697625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Всё идеально работает. Осталось лишь задебажить модал виндов.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709878707947</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709878707947</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Готовая 3я лаба\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709880048130</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709880048130</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Точно готовая 3я лаба\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709991737844</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709991737844</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"BeeЗумие\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1709999980218</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1709999980218</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"BeeЗумие нахуй\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710065325015</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710065325015</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"13\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"COLUMN_ID_WIDTH\">\r\n                <map>\r\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"98\" />\r\n                  <entry key=\"Table.Default.Date.ColumnIdWidth\" value=\"114\" />\r\n                  <entry key=\"Table.Space.CommitStatus.ColumnIdWidth\" value=\"114\" />\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Почти вторая лаба\" />\r\n    <MESSAGE value=\"Надо сделать логику дерева в ModalWindow 141 стр.\" />\r\n    <MESSAGE value=\"Тестовое представление вывода информации об объектах. Почти 3я лаба\" />\r\n    <MESSAGE value=\"Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время\" />\r\n    <MESSAGE value=\"Всё идеально работает. Осталось лишь задебажить модал виндов и сделать так, чтобы SpawnSet нормально записывал в себя значения\" />\r\n    <MESSAGE value=\"Всё идеально работает. Осталось лишь задебажить модал виндов.\" />\r\n    <MESSAGE value=\"Готовая 3я лаба\" />\r\n    <MESSAGE value=\"Точно готовая 3я лаба\" />\r\n    <MESSAGE value=\"BeeЗумие\" />\r\n    <MESSAGE value=\"BeeЗумие нахуй\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"BeeЗумие нахуй\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
++++ b/.idea/workspace.xml	(date 1710127834402)
+@@ -4,19 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="BeeЗумие нахуй">
++    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Пчелиный эсколатор">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AnimationTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AnimationTimer.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -182,7 +172,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1710065325015</updated>
+     </task>
+-    <option name="localTasksCounter" value="13" />
++    <task id="LOCAL-00013" summary="Пчелиный эсколатор">
++      <option name="closed" value="true" />
++      <created>1710067509934</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1710067509934</updated>
++    </task>
++    <option name="localTasksCounter" value="14" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -215,6 +213,7 @@
+     <MESSAGE value="Точно готовая 3я лаба" />
+     <MESSAGE value="BeeЗумие" />
+     <MESSAGE value="BeeЗумие нахуй" />
+-    <option name="LAST_COMMIT_MESSAGE" value="BeeЗумие нахуй" />
++    <MESSAGE value="Пчелиный эсколатор" />
++    <option name="LAST_COMMIT_MESSAGE" value="Пчелиный эсколатор" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"demo\" />\r\n        <module name=\"laba1_test\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"laba1_test\" options=\"--add-exports javafx.graphics/com.sun.javafx.stage=com.example.laba1_test\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
++++ b/.idea/compiler.xml	(date 1710225721256)
+@@ -13,7 +13,7 @@
+   </component>
+   <component name="JavacSettings">
+     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+-      <module name="laba1_test" options="--add-exports javafx.graphics/com.sun.javafx.stage=com.example.laba1_test" />
++      <module name="laba1_test" options="" />
+     </option>
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/com/example/laba1_test/Worker.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.laba1_test;\r\nimport javafx.animation.PathTransition;\r\nimport javafx.animation.TranslateTransition;\r\nimport javafx.scene.canvas.GraphicsContext;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.AnchorPane;\r\nimport javafx.scene.layout.Pane;\r\nimport javafx.scene.shape.Line;\r\nimport javafx.scene.shape.LineTo;\r\nimport javafx.scene.shape.MoveTo;\r\nimport javafx.scene.shape.Path;\r\nimport javafx.util.Duration;\r\n\r\nimport java.util.HashSet;\r\npublic class Worker extends AbstractObject{\r\n    double speed = 20;\r\n    Thread Worker_thread;\r\n    public Worker(double initialX, double initialY, int LifeT, HashSet<String> Set) {\r\n        super(initialX, initialY, LifeT, Set);\r\n    }\r\n\r\n    public void run(AnchorPane pane, Controller controller, double x, double y){\r\n        Image image = new Image(\"IMGWorker.png\");\r\n        ImageView imgview = new ImageView(image);\r\n        pane.getChildren().addAll(imgview);\r\n        if (x == BirthX && y == BirthY)\r\n        {\r\n            System.out.println(\"Пчела пошла\");\r\n            TranslateTransition transition = new TranslateTransition();\r\n            transition.setNode(imgview);\r\n            transition.setDuration(Duration.millis(10000));\r\n            transition.setByX(200);\r\n            transition.setByY(200);\r\n            transition.setCycleCount(1);\r\n            transition.play();\r\n        }\r\n    }\r\n    public Thread everything(AbstractObject x){\r\n        Worker_thread = new Thread(x);\r\n        /*Worker_thread.start();*/\r\n        return Worker_thread;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/laba1_test/Worker.java b/src/main/java/com/example/laba1_test/Worker.java
+--- a/src/main/java/com/example/laba1_test/Worker.java	(revision ea0b8ca53e10fd6d091640e2dcc4e578b72a81e6)
++++ b/src/main/java/com/example/laba1_test/Worker.java	(date 1710127997177)
+@@ -24,7 +24,7 @@
+         Image image = new Image("IMGWorker.png");
+         ImageView imgview = new ImageView(image);
+         pane.getChildren().addAll(imgview);
+-        if (x == BirthX && y == BirthY)
++        while (x == BirthX && y == BirthY)
+         {
+             System.out.println("Пчела пошла");
+             TranslateTransition transition = new TranslateTransition();
+@@ -34,6 +34,13 @@
+             transition.setByY(200);
+             transition.setCycleCount(1);
+             transition.play();
++            transition = new TranslateTransition(); // Обратно
++            transition.setNode(imgview);
++            transition.setDuration(Duration.millis(10000));
++            transition.setByX(-200);
++            transition.setByY(-200);
++            transition.setCycleCount(1);
++            transition.play();
+         }
+     }
+     public Thread everything(AbstractObject x){
