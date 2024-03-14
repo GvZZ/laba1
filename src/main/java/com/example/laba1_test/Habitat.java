@@ -1,8 +1,5 @@
 package com.example.laba1_test;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.*;
@@ -31,7 +28,6 @@ public class Habitat {
         this.P = b;
 
     }
-
     public void update(int second, AnimationTimer time, int LifeT, AnchorPane Scene, Controller controller) {
         Random rand = new Random();
         if ((rand.nextDouble() < P) && (second % N == 0)) {
@@ -113,6 +109,10 @@ public class Habitat {
     public int getWorkerCount() {
         return WorkerCount;
     }
+    public double getChance(){return P;}
+    public int getInterval(){return N;}
+    public void setChance(double x){P = x;}
+    public void setInterval(int x){N = x;}
     public ArrayList<AbstractObject> getObjects() {
         return objects;
     }

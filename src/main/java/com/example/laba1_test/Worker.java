@@ -65,7 +65,6 @@ public class Worker extends AbstractObject{
     }
     public void StopTransition() {
         this.pathTransition.pause();
-        System.out.println("kekw");
     }
     public void ContinueTransition(){
         this.pathTransition.play();

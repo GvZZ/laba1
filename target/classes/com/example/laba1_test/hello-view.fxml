@@ -71,5 +71,6 @@
             <Image url="@../../../Astolfo.png" />
          </image>
       </ImageView>
+      <Button fx:id="ConsoleButton" layoutX="1648.0" layoutY="305.0" mnemonicParsing="false" onAction="#ConsoleWindow" prefHeight="25.0" prefWidth="121.0" text="Консоль" />
     </children>
 </AnchorPane>

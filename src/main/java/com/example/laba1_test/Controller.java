@@ -1,22 +1,16 @@
 package com.example.laba1_test;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -33,8 +27,6 @@ public class Controller {
     private AnchorPane SceneTwo_Background;
     @FXML
     private Button StartB;
-    @FXML
-    private Button ObjStateBtn;
     @FXML
     private Button StopB;
     @FXML
@@ -81,11 +73,16 @@ public class Controller {
     }
     void ConsoleCommandAdmin(TextArea text, Label label){
         String str = text.getText();
-        text.clear();
+        try {
+            text.clear();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Неудача...");
+        }
         switch (str)
         {
             case("help\n"):
-                label.setText(label.getText() + "help - справка"
+                label.setText(label.getText() + "help - справка\n"
                         + "get Drone amount - количество трутней\n"
                         + "get Worker amount - количество рабочих\n"
                         + "cls - очистить вывод консоли\n"
@@ -99,6 +96,7 @@ public class Controller {
                 break;
             case("cls\n"):
                 label.setText("");
+                break;
             case("get Bee status\n"):
                 if (AIStatusDrone)
                 {
@@ -238,6 +236,20 @@ public class Controller {
             FinalTime.setVisible(true);
             DroneName.setVisible(true);
             WorkerName.setVisible(true);
+            try {
+                FileWriter writer = new FileWriter("src/main/resources/save.txt");
+                writer.write(Double.toString(habitat.getChance()) + '\n' // Шанс спавна
+                + Integer.toString(habitat.getInterval()) + '\n' // Интервал
+                + Integer.toString(LifeTime) + '\n' // Время жизни
+                + Boolean.toString(AIStatusWorker) + '\n' // Статус рабочих
+                + Boolean.toString(AIStatusDrone) + '\n' // Статус трутней
+                );
+
+                writer.close();
+            }
+            catch (Exception e){
+
+            }
             cout1.setText(Integer.toString(habitat.getDroneCount()));
             cout2.setText(Integer.toString(habitat.getWorkerCount()));
             FinalTime.setText(time.getCurrentTime());
@@ -281,6 +293,20 @@ public class Controller {
     @FXML
     void initialize() {
         habitat = ModalWindow.HelloWindow("Привет, пчеловод!", Controller.this);
+        if (AIStatusDrone) {
+            DroneControl.setText("Трутни спать");
+        }
+        else
+        {
+            DroneControl.setText("Трутни бегать");
+        }
+        if (AIStatusWorker) {
+            WorkerControl.setText("Рабочие спать");
+        }
+        else
+        {
+            WorkerControl.setText("Рабочие работать");
+        }
         status = 0;
         cout1.setVisible(false);
         cout2.setVisible(false);
@@ -344,10 +370,9 @@ public class Controller {
         }
     }
 
-    public Boolean getAIStatusWorker(){
-        return AIStatusWorker;
-    }
-    public Boolean getAIStatusDrone(){
-        return AIStatusDrone;
-    }
+    public Boolean getAIStatusWorker(){return AIStatusWorker;}
+    public Boolean getAIStatusDrone(){return AIStatusDrone;}
+    public void setAIStatusWorker(Boolean x){this.AIStatusWorker = x;}
+    public void setAIStatusDrone(Boolean x){this.AIStatusDrone = x;}
+    public void setLifeTime(int x){LifeTime = x;}
 }

@@ -11,10 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 
 public class ModalWindow {
@@ -24,6 +25,40 @@ public class ModalWindow {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+    public static void setSettings(Controller controller, Habitat habitat){
+        try {
+            FileReader reader = new FileReader("src/main/resources/save.txt");
+            int data = reader.read();
+            String str = "";
+            while (data != -1)
+            {
+                str += (char)data;
+                data = reader.read();
+            }
+            reader.close();
+            String[] result = str.split("\n");
+            double Chance = Double.parseDouble(result[0]);
+            int Interval = Integer.parseInt(result[1]);
+            int lifetime = Integer.parseInt(result[2]);
+            Boolean AIWorker = Boolean.parseBoolean(result[3]);
+            Boolean AIDrone = Boolean.parseBoolean(result[4]);
+            if (Chance >= 0 && Chance <= 1 && Interval >= 1)
+            {
+                controller.setAIStatusWorker(AIWorker);
+                controller.setAIStatusDrone(AIDrone);
+                controller.setLifeTime(lifetime);
+                habitat.setChance(Chance);
+                habitat.setInterval(Interval);
+            }
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+            System.out.println("Файл сохранения не найден");
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     public static void newWindow(String Name, Controller Controller, Habitat habitat) throws InterruptedException {
@@ -72,8 +107,10 @@ public class ModalWindow {
         window.setResizable(false);
         window.showAndWait();
     }
-    public static Habitat HelloWindow(String Name, Controller Controller) {
+    public static Habitat HelloWindow(String Name, Controller controller) {
         int b = 1;
+        Habitat habitat = new Habitat(-1, 5);
+        boolean check = false;
         Font CS = new Font("Comic Sans MS Italic", 12.0);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -81,7 +118,15 @@ public class ModalWindow {
         Button BtnOK = new Button("ОК");
         BtnOK.setLayoutX(300);
         BtnOK.setLayoutY(450);
+        Button BtnLoad = new Button("Загрузить");
+        BtnLoad.setLayoutX(350);
+        BtnLoad.setLayoutY(450);
         BtnOK.setOnAction(event -> window.close());
+        Habitat finalHabitat = habitat;
+        BtnLoad.setOnAction(event -> {
+            window.close();
+            setSettings(controller, finalHabitat);
+        });
         TextArea text = new TextArea("Добро пожаловать, мой пчеловод. Сегодня мы займёмся разведением пчёл!\n" +
                 "Для начала необходимо ознакомиться с базовыми командами программы.\n" +
                 "Кнопки \"Старт\" и \"Стоп\" начинают процесс рождения пчёл и останавливают соответственно.\n" +
@@ -113,26 +158,23 @@ public class ModalWindow {
         varB.setLayoutX(180);
         varB.setLayoutY(400);
         //
-        pane.getChildren().addAll(BtnOK);
-        pane.getChildren().addAll(text);
-        pane.getChildren().addAll(varA);
-        pane.getChildren().addAll(varB);
-        pane.getChildren().addAll(varLifeTime);
+        pane.getChildren().addAll(BtnOK, text, varA, varB, varLifeTime, BtnLoad);
         Scene scene = new Scene(pane, 700, 500);
         window.setScene(scene);
         window.setTitle(Name);
         window.setResizable(false);
         window.showAndWait();
         double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
-        if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0)
-        {
-            Controller.LifeTime = Integer.parseInt(varLifeTime.getText());
+        if (habitat.getInterval() == -1) {
+            if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0) {
+                controller.LifeTime = Integer.parseInt(varLifeTime.getText());
+            }
+            if (ModalWindow.isNumericInt(varA.getText()) && Integer.parseInt(varA.getText()) > 0) {
+                b = Integer.parseInt(varA.getText());
+            }
+            habitat = new Habitat(b, a);
         }
-        if (ModalWindow.isNumericInt(varA.getText()) && Integer.parseInt(varA.getText()) > 0)
-        {
-            b = Integer.parseInt(varA.getText());
-        }
-        return new Habitat(b, a);
+        return habitat;
     }
     public static void ObjShow(String Name, Controller Controller, Habitat habitat){
         Font CS = new Font("Comic Sans MS Italic", 21.0);
