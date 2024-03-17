@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -19,6 +20,22 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ModalWindow {
+    public static void ShowAlertWindow1(Habitat habitat){
+        habitat.setInterval(-1);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ошибка данных");
+        alert.setHeaderText(null);
+        alert.setContentText("Вы ввели неверный тип данных для шанса появления пчёл.");
+        alert.showAndWait();
+    }
+    public static void ShowAlertWindow2(Habitat habitat){
+        habitat.setInterval(-1);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ошибка данных");
+        alert.setHeaderText(null);
+        alert.setContentText("Вы ввели неверный тип данных для интервала появления пчёл.");
+        alert.showAndWait();
+    }
     public static boolean isNumericInt(String str) {
         try {
             Integer.parseInt(str);
@@ -108,9 +125,8 @@ public class ModalWindow {
         window.showAndWait();
     }
     public static Habitat HelloWindow(String Name, Controller controller) {
-        int b = 1;
+        int b = -1;
         Habitat habitat = new Habitat(-1, 5);
-        boolean check = false;
         Font CS = new Font("Comic Sans MS Italic", 12.0);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -118,6 +134,21 @@ public class ModalWindow {
         Button BtnOK = new Button("ОК");
         BtnOK.setLayoutX(300);
         BtnOK.setLayoutY(450);
+        Button BtnTime1 = new Button("Показать время");
+        Button BtnTime2 = new Button("Скрыть время");
+        BtnTime2.setLayoutX(105);
+        Button Report = new Button("Текущие объекты");
+        Report.setLayoutX(200);
+        Button AISleep1 = new Button("Трутни спать");
+        AISleep1.setLayoutX(315);
+        Button AISleep2 = new Button("Рабочие спать");
+        AISleep2.setLayoutX(403);
+        Button Start = new Button("Старт");
+        Start.setLayoutX(500);
+        Button Stop = new Button("Стоп");
+        Stop.setLayoutX(548);
+        Button console = new Button("Консоль");
+        console.setLayoutX(591);
         Button BtnLoad = new Button("Загрузить");
         BtnLoad.setLayoutX(350);
         BtnLoad.setLayoutY(450);
@@ -158,19 +189,25 @@ public class ModalWindow {
         varB.setLayoutX(180);
         varB.setLayoutY(400);
         //
-        pane.getChildren().addAll(BtnOK, text, varA, varB, varLifeTime, BtnLoad);
+        pane.getChildren().addAll(BtnOK, text, varA, varB, varLifeTime, BtnLoad, BtnTime1, BtnTime2, Report, AISleep1, AISleep2, Start, Stop, console);
         Scene scene = new Scene(pane, 700, 500);
         window.setScene(scene);
         window.setTitle(Name);
         window.setResizable(false);
-        window.showAndWait();
         double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
-        if (habitat.getInterval() == -1) {
+        while (habitat.getInterval() <= 0) {
+            window.showAndWait();
             if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0) {
                 controller.LifeTime = Integer.parseInt(varLifeTime.getText());
             }
+            else {
+                ShowAlertWindow1(habitat);
+            }
             if (ModalWindow.isNumericInt(varA.getText()) && Integer.parseInt(varA.getText()) > 0) {
                 b = Integer.parseInt(varA.getText());
+            }
+            else {
+                ShowAlertWindow2(habitat);
             }
             habitat = new Habitat(b, a);
         }
