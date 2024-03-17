@@ -2,7 +2,6 @@ package com.example.laba1_test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -36,9 +35,25 @@ public class ModalWindow {
         alert.setContentText("Вы ввели неверный тип данных для интервала появления пчёл.");
         alert.showAndWait();
     }
+    public static void ShowAlertWindow3(Habitat habitat){
+        habitat.setInterval(-1);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ошибка чтения из файла");
+        alert.setHeaderText(null);
+        alert.setContentText("Возможно файл был редактирован или намеренно закорапчен.");
+        alert.showAndWait();
+    }
     public static boolean isNumericInt(String str) {
         try {
             Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    public static boolean isBoolean(String str) { // Она всё ломает при чтении файла, хз
+        try {
+            Boolean.parseBoolean(str);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -61,13 +76,17 @@ public class ModalWindow {
             int lifetime = Integer.parseInt(result[2]);
             Boolean AIWorker = Boolean.parseBoolean(result[3]);
             Boolean AIDrone = Boolean.parseBoolean(result[4]);
-            if (Chance >= 0 && Chance <= 1 && Interval >= 1)
+            if (Chance >= 0 && Chance <= 1 && Interval >= 1 && isNumericInt(result[1]) && isNumericInt(result[2]))
             {
                 controller.setAIStatusWorker(AIWorker);
                 controller.setAIStatusDrone(AIDrone);
                 controller.setLifeTime(lifetime);
                 habitat.setChance(Chance);
                 habitat.setInterval(Interval);
+            }
+            else
+            {
+                ShowAlertWindow3(habitat);
             }
         }
         catch (FileNotFoundException e){
@@ -102,7 +121,6 @@ public class ModalWindow {
             window.close();
             try {
                 habitat.ContinueThreads();
-
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -126,7 +144,7 @@ public class ModalWindow {
     }
     public static Habitat HelloWindow(String Name, Controller controller) {
         int b = -1;
-        Habitat habitat = new Habitat(-1, 5);
+        Habitat habitat = new Habitat(b, 5);
         Font CS = new Font("Comic Sans MS Italic", 12.0);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -155,8 +173,8 @@ public class ModalWindow {
         BtnOK.setOnAction(event -> window.close());
         Habitat finalHabitat = habitat;
         BtnLoad.setOnAction(event -> {
-            window.close();
             setSettings(controller, finalHabitat);
+            window.close();
         });
         TextArea text = new TextArea("Добро пожаловать, мой пчеловод. Сегодня мы займёмся разведением пчёл!\n" +
                 "Для начала необходимо ознакомиться с базовыми командами программы.\n" +
@@ -195,7 +213,9 @@ public class ModalWindow {
         window.setTitle(Name);
         window.setResizable(false);
         double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
-        while (habitat.getInterval() <= 0) {
+        while (habitat.getInterval() <= 0 && finalHabitat.getInterval() <= 0) {
+            System.out.println(finalHabitat.getInterval());
+            System.out.println(habitat.getInterval());
             window.showAndWait();
             if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0) {
                 controller.LifeTime = Integer.parseInt(varLifeTime.getText());

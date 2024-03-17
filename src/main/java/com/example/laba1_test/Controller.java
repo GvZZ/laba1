@@ -11,9 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import static java.lang.Integer.parseInt;
 
 
 public class Controller {
@@ -27,6 +30,12 @@ public class Controller {
     private AnchorPane SceneTwo_Background;
     @FXML
     private Button StartB;
+    @FXML
+    private TextArea ChangeLifeTime;
+    @FXML
+    private TextArea ChangeInterval;
+    @FXML
+    private TextArea ChangeChance;
     @FXML
     private Button StopB;
     @FXML
@@ -69,6 +78,30 @@ public class Controller {
             {
                 timer.setVisible(true);
             }
+        }
+    }
+    boolean CheckCngInt(TextArea x)
+    {
+        try
+        {
+            Integer.parseInt(x.getText());
+            return true;
+        }
+        catch(NumberFormatException e)
+        {
+            return false;
+        }
+    }
+    boolean CheckCngDouble(TextArea x)
+    {
+        try
+        {
+            Double.parseDouble(x.getText());
+            return true;
+        }
+        catch(NumberFormatException e)
+        {
+            return false;
         }
     }
     void ConsoleCommandAdmin(TextArea text, Label label){
@@ -226,6 +259,9 @@ public class Controller {
             ConsoleButton.setDisable(true);
             canvas.setVisible(false);
             timer.setVisible(false);
+            ChangeInterval.setVisible(false);
+            ChangeLifeTime.setVisible(false);
+            ChangeChance.setVisible(false);
             try {
                 habitat.StopThreads();
             } catch (InterruptedException e) {
@@ -270,6 +306,32 @@ public class Controller {
 
     @FXML
     void start() {
+        if (CheckCngInt(ChangeLifeTime))
+        {
+            if (parseInt(ChangeLifeTime.getText()) > 0 && parseInt(ChangeLifeTime.getText()) < 60)
+            {
+                LifeTime = parseInt(ChangeLifeTime.getText());
+            }
+        }
+        ChangeLifeTime.setText("Время жизни: " + LifeTime);
+        ChangeLifeTime.setEditable(false);
+        if (CheckCngInt(ChangeInterval))
+        {
+            if (parseInt(ChangeInterval.getText()) > 0 && parseInt(ChangeInterval.getText()) < 60)
+            {
+                habitat.setInterval(parseInt(ChangeInterval.getText()));
+            }
+        }
+        ChangeInterval.setText("Интервал появления: " + habitat.getInterval());
+        ChangeInterval.setEditable(false);
+        if (CheckCngDouble(ChangeChance))
+        {
+            if (Double.parseDouble(ChangeChance.getText()) > 0 && Double.parseDouble(ChangeChance.getText()) <= 1) {
+                habitat.setChance(parseInt(ChangeChance.getText()));
+            }
+        }
+        ChangeChance.setText("Шанс появления: " + habitat.getChance());
+        ChangeChance.setEditable(false);
         status = 1;
         StartB.setDisable(true);
         StopB.setDisable(false);
