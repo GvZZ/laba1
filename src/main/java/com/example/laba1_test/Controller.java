@@ -2,8 +2,13 @@ package com.example.laba1_test;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,7 +27,7 @@ import static java.lang.Integer.parseInt;
 public class Controller {
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
-    int LifeTime = 5;
+    int LifeTime;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
     private Boolean AIStatusDrone = true;
     private Boolean AIStatusWorker = true;
@@ -33,9 +38,9 @@ public class Controller {
     @FXML
     private TextArea ChangeLifeTime;
     @FXML
-    private TextArea ChangeInterval;
+    private Button ObjStateBtn;
     @FXML
-    private TextArea ChangeChance;
+    private TextArea ChangeInterval;
     @FXML
     private Button StopB;
     @FXML
@@ -57,15 +62,41 @@ public class Controller {
     @FXML
     private Canvas canvas;
     @FXML
-    private Button Report;
+    private CheckBox Report;
     @FXML
     private Button DroneControl;
     @FXML
     private Button WorkerControl;
     @FXML
     private Button ConsoleButton;
-    private Habitat habitat;
-
+    private ComboBox<String> ChangeChance;
+    private Habitat habitat = new Habitat (-1, 5);
+    @FXML
+    void HelloWindow() {
+        Font CS = new Font("Comic Sans MS Italic", 12.0);
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        Pane pane = new Pane();
+        TextArea text = new TextArea("Добро пожаловать, мой пчеловод. Сегодня мы займёмся разведением пчёл!\n" +
+                "Для начала необходимо ознакомиться с базовыми командами программы.\n" +
+                "Кнопки \"Старт\" и \"Стоп\" начинают процесс рождения пчёл и останавливают соответственно.\n" +
+                "Кнопки \"Показать таймер\" и \"Скрыть таймер\" отображают и скрывают таймер в верхнем левом углу\n" +
+                "Последняя кнопка отвечает за разрешение отображения модального окна при завершении симуляции\n" +
+                "Ещё есть кнопки, отвечающие за интеллект пчёл." +
+                "Удачи.");
+        text.setEditable(false);
+        text.setPrefHeight(150);
+        text.setPrefWidth(610);
+        text.setLayoutX(45);
+        text.setLayoutY(100);
+        text.setFont(CS);
+        pane.getChildren().add(text);
+        Scene scene = new Scene(pane, 700, 500);
+        window.setScene(scene);
+        window.setTitle("Help");
+        window.setResizable(false);
+        window.showAndWait();
+    }
     @FXML
     void Hide_Show() {
         if (status != 1)
@@ -150,26 +181,7 @@ public class Controller {
                 break;
             case("sus\n"):
             {
-                label.setText(label.getText() + "When Bee is sus\n" +
-                        " ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⠀ ⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣷⣤⡀⠀⠀⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠋⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⢻⣿⣿⡄⠀⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⣸⣿⡏⠀⠀⠀⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣄⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⢰⣿⣿⣯⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⡄⠀\n" +
-                        "⠀⠀⣀⣤⣴⣶⣶⣿⡟⠀⠀⠀⢸⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⠀\n" +
-                        "⠀⢰⣿⡟⠋⠉⣹⣿⡇⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⠀\n" +
-                        "⠀⢸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀\n" +
-                        "⠀⣸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⡇⠀⠀\n" +
-                        "⠀⣿⣿⠁⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⠀⠀\n" +
-                        "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" +
-                        "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" +
-                        "⠀⢿⣿⡆⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀\n" +
-                        "⠀⠸⣿⣧⡀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠃⠀⠀\n" +
-                        "⠀⠀⠛⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣰⣿⣿⣷⣶⣶⣶⣶⠶⠀⢠⣿⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⣽⣿⡏⠁⠀⠀⢸⣿⡇⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⢹⣿⡆⠀⠀⠀⣸⣿⠇⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁⠀⠈⠻⣿⣿⣿⣿⡿⠀⠀⠀⠀\n" +
-                        "⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
+                label.setText(label.getText() + "When Bee is sus\n" + " ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠀ ⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣷⣤⡀⠀⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠋⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⢻⣿⣿⡄⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣸⣿⡏⠀⠀⠀⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣄⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⢰⣿⣿⣯⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⡄⠀\n" + "⠀⠀⣀⣤⣴⣶⣶⣿⡟⠀⠀⠀⢸⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⠀\n" + "⠀⢰⣿⡟⠋⠉⣹⣿⡇⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⠀\n" + "⠀⢸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀\n" + "⠀⣸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⡇⠀⠀\n" + "⠀⣿⣿⠁⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⠀⠀\n" + "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" + "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" + "⠀⢿⣿⡆⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀\n" + "⠀⠸⣿⣧⡀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠃⠀⠀\n" + "⠀⠀⠛⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣰⣿⣿⣷⣶⣶⣶⣶⠶⠀⢠⣿⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⣽⣿⡏⠁⠀⠀⢸⣿⡇⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⢹⣿⡆⠀⠀⠀⣸⣿⠇⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁⠀⠈⠻⣿⣿⣿⣿⡿⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
                 break;
             }
             default:
@@ -223,7 +235,7 @@ public class Controller {
     }
     @FXML
     void pauseGen() throws IOException, InterruptedException {
-        if (Report.getText().equals("Скрыть отчёт")) {
+        if (Report.isSelected()) {
             status = 2;
             timeline.pause();
             ModalWindow.newWindow("Отчёт генерации", Controller.this, habitat);
@@ -257,11 +269,13 @@ public class Controller {
             HideTimeB.setDisable(true);
             Report.setDisable(true);
             ConsoleButton.setDisable(true);
+            ObjStateBtn.setDisable(true);
+            DroneControl.setDisable(true);
+            WorkerControl.setDisable(true);
             canvas.setVisible(false);
             timer.setVisible(false);
             ChangeInterval.setVisible(false);
             ChangeLifeTime.setVisible(false);
-            ChangeChance.setVisible(false);
             try {
                 habitat.StopThreads();
             } catch (InterruptedException e) {
@@ -293,45 +307,12 @@ public class Controller {
         }
     }
     @FXML
-    void SetReportVisibility(){
-        if (Report.getText().equals("Скрыть отчёт"))
-        {
-            Report.setText("Показать отчёт");
-        }
-        else
-        {
-            Report.setText("Скрыть отчёт");
-        }
-    }
-
-    @FXML
     void start() {
-        if (CheckCngInt(ChangeLifeTime))
-        {
-            if (parseInt(ChangeLifeTime.getText()) > 0 && parseInt(ChangeLifeTime.getText()) < 60)
-            {
-                LifeTime = parseInt(ChangeLifeTime.getText());
-            }
-        }
-        ChangeLifeTime.setText("Время жизни: " + LifeTime);
-        ChangeLifeTime.setEditable(false);
-        if (CheckCngInt(ChangeInterval))
-        {
-            if (parseInt(ChangeInterval.getText()) > 0 && parseInt(ChangeInterval.getText()) < 60)
-            {
-                habitat.setInterval(parseInt(ChangeInterval.getText()));
-            }
-        }
-        ChangeInterval.setText("Интервал появления: " + habitat.getInterval());
+        habitat = new Habitat(parseInt(ChangeInterval.getText()), Double.parseDouble(ChangeChance.getValue().substring(0, ChangeChance.getValue().length() - 1)) / 100);
+        LifeTime = parseInt(ChangeLifeTime.getText());
         ChangeInterval.setEditable(false);
-        if (CheckCngDouble(ChangeChance))
-        {
-            if (Double.parseDouble(ChangeChance.getText()) > 0 && Double.parseDouble(ChangeChance.getText()) <= 1) {
-                habitat.setChance(parseInt(ChangeChance.getText()));
-            }
-        }
-        ChangeChance.setText("Шанс появления: " + habitat.getChance());
-        ChangeChance.setEditable(false);
+        ChangeLifeTime.setEditable(false);
+        ChangeChance.setDisable(true);
         status = 1;
         StartB.setDisable(true);
         StopB.setDisable(false);
@@ -354,7 +335,15 @@ public class Controller {
     }
     @FXML
     void initialize() {
-        habitat = ModalWindow.HelloWindow("Привет, пчеловод!", Controller.this);
+        ObservableList<String> percents = FXCollections.observableArrayList("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%");
+        ChangeChance = new ComboBox<String>(percents);
+        ChangeChance.setValue("90%");
+        ChangeChance.setPrefHeight(15);
+        ChangeChance.setPrefWidth(150);
+        ChangeChance.setLayoutX(1600);
+        ChangeChance.setLayoutY(474);
+        SceneTwo_Background.getChildren().add(ChangeChance);
+        /*habitat = ModalWindow.HelloWindow("Привет, пчеловод!", Controller.this);*/
         if (AIStatusDrone) {
             DroneControl.setText("Трутни спать");
         }
@@ -376,7 +365,18 @@ public class Controller {
         DroneName.setVisible(false);
         WorkerName.setVisible(false);
         StopB.setDisable(true);
-
+        ChangeLifeTime.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getText().matches("[0-9]*")) {
+                return change;
+            }
+            return null;
+        }));
+        ChangeInterval.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getText().matches("[0-9]*")) {
+                return change;
+            }
+            return null;
+        }));
     }
     @FXML
     public void ShowCurrentObjectsState() throws IOException {

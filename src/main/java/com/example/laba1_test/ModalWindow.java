@@ -24,7 +24,7 @@ public class ModalWindow {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Ошибка данных");
         alert.setHeaderText(null);
-        alert.setContentText("Вы ввели неверный тип данных для шанса появления пчёл.");
+        alert.setContentText("Вы ввели неверный тип данных для времени жизни пчёл.");
         alert.showAndWait();
     }
     public static void ShowAlertWindow2(Habitat habitat){
@@ -203,7 +203,7 @@ public class ModalWindow {
         ComboBox<String> varB = new ComboBox<String>(percents);
         varB.setValue("90%");
         varB.setPrefHeight(15);
-        varB.setPrefWidth(280);
+        varB.setPrefWidth(150);
         varB.setLayoutX(180);
         varB.setLayoutY(400);
         //
