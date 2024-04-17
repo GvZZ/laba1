@@ -1,4 +1,5 @@
 package com.example.laba1_test;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -53,4 +54,21 @@ public abstract class AbstractObject extends BaseAI{
     public String getID() {return ID;}
     public void StopTransition(){}
     public void ContinueTransition(){}
+    public void setImg(ImageView x){this.img = x;}
+    @Override
+    public void run()
+    {
+        Image image;
+        if (this.getClass() == Drone.class) {
+            image = new Image("IMGDrone.png");
+        } else {
+            image = new Image("IMGWorker.png");
+        }
+        ImageView imgv = new ImageView(image);
+        imgv.setX(x);
+        imgv.setY(y);
+        imgv.setFitHeight(100);
+        imgv.setFitWidth(100);
+        this.img = imgv;
+    }
 }

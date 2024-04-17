@@ -101,14 +101,7 @@ public class Controller {
     void Hide_Show() {
         if (status != 1)
         {
-            if (timer.isVisible())
-            {
-                timer.setVisible(false);
-            }
-            else
-            {
-                timer.setVisible(true);
-            }
+            timer.setVisible(!timer.isVisible());
         }
     }
     boolean CheckCngInt(TextArea x)

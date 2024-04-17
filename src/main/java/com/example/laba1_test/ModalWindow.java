@@ -214,8 +214,6 @@ public class ModalWindow {
         window.setResizable(false);
         double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
         while (habitat.getInterval() <= 0 && finalHabitat.getInterval() <= 0) {
-            System.out.println(finalHabitat.getInterval());
-            System.out.println(habitat.getInterval());
             window.showAndWait();
             if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0) {
                 controller.LifeTime = Integer.parseInt(varLifeTime.getText());

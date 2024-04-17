@@ -1,12 +1,11 @@
 package com.example.laba1_test;
 
 import javafx.scene.layout.AnchorPane;
-
 import java.util.*;
 
 import static java.lang.Math.abs;
 
-public class Habitat {
+public class Habitat extends Thread implements Runnable{
     private static final int K = 30;
     private int N = 1; // интервал для рабочих в секундах
     private double P = 0.9; // вероятность спавна рабочих
@@ -17,6 +16,42 @@ public class Habitat {
     private ArrayList<Thread> ThreadList;
     private int DroneCount;
     private int WorkerCount;
+    private int finmin;
+    private int finsec;
+    private int ms;
+    Thread BeeAdd = new Thread();
+    Runnable Runnie = new Runnable() {
+        @Override
+        public void run() {
+            String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
+            if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
+            {
+                IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
+                SpawnSet.remove(fintime);
+                objects.getFirst().interrupt();
+                objects.getFirst().allstop();
+                objects.remove(objects.getFirst());
+            }
+            fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
+            if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
+            {
+                IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
+                SpawnSet.remove(fintime);
+                objects.getFirst().allstop();
+                objects.remove(objects.getFirst());
+            }
+            BeeDelete.interrupt();
+        }
+    };
+    Runnable Radke = new Runnable() {
+        private AbstractObject x = new AbstractObject() {};
+        @Override
+        public void run() {
+            System.out.println(AbstractObject.currentThread());
+            x.run();
+        }
+    };
+    Thread BeeDelete = new Thread();
     public Habitat(int a, double b) {
         SpawnSet = new TreeMap<String, String>();
         IDSet = new HashSet<String>();
@@ -26,7 +61,6 @@ public class Habitat {
         ThreadList = new ArrayList<Thread>();
         this.N = a;
         this.P = b;
-
     }
     public void update(int second, AnimationTimer time, int LifeT, AnchorPane Scene, Controller controller) {
         Random rand = new Random();
@@ -35,6 +69,7 @@ public class Habitat {
             objects.addLast(new_Worker);
             SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
             WorkerCount++;
+            new_Worker.run();
             ThreadList.add(new_Worker.everything(new_Worker));
             objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
         }
@@ -44,20 +79,19 @@ public class Habitat {
             String doptime = time.Minute + ":" + time.Second + ":" + 15;
             SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
+            new_Drone.run();
             ThreadList.add(new_Drone.everything(new_Drone));
             Scene.getChildren().add(objects.getLast().getImg());
             objects.getLast().run(Scene, controller, controller.getAIStatusDrone());
-
         }
         if (!objects.isEmpty())
         {
             String[] vremya = time.getCurrentTime().split(":");
             int min = Integer.parseInt(vremya[0]);
             int sec = Integer.parseInt(vremya[1]);
-            int ms = Integer.parseInt(vremya[2]);
-            int finmin = min;
-            int finsec = sec - objects.getFirst().getLifeTime();
-
+            this.ms = Integer.parseInt(vremya[2]);
+            this.finmin = min;
+            this.finsec = sec - objects.getFirst().getLifeTime();
             if (finsec < 0)
             {
                 finsec =  60 - abs(finsec);
@@ -68,24 +102,7 @@ public class Habitat {
                 }
             }
             if (finmin >= 0) {
-                String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
-                if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
-                {
-                    IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
-                    SpawnSet.remove(fintime);
-                    objects.getFirst().interrupt();
-                    objects.getFirst().allstop();
-                    objects.remove(objects.getFirst());
-                }
-                fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
-                if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
-                {
-                    IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
-                    SpawnSet.remove(fintime);
-                    objects.getFirst().allstop();
-                    objects.remove(objects.getFirst());
-
-                }
+                Runnie.run();
             }
             String[] checktime = time.getCurrentTime().split(":");
             int checkmin = Integer.parseInt(vremya[0]);
@@ -95,8 +112,7 @@ public class Habitat {
             {
                 for (AbstractObject x : objects)
                 {
-                    Drone drn = new Drone();
-                    if (x.getClass() == drn.getClass()) {
+                    if (x.getClass() == Drone.class) {
                         x.run(Scene, controller, controller.getAIStatusWorker());
                     }
                 }

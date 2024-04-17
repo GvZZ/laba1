@@ -20,12 +20,12 @@ public class Worker extends AbstractObject{
     double speed = 10;
     Thread Worker_thread;
     PathTransition pathTransition = new PathTransition();
-    ImageView img;
+    ImageView img = new ImageView(new Image("IMGWorker.png"));
     public Worker(double initialX, double initialY, int LifeT, HashSet<String> Set) {
         super(initialX, initialY, LifeT, Set);
     }
     public Worker(){}
-
+    @Override
     public void run(AnchorPane pane, Controller controller, Boolean Status){
         pathTransition.setDuration(Duration.millis(speed * 100));
         Path path = new Path();
@@ -49,13 +49,8 @@ public class Worker extends AbstractObject{
         this.img.setImage(null);
     }
     public Thread everything(AbstractObject x){
-        Image image = new Image("IMGWorker.png");
-        ImageView imgv = new ImageView(image);
-        imgv.setX(BirthX);
-        imgv.setY(BirthY);
-        imgv.setFitHeight(100);
-        imgv.setFitWidth(100);
-        this.img = imgv;
+        img.setFitHeight(100);
+        img.setFitWidth(100);
         Worker_thread = new Thread(x);
         /*Worker_thread.start();*/
         return Worker_thread;

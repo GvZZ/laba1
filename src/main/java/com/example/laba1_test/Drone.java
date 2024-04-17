@@ -18,7 +18,7 @@ public class Drone extends AbstractObject{
     double speed = 10;
     Thread Drone_thread;
     PathTransition pathTransition = new PathTransition();
-    ImageView img;
+    ImageView img = new ImageView(new Image("IMGDrone.png"));
     public Drone(double initialX, double initialY, int LifeT, HashSet<String> Set) {
         super(initialX, initialY, LifeT, Set);
     }
@@ -53,13 +53,8 @@ public class Drone extends AbstractObject{
         this.img.setImage(null);
     }
     public Thread everything(AbstractObject x){
-        Image image = new Image("IMGDrone.png");
-        ImageView imgv = new ImageView(image);
-        imgv.setX(BirthX);
-        imgv.setY(BirthY);
-        imgv.setFitHeight(100);
-        imgv.setFitWidth(100);
-        this.img = imgv;
+        img.setFitHeight(100);
+        img.setFitWidth(100);
         Drone_thread = new Thread(x);
         return Drone_thread;
     }
