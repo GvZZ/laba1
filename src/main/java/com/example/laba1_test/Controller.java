@@ -128,6 +128,12 @@ public class Controller {
             return false;
         }
     }
+
+    @FXML
+    void SettingsSet() {
+        ModalWindow.setSettings(this, habitat, time);
+    }
+
     void ConsoleCommandAdmin(TextArea text, Label label){
         String str = text.getText();
         try {
@@ -178,7 +184,7 @@ public class Controller {
                 break;
             }
             default:
-                label.setText(label.getText() + "Вы ввели несущестующую команду\n");
+                label.setText(label.getText() + "Вы ввели несущестующую команду\nЕсли вы забыли список команд введите help");
         }
     }
     @FXML
@@ -286,6 +292,8 @@ public class Controller {
                 + Integer.toString(LifeTime) + '\n' // Время жизни
                 + Boolean.toString(AIStatusWorker) + '\n' // Статус рабочих
                 + Boolean.toString(AIStatusDrone) + '\n' // Статус трутней
+                + Integer.toString(habitat.getWorkerCount()) + '\n'
+                + Integer.toString(habitat.getDroneCount()) + '\n'
                 );
 
                 writer.close();
@@ -430,4 +438,7 @@ public class Controller {
     public void setAIStatusWorker(Boolean x){this.AIStatusWorker = x;}
     public void setAIStatusDrone(Boolean x){this.AIStatusDrone = x;}
     public void setLifeTime(int x){LifeTime = x;}
+    public void setChangeLifeTime(String x){ChangeLifeTime.setText(x);}
+    public void setChangeInterval(String x){ChangeInterval.setText(x);}
+    public AnchorPane getSceneTwo_Background(){return SceneTwo_Background;}
 }

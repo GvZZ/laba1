@@ -11,34 +11,36 @@ public class Habitat extends Thread implements Runnable{
     private double P = 0.9; // вероятность спавна рабочих
 
     private ArrayList<AbstractObject> objects;
-    private HashSet<String> IDSet;
+    private static HashSet<String> IDSet;
     private TreeMap<String, String> SpawnSet;
     private ArrayList<Thread> ThreadList;
     private int DroneCount;
     private int WorkerCount;
     private int finmin;
     private int finsec;
-    private int ms;
+    private int finms;
     Thread BeeAdd = new Thread();
     Runnable Runnie = new Runnable() {
         @Override
         public void run() {
-            String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", ms);
-            if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
+            String fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + String.format("%d", finms);
+            while (SpawnSet.remove(fintime) != null)
             {
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
                 objects.getFirst().interrupt();
                 objects.getFirst().allstop();
                 objects.remove(objects.getFirst());
+                DroneCount--;
             }
             fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
-            if (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
+            while (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
             {
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
                 objects.getFirst().allstop();
                 objects.remove(objects.getFirst());
+                WorkerCount--;
             }
             BeeDelete.interrupt();
         }
@@ -69,7 +71,7 @@ public class Habitat extends Thread implements Runnable{
             objects.addLast(new_Worker);
             SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
             WorkerCount++;
-            new_Worker.run();
+            new_Worker.start();
             ThreadList.add(new_Worker.everything(new_Worker));
             objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
         }
@@ -79,7 +81,7 @@ public class Habitat extends Thread implements Runnable{
             String doptime = time.Minute + ":" + time.Second + ":" + 15;
             SpawnSet.put(doptime, objects.getLast().getID());
             DroneCount++;
-            new_Drone.run();
+            new_Drone.start();
             ThreadList.add(new_Drone.everything(new_Drone));
             Scene.getChildren().add(objects.getLast().getImg());
             objects.getLast().run(Scene, controller, controller.getAIStatusDrone());
@@ -89,7 +91,7 @@ public class Habitat extends Thread implements Runnable{
             String[] vremya = time.getCurrentTime().split(":");
             int min = Integer.parseInt(vremya[0]);
             int sec = Integer.parseInt(vremya[1]);
-            this.ms = Integer.parseInt(vremya[2]);
+            this.finms = Integer.parseInt(vremya[2]);
             this.finmin = min;
             this.finsec = sec - objects.getFirst().getLifeTime();
             if (finsec < 0)
@@ -132,8 +134,11 @@ public class Habitat extends Thread implements Runnable{
     public ArrayList<AbstractObject> getObjects() {
         return objects;
     }
-    public HashSet<String> getIDSet() {return IDSet;}
+    public static HashSet<String> getIDSet() {return IDSet;}
     public TreeMap<String, String> getSpawnSet() {return SpawnSet;}
+    public ArrayList<Thread> getThreadList() {return ThreadList;}
+    public void setWorkerCount(int workerCount) {this.WorkerCount = workerCount;}
+    public void setDroneCount(int droneCount) {this.DroneCount = droneCount;}
     public void StopThreads() throws InterruptedException {
         for (AbstractObject x : objects)
         {

@@ -37,4 +37,7 @@ public class AnimationTimer {
             }
         }
     }
+    public int getMinute(){return Minute;}
+    public int getSecond(){return Second;}
+    public int getMSecond(){return MSecond;}
 }

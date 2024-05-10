@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 public class ModalWindow {
@@ -59,7 +60,7 @@ public class ModalWindow {
             return false;
         }
     }
-    public static void setSettings(Controller controller, Habitat habitat){
+    public static void setSettings(Controller controller, Habitat habitat, AnimationTimer time) {
         try {
             FileReader reader = new FileReader("src/main/resources/save.txt");
             int data = reader.read();
@@ -76,13 +77,57 @@ public class ModalWindow {
             int lifetime = Integer.parseInt(result[2]);
             Boolean AIWorker = Boolean.parseBoolean(result[3]);
             Boolean AIDrone = Boolean.parseBoolean(result[4]);
+            int WorkerCount = Integer.parseInt(result[5]);
+            int DroneCount = Integer.parseInt(result[6]);
             if (Chance >= 0 && Chance <= 1 && Interval >= 1 && isNumericInt(result[1]) && isNumericInt(result[2]))
             {
                 controller.setAIStatusWorker(AIWorker);
                 controller.setAIStatusDrone(AIDrone);
+                controller.setChangeLifeTime(String.valueOf(lifetime));
                 controller.setLifeTime(lifetime);
+                controller.setChangeInterval(String.valueOf(Interval));
                 habitat.setChance(Chance);
                 habitat.setInterval(Interval);
+                for (AbstractObject i : habitat.getObjects()) {
+                    i.allstop();
+                }
+                habitat.getSpawnSet().clear();
+                int WK = WorkerCount;
+                int DK = DroneCount;
+                for (int minutes = time.getMinute(); minutes <= 10000 & WK > 0; minutes++) {
+                    for (int seconds = time.getSecond(); seconds < 60 & WK > 0; seconds += 1) {
+                        for (int ms = time.getMSecond(); ms < 60 & DK > 0; ms += 10) {
+                            WK--;
+                            Random rand = new Random();
+                            Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
+                            habitat.getObjects().addLast(new_Worker);
+                            String temp = minutes + ":" + seconds + ':' + ms;
+                            habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
+                            new_Worker.start(); // Не виновен, оправдан.
+                            habitat.getThreadList().add(new_Worker.everything(new_Worker));
+                            habitat.getObjects().getLast().run(controller.getSceneTwo_Background(), controller, controller.getAIStatusWorker());
+                        }
+                    }
+                }
+                habitat.setWorkerCount(WorkerCount);
+                for (int minutes = time.getMinute(); minutes <= 10000 & DK > 0; minutes++) {
+                    for (int seconds = time.getSecond(); seconds < 60 & DK > 0; seconds ++) {
+                        for (int ms = time.getMSecond(); ms < 60 & DK > 0; ms += 10)
+                        {
+                            DK--;
+                            Random rand = new Random();
+                            Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
+                            habitat.getObjects().addLast(new_Drone);
+                            String temp = minutes + ":" + seconds + ':' + ms;
+                            habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
+                            new_Drone.start();
+                            habitat.getThreadList().add(new_Drone.everything(new_Drone));
+                            controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
+                            habitat.getObjects().getLast().run(controller.getSceneTwo_Background(), controller, controller.getAIStatusDrone());
+                        }
+                    }
+                }
+                habitat.setDroneCount(DroneCount);
             }
             else
             {
@@ -142,95 +187,6 @@ public class ModalWindow {
         window.setResizable(false);
         window.showAndWait();
     }
-    public static Habitat HelloWindow(String Name, Controller controller) {
-        int b = -1;
-        Habitat habitat = new Habitat(b, 5);
-        Font CS = new Font("Comic Sans MS Italic", 12.0);
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        Pane pane = new Pane();
-        Button BtnOK = new Button("ОК");
-        BtnOK.setLayoutX(300);
-        BtnOK.setLayoutY(450);
-        Button BtnTime1 = new Button("Показать время");
-        Button BtnTime2 = new Button("Скрыть время");
-        BtnTime2.setLayoutX(105);
-        Button Report = new Button("Текущие объекты");
-        Report.setLayoutX(200);
-        Button AISleep1 = new Button("Трутни спать");
-        AISleep1.setLayoutX(315);
-        Button AISleep2 = new Button("Рабочие спать");
-        AISleep2.setLayoutX(403);
-        Button Start = new Button("Старт");
-        Start.setLayoutX(500);
-        Button Stop = new Button("Стоп");
-        Stop.setLayoutX(548);
-        Button console = new Button("Консоль");
-        console.setLayoutX(591);
-        Button BtnLoad = new Button("Загрузить");
-        BtnLoad.setLayoutX(350);
-        BtnLoad.setLayoutY(450);
-        BtnOK.setOnAction(event -> window.close());
-        Habitat finalHabitat = habitat;
-        BtnLoad.setOnAction(event -> {
-            setSettings(controller, finalHabitat);
-            window.close();
-        });
-        TextArea text = new TextArea("Добро пожаловать, мой пчеловод. Сегодня мы займёмся разведением пчёл!\n" +
-                "Для начала необходимо ознакомиться с базовыми командами программы.\n" +
-                "Кнопки \"Старт\" и \"Стоп\" начинают процесс рождения пчёл и останавливают соответственно.\n" +
-                "Кнопки \"Показать таймер\" и \"Скрыть таймер\" отображают и скрывают таймер в верхнем левом углу\n" +
-                "Последняя кнопка отвечает за разрешение отображения модального окна при завершении симуляции\n" +
-                "Ещё есть кнопки, отвечающие за интеллект пчёл." +
-                "Удачи.");
-        text.setEditable(false);
-        text.setPrefHeight(150);
-        text.setPrefWidth(610);
-        text.setLayoutX(45);
-        text.setLayoutY(100);
-        text.setFont(CS);
-        TextArea varA = new TextArea("Введите интервал появления пчел.\nВыберите шанс их появления.");
-        varA.setPrefHeight(50);
-        varA.setPrefWidth(280);
-        varA.setLayoutX(180);
-        varA.setLayoutY(350);
-        TextArea varLifeTime = new TextArea("Введите время жизни пчел.");
-        varLifeTime.setPrefHeight(50);
-        varLifeTime.setPrefWidth(280);
-        varLifeTime.setLayoutX(180);
-        varLifeTime.setLayoutY(300);
-        ObservableList<String> percents = FXCollections.observableArrayList("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%");
-        ComboBox<String> varB = new ComboBox<String>(percents);
-        varB.setValue("90%");
-        varB.setPrefHeight(15);
-        varB.setPrefWidth(150);
-        varB.setLayoutX(180);
-        varB.setLayoutY(400);
-        //
-        pane.getChildren().addAll(BtnOK, text, varA, varB, varLifeTime, BtnLoad, BtnTime1, BtnTime2, Report, AISleep1, AISleep2, Start, Stop, console);
-        Scene scene = new Scene(pane, 700, 500);
-        window.setScene(scene);
-        window.setTitle(Name);
-        window.setResizable(false);
-        double a = Double.parseDouble(varB.getValue().substring(0, varB.getValue().length() - 1)) / 100;
-        while (habitat.getInterval() <= 0 && finalHabitat.getInterval() <= 0) {
-            window.showAndWait();
-            if (ModalWindow.isNumericInt(varLifeTime.getText()) && Integer.parseInt(varLifeTime.getText()) > 0) {
-                controller.LifeTime = Integer.parseInt(varLifeTime.getText());
-            }
-            else {
-                ShowAlertWindow1(habitat);
-            }
-            if (ModalWindow.isNumericInt(varA.getText()) && Integer.parseInt(varA.getText()) > 0) {
-                b = Integer.parseInt(varA.getText());
-            }
-            else {
-                ShowAlertWindow2(habitat);
-            }
-            habitat = new Habitat(b, a);
-        }
-        return habitat;
-    }
     public static void ObjShow(String Name, Controller Controller, Habitat habitat){
         Font CS = new Font("Comic Sans MS Italic", 21.0);
         Stage window = new Stage();
@@ -269,7 +225,7 @@ public class ModalWindow {
         BtnContinue.setLayoutY(450);
         text.setMaxHeight(430);
         text.setMaxWidth(700);
-        pane.getChildren().addAll(BtnContinue);
+        pane.getChildren().add(BtnContinue);
         pane.getChildren().addAll(text);
         Scene scene = new Scene(pane, 700, 500);
         window.setScene(scene);
