@@ -27,7 +27,7 @@ public class AnimationTimer {
     }
 
     public void OneTick(){
-        MSecond += 10;
+        MSecond += 1;
         if (MSecond == 100) {
             Second++;
             MSecond = 0;

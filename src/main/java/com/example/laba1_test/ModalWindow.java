@@ -94,9 +94,10 @@ public class ModalWindow {
                 habitat.getSpawnSet().clear();
                 int WK = WorkerCount;
                 int DK = DroneCount;
+                String Endingtime = "";
                 for (int minutes = time.getMinute(); minutes <= 10000 & WK > 0; minutes++) {
                     for (int seconds = time.getSecond(); seconds < 60 & WK > 0; seconds += 1) {
-                        for (int ms = time.getMSecond(); ms < 60 & DK > 0; ms += 10) {
+                        for (int ms = time.getMSecond(); ms < 60 & DK > 0; ms += 1) {
                             WK--;
                             Random rand = new Random();
                             Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
@@ -106,13 +107,18 @@ public class ModalWindow {
                             new_Worker.start(); // Не виновен, оправдан.
                             habitat.getThreadList().add(new_Worker.everything(new_Worker));
                             habitat.getObjects().getLast().run(controller.getSceneTwo_Background(), controller, controller.getAIStatusWorker());
+                            Endingtime = temp;
                         }
                     }
                 }
+                String[] vremya = Endingtime.split(":");
+                int minutes = Integer.parseInt(vremya[0]);
+                int seconds = Integer.parseInt(vremya[1]);
+                int ms = Integer.parseInt(vremya[2]);
                 habitat.setWorkerCount(WorkerCount);
-                for (int minutes = time.getMinute(); minutes <= 10000 & DK > 0; minutes++) {
-                    for (int seconds = time.getSecond(); seconds < 60 & DK > 0; seconds ++) {
-                        for (int ms = time.getMSecond(); ms < 60 & DK > 0; ms += 10)
+                for (minutes = time.getMinute(); minutes <= 10000 & DK > 0; minutes++) {
+                    for (seconds = time.getSecond(); seconds < 60 & DK > 0; seconds ++) {
+                        for (ms = time.getMSecond(); ms < 60 & DK > 0; ms += 1)
                         {
                             DK--;
                             Random rand = new Random();

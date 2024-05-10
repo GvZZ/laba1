@@ -319,11 +319,11 @@ public class Controller {
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0:0")) {
             timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(0.1),
+                    new KeyFrame(Duration.seconds(0.01),
                             e -> {
                                 time.OneTick();
                                 timer.setText(time.getCurrentTime());
-                                if (time.MSecond == 0)
+                                if (time.MSecond % 1 == 0)
                                 {
                                     habitat.update(time.Second, time, LifeTime, SceneTwo_Background, Controller.this); // Че за хуйня блять
 
