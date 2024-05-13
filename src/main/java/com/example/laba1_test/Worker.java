@@ -25,35 +25,10 @@ public class Worker extends AbstractObject{
         super(initialX, initialY, LifeT, Set);
     }
     public Worker(){}
-    @Override
-    public void run(AnchorPane pane, Controller controller, Boolean Status){
-        pathTransition.setDuration(Duration.millis(speed * 100));
-        Path path = new Path();
-        MoveTo moveTo = new MoveTo(BirthX, BirthY);
-        LineTo lineTo = new LineTo(1486 - img.getFitWidth() / 2, 1000 - img.getFitHeight() / 2);
-        pathTransition.setNode(img);
-        path.getElements().addAll(moveTo, lineTo);
-        pane.getChildren().add(img);
-        pathTransition.setCycleCount(-1);
-        pathTransition.setAutoReverse(true);
-        pathTransition.setPath(path);
-        pathTransition.play();
-        if (!Status){
-            pathTransition.pause();
-        }
-    }
+
     @Override
     public void allstop(){
-        this.pathTransition.setNode(null);
-        this.Worker_thread.interrupt();
         this.img.setImage(null);
-    }
-    public Thread everything(AbstractObject x){
-        img.setFitHeight(100);
-        img.setFitWidth(100);
-        Worker_thread = new Thread(x);
-        /*Worker_thread.start();*/
-        return Worker_thread;
     }
     public ImageView getImg(){
         return this.img;

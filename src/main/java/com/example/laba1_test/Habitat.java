@@ -13,7 +13,7 @@ public class Habitat extends Thread implements Runnable{
     private ArrayList<AbstractObject> objects;
     private static HashSet<String> IDSet;
     private TreeMap<String, String> SpawnSet;
-    private ArrayList<Thread> ThreadList;
+    private ArrayList<BaseAI> ThreadList;
     private int DroneCount;
     private int WorkerCount;
     private int finmin;
@@ -29,8 +29,10 @@ public class Habitat extends Thread implements Runnable{
                 System.out.println("Одного ёбнул");
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
-                objects.getFirst().allstop();
+                objects.getFirst().setImg(null);
+                ThreadList.getFirst().allstop();
                 objects.remove(objects.getFirst());
+                ThreadList.remove(ThreadList.getFirst());
                 DroneCount--;
             }
             fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
@@ -39,53 +41,59 @@ public class Habitat extends Thread implements Runnable{
                 System.out.println("Одного ёбнул");
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
-                objects.getFirst().allstop();
+                objects.getFirst().setImg(null);
+                ThreadList.getFirst().interrupt();
+                ThreadList.remove(ThreadList.getFirst());
                 objects.remove(objects.getFirst());
                 WorkerCount--;
             }
             BeeDelete.interrupt();
         }
     };
-    Runnable Radke = new Runnable() {
-        private AbstractObject x = new AbstractObject() {};
-        @Override
-        public void run() {
-            x.run();
-        }
-    };
-    Thread BeeDelete = new Thread();
+    Thread BeeDelete = new Thread(Runnie);
     public Habitat(int a, double b) {
         SpawnSet = new TreeMap<String, String>();
         IDSet = new HashSet<String>();
         objects = new ArrayList<>();
         DroneCount = 0;
         WorkerCount = 0;
-        ThreadList = new ArrayList<Thread>();
+        ThreadList = new ArrayList<BaseAI>();
         this.N = a;
         this.P = b;
     }
     public void update(int second, AnimationTimer time, int LifeT, AnchorPane Scene, Controller controller) {
+        for (BaseAI x : ThreadList) {
+            if (x.getClass() == DroneAI.class) {
+                x.setStatus(controller.getAIStatusDrone());
+            }
+            else{
+                x.setStatus(controller.getAIStatusWorker());
+            }
+        }
         if (time.getMSecond() % 100 == 0) {
             Random rand = new Random();
             if ((rand.nextDouble() < P) && (second % N == 0)) {
+                WorkerAI WAI = new WorkerAI(Scene, controller, controller.getAIStatusWorker());
                 Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
+                WAI.setImg(new_Worker.getImg());
+                WAI.everything(new_Worker);
                 objects.addLast(new_Worker);
                 SpawnSet.put(time.getCurrentTime(), objects.getLast().getID());
                 WorkerCount++;
-                new_Worker.start();
-                ThreadList.add(new_Worker.everything(new_Worker));
-                objects.getLast().run(Scene, controller, controller.getAIStatusWorker());
+                ThreadList.add(WAI);
+                ThreadList.getLast().run();
             }
             if (DroneCount <= WorkerCount * K * 0.01) {
+                DroneAI DAI = new DroneAI(Scene, controller, controller.getAIStatusDrone());
                 Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
+                DAI.setImg(new_Drone.getImg());
+                DAI.everything(new_Drone);
                 objects.addLast(new_Drone);
                 String doptime = time.Minute + ":" + time.Second + ":" + 15;
                 SpawnSet.put(doptime, objects.getLast().getID());
                 DroneCount++;
-                new_Drone.start();
-                ThreadList.add(new_Drone.everything(new_Drone));
-                Scene.getChildren().add(objects.getLast().getImg());
-                objects.getLast().run(Scene, controller, controller.getAIStatusDrone());
+                ThreadList.add(DAI);
+                ThreadList.getLast().run();
             }
         }
         if (!objects.isEmpty())
@@ -94,7 +102,6 @@ public class Habitat extends Thread implements Runnable{
             int min = time.getMinute();
             int sec = time.getSecond();
             this.finms = time.getMSecond();
-            System.out.println(finms);
             this.finmin = min;
             this.finsec = sec - objects.getFirst().getLifeTime();
             if (finsec < 0)
@@ -115,7 +122,7 @@ public class Habitat extends Thread implements Runnable{
                 for (AbstractObject x : objects)
                 {
                     if (x.getClass() == Drone.class) {
-                        x.run(Scene, controller, controller.getAIStatusWorker());
+
                     }
                 }
             }
@@ -136,7 +143,7 @@ public class Habitat extends Thread implements Runnable{
     }
     public static HashSet<String> getIDSet() {return IDSet;}
     public TreeMap<String, String> getSpawnSet() {return SpawnSet;}
-    public ArrayList<Thread> getThreadList() {return ThreadList;}
+    public ArrayList<BaseAI> getThreadList() {return ThreadList;}
     public void setWorkerCount(int workerCount) {this.WorkerCount = workerCount;}
     public void setDroneCount(int droneCount) {this.DroneCount = droneCount;}
     public void StopThreads() throws InterruptedException {

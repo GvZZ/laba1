@@ -248,6 +248,8 @@ public class Controller {
     @FXML
     void continueGen() {
         status = 1;
+        AIStatusDrone = true;
+        AIStatusWorker = true;
         timeline.play();
         try {
             habitat.ContinueThreads();

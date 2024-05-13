@@ -105,8 +105,7 @@ public class ModalWindow {
                             String temp = minutes + ":" + seconds + ':' + ms;
                             habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
                             new_Worker.start(); // Не виновен, оправдан.
-                            habitat.getThreadList().add(new_Worker.everything(new_Worker));
-                            habitat.getObjects().getLast().run(controller.getSceneTwo_Background(), controller, controller.getAIStatusWorker());
+                            /*habitat.getThreadList().add(new_Worker.everything(new_Worker));*/
                             Endingtime = temp;
                         }
                     }
@@ -127,9 +126,8 @@ public class ModalWindow {
                             String temp = minutes + ":" + seconds + ':' + ms;
                             habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
                             new_Drone.start();
-                            habitat.getThreadList().add(new_Drone.everything(new_Drone));
+                            /*habitat.getThreadList().add(new_Drone.everything(new_Drone));*/
                             controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
-                            habitat.getObjects().getLast().run(controller.getSceneTwo_Background(), controller, controller.getAIStatusDrone());
                         }
                     }
                 }

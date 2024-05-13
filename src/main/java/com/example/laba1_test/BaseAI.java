@@ -4,13 +4,15 @@ import javafx.scene.layout.AnchorPane;
 
 public abstract class BaseAI extends Thread implements Runnable{
     @Override
-    public void run(){
+    synchronized public void run(){
 
     }
     public void start(){
 
     }
-    public void run(AnchorPane pane, Controller controller, Boolean s){
-    }
     public void StopTransition() throws InterruptedException {}
+    public void everything(AbstractObject x){}
+    public void allstop(){}
+    public void setStatus(Boolean Status){}
+
 }

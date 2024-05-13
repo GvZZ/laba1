@@ -23,41 +23,6 @@ public class Drone extends AbstractObject{
         super(initialX, initialY, LifeT, Set);
     }
     public Drone(){}
-    @Override
-    public void run(AnchorPane pane, Controller controller, Boolean Status){
-        while(pathTransition.getStatus() == Animation.Status.STOPPED) {
-            pathTransition.setDuration(Duration.millis(speed * 100));
-            Path path = new Path();
-            MoveTo moveTo = new MoveTo(img.getX(), img.getY());
-            Random rand = new Random();
-            double angle = rand.nextDouble(); // случайный угол
-            x = (speed * Math.cos(angle)) * 100;
-            y = (speed * Math.sin(angle)) * 100;
-            LineTo lineTo = new LineTo(x, y);
-            pathTransition.setNode(img);
-            path.getElements().addAll(moveTo, lineTo);
-            pathTransition.setCycleCount(1);
-            pathTransition.setPath(path);
-            pathTransition.play();
-            if (!Status){
-                pathTransition.pause();
-            }
-            img.setX(x);
-            img.setY(y);
-        }
-    }
-    @Override
-    public void allstop(){
-        this.pathTransition.setNode(null);
-        this.Drone_thread.interrupt();
-        this.img.setImage(null);
-    }
-    public Thread everything(AbstractObject x){
-        img.setFitHeight(100);
-        img.setFitWidth(100);
-        Drone_thread = new Thread(x);
-        return Drone_thread;
-    }
     public ImageView getImg(){
         return this.img;
     }
