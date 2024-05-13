@@ -33,7 +33,7 @@ public class DroneAI extends BaseAI{
     @Override
     synchronized public void run(){
         while(pathTransition.getStatus() == Animation.Status.STOPPED) {
-            pathTransition.setDuration(Duration.millis(speed * 100));
+            pathTransition.setDuration(Duration.millis(speed * 1000));
             Path path = new Path();
             MoveTo moveTo = new MoveTo(img.getX(), img.getY());
             Random rand = new Random();
@@ -43,6 +43,7 @@ public class DroneAI extends BaseAI{
             LineTo lineTo = new LineTo(x, y);
             pathTransition.setNode(img);
             path.getElements().addAll(moveTo, lineTo);
+            pane.getChildren().add(img);
             pathTransition.setCycleCount(1);
             pathTransition.setPath(path);
             pathTransition.play();
@@ -67,5 +68,6 @@ public class DroneAI extends BaseAI{
     public void setStatus(Boolean Status){this.Status = Status;}
     public ImageView getImg(){return this.img;}
     public void setImg(ImageView img){this.img = img;}
+    public AnchorPane getPane(){return this.pane;}
 
 }

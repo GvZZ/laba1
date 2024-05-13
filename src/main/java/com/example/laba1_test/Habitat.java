@@ -29,6 +29,7 @@ public class Habitat extends Thread implements Runnable{
                 System.out.println("Одного ёбнул");
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
+                ThreadList.getFirst().getPane().getChildren().remove(ThreadList.getFirst());
                 objects.getFirst().setImg(null);
                 ThreadList.getFirst().allstop();
                 objects.remove(objects.getFirst());
@@ -41,7 +42,9 @@ public class Habitat extends Thread implements Runnable{
                 System.out.println("Одного ёбнул");
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
+                ThreadList.getFirst().getPane().getChildren().remove(ThreadList.getFirst());
                 objects.getFirst().setImg(null);
+                ThreadList.getFirst().allstop();
                 ThreadList.getFirst().interrupt();
                 ThreadList.remove(ThreadList.getFirst());
                 objects.remove(objects.getFirst());

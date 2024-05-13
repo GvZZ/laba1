@@ -14,5 +14,6 @@ public abstract class BaseAI extends Thread implements Runnable{
     public void everything(AbstractObject x){}
     public void allstop(){}
     public void setStatus(Boolean Status){}
+    public AnchorPane getPane(){return null;}
 
 }

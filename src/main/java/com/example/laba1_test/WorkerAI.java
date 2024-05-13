@@ -65,4 +65,5 @@ public class WorkerAI extends BaseAI{
     public void setStatus(Boolean Status){this.Status = Status;}
     public ImageView getImg(){return this.img;}
     public void setImg(ImageView img){this.img = img;}
+    public AnchorPane getPane(){return this.pane;}
 }
