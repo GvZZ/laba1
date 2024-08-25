@@ -38,6 +38,8 @@ public class Main extends Application {
         });
         stage.setTitle("Симулятор пчёл");
         stage.setScene(scene);
+        DroneAI DAI = new DroneAI(controller);
+        DAI.start();
         stage.show();
     }
         public static void main(String[] args) {

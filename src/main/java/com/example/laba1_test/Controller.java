@@ -2,8 +2,6 @@ package com.example.laba1_test;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -390,12 +388,11 @@ public class Controller {
 
     @FXML
     public void PauseAiDrone(){
-        Drone new_Drone = new Drone();
         if (AIStatusDrone) {
             DroneControl.setText("Трутни бегать");
             AIStatusDrone = false;
             for (AbstractObject x : habitat.getObjects()) {
-                if (x.getClass() == new_Drone.getClass()) {
+                if (x instanceof Drone) {
                     x.StopTransition();
                 }
             }
@@ -405,7 +402,7 @@ public class Controller {
             DroneControl.setText("Трутни спать");
             AIStatusDrone = true;
             for (AbstractObject x : habitat.getObjects()) {
-                if (x.getClass() == new_Drone.getClass()) {
+                if (x instanceof Worker) {
                     x.ContinueTransition();
                 }
             }
@@ -437,6 +434,8 @@ public class Controller {
 
     public Boolean getAIStatusWorker(){return AIStatusWorker;}
     public Boolean getAIStatusDrone(){return AIStatusDrone;}
+    public Habitat getHabitat() {return habitat;}
+    public int getLifeTime(){return LifeTime;}
     public void setAIStatusWorker(Boolean x){this.AIStatusWorker = x;}
     public void setAIStatusDrone(Boolean x){this.AIStatusDrone = x;}
     public void setLifeTime(int x){LifeTime = x;}

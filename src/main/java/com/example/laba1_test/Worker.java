@@ -17,8 +17,6 @@ import javafx.util.Duration;
 import java.util.HashSet;
 
 public class Worker extends AbstractObject{
-    double speed = 10;
-    Thread Worker_thread;
     PathTransition pathTransition = new PathTransition();
     ImageView img = new ImageView(new Image("IMGWorker.png"));
     public Worker(double initialX, double initialY, int LifeT, HashSet<String> Set) {

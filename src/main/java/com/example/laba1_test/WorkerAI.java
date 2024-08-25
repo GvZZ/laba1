@@ -8,6 +8,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class WorkerAI extends BaseAI{
@@ -19,20 +20,18 @@ public class WorkerAI extends BaseAI{
     AnchorPane pane;
     Controller controller;
     Boolean Status;
-    public WorkerAI(AnchorPane pane, Controller controller, Boolean Status){
-        Random rand = new Random();
+    ArrayList<AbstractObject> BeeBees;
+    public WorkerAI(AnchorPane pane, Controller controller, Boolean Status, ArrayList<AbstractObject> objects){
         this.pane = pane;
         this.controller = controller;
         this.Status = Status;
-        BirthX = 0.0 + (Math.random() * (1200 + 1));
-        System.out.println(BirthX);
-        BirthY = 0.0 + (Math.random() * (800 + 1));
-        System.out.println(BirthY);
+        BirthX = Math.random() * (1200 + 1);
+        BirthY = Math.random() * (800 + 1);
 
     }
     @Override
-    synchronized public void run(){
-        pathTransition.setDuration(Duration.millis(speed * 100));
+    public void run(){
+        pathTransition.setDuration(Duration.millis(speed * 150));
         Path path = new Path();
         MoveTo moveTo = new MoveTo(BirthX, BirthY);
         LineTo lineTo = new LineTo(1486 - img.getFitWidth() / 2, 1000 - img.getFitHeight() / 2);

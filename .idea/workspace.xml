@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Я проиграл.">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Почему они в нуле спавнятся">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/save.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,26 +65,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "456a0fd2",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/suxov/IdeaProjects/Labs-Laba4",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;25926179&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/suxov/IdeaProjects/Labs-Laba4&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suxov\IdeaProjects\laba1\src\main\resources" />
@@ -108,7 +116,44 @@
       <workItem from="1715347072348" duration="11594000" />
       <workItem from="1715574835322" duration="4506000" />
       <workItem from="1715580352685" duration="1587000" />
-      <workItem from="1715611790107" duration="3876000" />
+      <workItem from="1715611790107" duration="5391000" />
+      <workItem from="1715866936078" duration="15000" />
+      <workItem from="1716029612274" duration="9000" />
+      <workItem from="1716084737468" duration="10000" />
+      <workItem from="1716185153339" duration="31000" />
+      <workItem from="1724402361264" duration="2000" />
+      <workItem from="1724402424501" duration="43000" />
+      <workItem from="1724402502951" duration="67000" />
+      <workItem from="1724402578788" duration="253000" />
+      <workItem from="1724403074484" duration="1214000" />
+      <workItem from="1724404531318" duration="6000" />
+      <workItem from="1724404546447" duration="79000" />
+      <workItem from="1724404650652" duration="1000" />
+      <workItem from="1724404657147" duration="403000" />
+      <workItem from="1724405078692" duration="876000" />
+      <workItem from="1724406074621" duration="335000" />
+      <workItem from="1724406450180" duration="333000" />
+      <workItem from="1724406826520" duration="8000" />
+      <workItem from="1724406841194" duration="747000" />
+      <workItem from="1724408295546" duration="601000" />
+      <workItem from="1724408974077" duration="15000" />
+      <workItem from="1724409003839" duration="50000" />
+      <workItem from="1724409083430" duration="98000" />
+      <workItem from="1724409209037" duration="82000" />
+      <workItem from="1724409415332" duration="48000" />
+      <workItem from="1724409521452" duration="15000" />
+      <workItem from="1724409548249" duration="394000" />
+      <workItem from="1724410025196" duration="42000" />
+      <workItem from="1724410086054" duration="23000" />
+      <workItem from="1724410167312" duration="13000" />
+      <workItem from="1724410188812" duration="14000" />
+      <workItem from="1724410254057" duration="1194000" />
+      <workItem from="1724411626528" duration="300000" />
+      <workItem from="1724411949032" duration="2151000" />
+      <workItem from="1724414139503" duration="130000" />
+      <workItem from="1724576340076" duration="7000" />
+      <workItem from="1724576557929" duration="355000" />
+      <workItem from="1724576931880" duration="2703000" />
     </task>
     <task id="LOCAL-00001" summary="Почти вторая лаба">
       <option name="closed" value="true" />
@@ -302,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715614286417</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Почему они в нуле спавнятся">
+      <option name="closed" value="true" />
+      <created>1715615798732</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1715615798732</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,6 +402,7 @@
     <MESSAGE value="Пизда нахуй! файл" />
     <MESSAGE value="Я победил." />
     <MESSAGE value="Я проиграл." />
-    <option name="LAST_COMMIT_MESSAGE" value="Я проиграл." />
+    <MESSAGE value="Почему они в нуле спавнятся" />
+    <option name="LAST_COMMIT_MESSAGE" value="Почему они в нуле спавнятся" />
   </component>
 </project>

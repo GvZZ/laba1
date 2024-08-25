@@ -10,7 +10,7 @@ public class Habitat extends Thread implements Runnable{
     private int N = 1; // интервал для рабочих в секундах
     private double P = 0.9; // вероятность спавна рабочих
 
-    private ArrayList<AbstractObject> objects;
+    public ArrayList<AbstractObject> objects;
     private static HashSet<String> IDSet;
     private TreeMap<String, String> SpawnSet;
     private ArrayList<BaseAI> ThreadList;
@@ -66,6 +66,11 @@ public class Habitat extends Thread implements Runnable{
     }
     public void update(int second, AnimationTimer time, int LifeT, AnchorPane Scene, Controller controller) {
         for (BaseAI x : ThreadList) {
+            if (x.getState() == State.WAITING) {
+                x.run();
+            }
+        }
+        for (BaseAI x : ThreadList) {
             if (x.getClass() == DroneAI.class) {
                 x.setStatus(controller.getAIStatusDrone());
             }
@@ -76,7 +81,7 @@ public class Habitat extends Thread implements Runnable{
         if (time.getMSecond() % 100 == 0) {
             Random rand = new Random();
             if ((rand.nextDouble() < P) && (second % N == 0)) {
-                WorkerAI WAI = new WorkerAI(Scene, controller, controller.getAIStatusWorker());
+                WorkerAI WAI = new WorkerAI(Scene, controller, controller.getAIStatusWorker(), objects);
                 Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
                 WAI.setImg(new_Worker.getImg());
                 WAI.everything(new_Worker);
@@ -87,7 +92,7 @@ public class Habitat extends Thread implements Runnable{
                 ThreadList.getLast().run();
             }
             if (DroneCount <= WorkerCount * K * 0.01) {
-                DroneAI DAI = new DroneAI(Scene, controller, controller.getAIStatusDrone());
+                DroneAI DAI = new DroneAI(controller);
                 Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, LifeT, IDSet);
                 DAI.setImg(new_Drone.getImg());
                 DAI.everything(new_Drone);
@@ -95,8 +100,6 @@ public class Habitat extends Thread implements Runnable{
                 String doptime = time.Minute + ":" + time.Second + ":" + 15;
                 SpawnSet.put(doptime, objects.getLast().getID());
                 DroneCount++;
-                ThreadList.add(DAI);
-                ThreadList.getLast().run();
             }
         }
         if (!objects.isEmpty())

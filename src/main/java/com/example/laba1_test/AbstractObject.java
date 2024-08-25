@@ -1,4 +1,6 @@
 package com.example.laba1_test;
+import javafx.animation.Animation;
+import javafx.animation.PathTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +17,7 @@ public abstract class AbstractObject extends BaseAI{
     int LifeTime;
     ImageView img;
     String ID;
+    PathTransition pathTransition = new PathTransition();
     public AbstractObject(double initialX, double initialY, int LifeT, HashSet<String> Set) {
         this.x = initialX;
         this.y = initialY;
@@ -24,17 +27,18 @@ public abstract class AbstractObject extends BaseAI{
         SetID(Set);
     }
     public AbstractObject(){}
+    public boolean VibeChecker(){
+        return pathTransition.getStatus() == Animation.Status.RUNNING;
+    }
     public double getX() {
         return x;
     }
-
     public double getY() {
         return y;
     }
     public void SetID(HashSet<String> Set)
     {
         int prevSize = Set.size();
-
         while (prevSize == Set.size())
         {
             Random rand = new Random();
@@ -44,7 +48,6 @@ public abstract class AbstractObject extends BaseAI{
             Set.add(StringID);
         }
     }
-
     public void allstop(){
     }
     public ImageView getImg(){
@@ -55,20 +58,10 @@ public abstract class AbstractObject extends BaseAI{
     public void StopTransition(){}
     public void ContinueTransition(){}
     public void setImg(ImageView x){this.img = x;}
+    public PathTransition getPathTransition(){return this.pathTransition;}
     @Override
     public void run()
     {
-        Image image;
-        if (this.getClass() == Drone.class) {
-            image = new Image("IMGDrone.png");
-        } else {
-            image = new Image("IMGWorker.png");
-        }
-        ImageView imgv = new ImageView(image);
-        imgv.setX(x);
-        imgv.setY(y);
-        imgv.setFitHeight(100);
-        imgv.setFitWidth(100);
-        this.img = imgv;
+
     }
 }
