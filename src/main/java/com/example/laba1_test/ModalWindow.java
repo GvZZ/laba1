@@ -60,7 +60,7 @@ public class ModalWindow {
             return false;
         }
     }
-    public static void setSettings(Controller controller, Habitat habitat, AnimationTimer time) {
+    public static void setSettings(Controller controller, Habitat habitat, AnimationTimer time) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
         try {
             FileReader reader = new FileReader("src/main/resources/save.txt");
             int data = reader.read();
@@ -89,7 +89,7 @@ public class ModalWindow {
                 habitat.setChance(Chance);
                 habitat.setInterval(Interval);
                 for (AbstractObject i : habitat.getObjects()) {
-                    i.allstop();
+                    i.allstop(); // Разобраться че ваще происходит в коде и сменить функцию на что-то другое. Она дерьмо
                 }
                 habitat.getSpawnSet().clear();
                 int WK = WorkerCount;
@@ -157,22 +157,18 @@ public class ModalWindow {
         Button BtnContinue = new Button("Отмена");
         BtnContinue.setLayoutX(350);
         BtnContinue.setLayoutY(450);
-        habitat.StopThreads();
         BtnStop.setOnAction(event -> {
             try {
                 Controller.exit();
                 window.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         });
         BtnContinue.setOnAction(event -> {
             window.close();
-            try {
-                habitat.ContinueThreads();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
             Controller.continueGen();
         });
         TextArea text = new TextArea("Количество рабочих пчёл: " + habitat.getWorkerCount() + "\nКоличество трутней: " + habitat.getDroneCount() + "\nТекущее время симуляции: " + Controller.time.getCurrentTime());
@@ -191,23 +187,15 @@ public class ModalWindow {
         window.setResizable(false);
         window.showAndWait();
     }
-    public static void ObjShow(String Name, Controller Controller, Habitat habitat){
+    public static void ObjShow(String Name, Controller Controller, Habitat habitat) throws IOException, InterruptedException {
         Font CS = new Font("Comic Sans MS Italic", 21.0);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         Pane pane = new Pane();
         Button BtnContinue = new Button("Ясно.");
-        try {
-            habitat.StopThreads();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Controller.StopThreads();
         BtnContinue.setOnAction(event -> {
-            try {
-                habitat.ContinueThreads();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            Controller.continueGen();
             window.close();
         });
         TreeMap<String, String> t = habitat.getSpawnSet();

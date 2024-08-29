@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="Почему они в нуле спавнятся">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="68-70 DroneAI. Картинки добавляются на пейн из дубликата картинки оригинального объекта. Надо придумать как добавлять оригинал чтобы не заёбываться с удалением и обслеживанием пчёл. На бумаге(по массивам) всё идеально, проблема только в том что картинки не делитаются. Снова упёрлись в бессмертие">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" afterDir="false" />
@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/save.txt" afterDir="false" />
@@ -73,7 +74,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;25926179&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;bf7ebad9&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/suxov/IdeaProjects/Labs-Laba4&quot;,
@@ -153,7 +154,11 @@
       <workItem from="1724414139503" duration="130000" />
       <workItem from="1724576340076" duration="7000" />
       <workItem from="1724576557929" duration="355000" />
-      <workItem from="1724576931880" duration="2703000" />
+      <workItem from="1724576931880" duration="2924000" />
+      <workItem from="1724744079192" duration="3000" />
+      <workItem from="1724852212697" duration="8605000" />
+      <workItem from="1724860939170" duration="327000" />
+      <workItem from="1724921282801" duration="4764000" />
     </task>
     <task id="LOCAL-00001" summary="Почти вторая лаба">
       <option name="closed" value="true" />
@@ -355,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715615798732</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="68-70 DroneAI. Картинки добавляются на пейн из дубликата картинки оригинального объекта. Надо придумать как добавлять оригинал чтобы не заёбываться с удалением и обслеживанием пчёл. На бумаге(по массивам) всё идеально, проблема только в том что картинки не делитаются. Снова упёрлись в бессмертие">
+      <option name="closed" value="true" />
+      <created>1724579875084</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1724579875084</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,6 +416,7 @@
     <MESSAGE value="Я победил." />
     <MESSAGE value="Я проиграл." />
     <MESSAGE value="Почему они в нуле спавнятся" />
-    <option name="LAST_COMMIT_MESSAGE" value="Почему они в нуле спавнятся" />
+    <MESSAGE value="68-70 DroneAI. Картинки добавляются на пейн из дубликата картинки оригинального объекта. Надо придумать как добавлять оригинал чтобы не заёбываться с удалением и обслеживанием пчёл. На бумаге(по массивам) всё идеально, проблема только в том что картинки не делитаются. Снова упёрлись в бессмертие" />
+    <option name="LAST_COMMIT_MESSAGE" value="68-70 DroneAI. Картинки добавляются на пейн из дубликата картинки оригинального объекта. Надо придумать как добавлять оригинал чтобы не заёбываться с удалением и обслеживанием пчёл. На бумаге(по массивам) всё идеально, проблема только в том что картинки не делитаются. Снова упёрлись в бессмертие" />
   </component>
 </project>

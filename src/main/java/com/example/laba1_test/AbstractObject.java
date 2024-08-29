@@ -1,11 +1,7 @@
 package com.example.laba1_test;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -27,15 +23,6 @@ public abstract class AbstractObject extends BaseAI{
         SetID(Set);
     }
     public AbstractObject(){}
-    public boolean VibeChecker(){
-        return pathTransition.getStatus() == Animation.Status.RUNNING;
-    }
-    public double getX() {
-        return x;
-    }
-    public double getY() {
-        return y;
-    }
     public void SetID(HashSet<String> Set)
     {
         int prevSize = Set.size();
@@ -49,6 +36,7 @@ public abstract class AbstractObject extends BaseAI{
         }
     }
     public void allstop(){
+        pathTransition.setNode(null);
     }
     public ImageView getImg(){
         return img;

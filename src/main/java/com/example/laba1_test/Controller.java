@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -26,6 +25,8 @@ public class Controller {
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime;
+    DroneAI DAI;
+    WorkerAI WAI;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
     private Boolean AIStatusDrone = true;
     private Boolean AIStatusWorker = true;
@@ -68,7 +69,7 @@ public class Controller {
     @FXML
     private Button ConsoleButton;
     private ComboBox<String> ChangeChance;
-    private Habitat habitat = new Habitat (-1, 5);
+    private Habitat habitat = new Habitat (-1, 5, this);
     @FXML
     void HelloWindow() {
         Font CS = new Font("Comic Sans MS Italic", 12.0);
@@ -235,33 +236,21 @@ public class Controller {
         if (Report.isSelected()) {
             status = 2;
             timeline.pause();
+            StopThreads();
             ModalWindow.newWindow("Отчёт генерации", Controller.this, habitat);
         }
-        else
-        {
-            exit();
-        }
-
+        else {exit();}
     }
     @FXML
     void continueGen() {
         status = 1;
-        AIStatusDrone = true;
-        AIStatusWorker = true;
         timeline.play();
-        try {
-            habitat.ContinueThreads();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        ContinueThreads();
     }
     @FXML
-    void exit() throws IOException {
+    void exit() throws IOException, InterruptedException {
         if (status != 0) {
-            for (AbstractObject x : habitat.getObjects())
-            {
-                x.allstop();
-            }
+            for (AbstractObject x : habitat.objects) {SceneTwo_Background.getChildren().remove(x.getImg());}
             StopB.setDisable(true);
             StartB.setDisable(true);
             ShowTimeB.setDisable(true);
@@ -275,11 +264,7 @@ public class Controller {
             timer.setVisible(false);
             ChangeInterval.setVisible(false);
             ChangeLifeTime.setVisible(false);
-            try {
-                habitat.StopThreads();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            StopThreads();
             cout1.setVisible(true);
             cout2.setVisible(true);
             FinalTime.setVisible(true);
@@ -295,10 +280,9 @@ public class Controller {
                 + Integer.toString(habitat.getWorkerCount()) + '\n'
                 + Integer.toString(habitat.getDroneCount()) + '\n'
                 );
-
                 writer.close();
             }
-            catch (Exception e){
+            catch (Exception ignored){
 
             }
             cout1.setText(Integer.toString(habitat.getDroneCount()));
@@ -309,7 +293,11 @@ public class Controller {
     }
     @FXML
     void start() {
-        habitat = new Habitat(parseInt(ChangeInterval.getText()), Double.parseDouble(ChangeChance.getValue().substring(0, ChangeChance.getValue().length() - 1)) / 100);
+        habitat = new Habitat(parseInt(ChangeInterval.getText()), Double.parseDouble(ChangeChance.getValue().substring(0, ChangeChance.getValue().length() - 1)) / 100, this);
+        DAI = new DroneAI(this);
+        WAI = new WorkerAI(this);
+        DAI.start();
+        WAI.start();
         LifeTime = parseInt(ChangeLifeTime.getText());
         ChangeInterval.setEditable(false);
         ChangeLifeTime.setEditable(false);
@@ -380,7 +368,7 @@ public class Controller {
         }));
     }
     @FXML
-    public void ShowCurrentObjectsState() throws IOException {
+    public void ShowCurrentObjectsState() throws IOException, InterruptedException {
         status = 2;
         timeline.pause();
         ModalWindow.ObjShow("Отчёт генерации", Controller.this, habitat);
@@ -391,9 +379,10 @@ public class Controller {
         if (AIStatusDrone) {
             DroneControl.setText("Трутни бегать");
             AIStatusDrone = false;
+            DAI.setAIState(false);
             for (AbstractObject x : habitat.getObjects()) {
                 if (x instanceof Drone) {
-                    x.StopTransition();
+                    x.getPathTransition().pause();
                 }
             }
         }
@@ -401,22 +390,23 @@ public class Controller {
         {
             DroneControl.setText("Трутни спать");
             AIStatusDrone = true;
+            DAI.setAIState(true);
             for (AbstractObject x : habitat.getObjects()) {
                 if (x instanceof Worker) {
-                    x.ContinueTransition();
+                    x.getPathTransition().play();
                 }
             }
         }
     }
     @FXML
     public void PauseAiWorker(){
-        Worker new_Worker = new Worker();
         if (AIStatusWorker) {
             WorkerControl.setText("Рабочие работать");
             AIStatusWorker = false;
+
             for (AbstractObject x : habitat.getObjects()) {
-                if (x.getClass() == new_Worker.getClass()) {
-                    x.StopTransition();
+                if (x instanceof Worker) {
+                    x.getPathTransition().pause();
                 }
             }
         }
@@ -424,9 +414,10 @@ public class Controller {
         {
             WorkerControl.setText("Рабочие спать");
             AIStatusWorker = true;
+
             for (AbstractObject x : habitat.getObjects()) {
-                if (x.getClass() == new_Worker.getClass()) {
-                    x.ContinueTransition();
+                if (x instanceof Worker) {
+                    x.getPathTransition().play();
                 }
             }
         }
@@ -442,4 +433,23 @@ public class Controller {
     public void setChangeLifeTime(String x){ChangeLifeTime.setText(x);}
     public void setChangeInterval(String x){ChangeInterval.setText(x);}
     public AnchorPane getSceneTwo_Background(){return SceneTwo_Background;}
+    public void StopThreads(){
+        DAI.setAIState(false);
+        WAI.setAIState(false);
+        for (int i = 0; i < habitat.objects.size(); i++)
+        {
+            habitat.objects.get(i).getPathTransition().pause();
+        }
+    }
+    public void ContinueThreads(){
+        System.out.println("Вызвал и должен продолжить");
+        DAI.setAIState(true);
+        WAI.setAIState(true);
+        for (int i = 0; i < habitat.objects.size(); i++)
+        {
+            habitat.objects.get(i).getPathTransition().play();
+        }
+        System.out.println("Отработал");
+    }
+    public int getStatus() {return this.status;}
 }

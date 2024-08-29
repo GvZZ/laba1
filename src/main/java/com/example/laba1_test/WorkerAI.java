@@ -1,6 +1,8 @@
 package com.example.laba1_test;
 
+import javafx.animation.Animation;
 import javafx.animation.PathTransition;
+import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.LineTo;
@@ -9,60 +11,66 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class WorkerAI extends BaseAI{
-    PathTransition pathTransition = new PathTransition();
+    public static Habitat habitat;
     ImageView img;
     double BirthX;
     double BirthY;
     double speed = 10;
     AnchorPane pane;
     Controller controller;
-    Boolean Status;
     ArrayList<AbstractObject> BeeBees;
-    public WorkerAI(AnchorPane pane, Controller controller, Boolean Status, ArrayList<AbstractObject> objects){
-        this.pane = pane;
+    public WorkerAI(Controller controller){
+        this.pane = controller.getSceneTwo_Background();
         this.controller = controller;
-        this.Status = Status;
-        BirthX = Math.random() * (1200 + 1);
-        BirthY = Math.random() * (800 + 1);
-
+        habitat = controller.getHabitat();
     }
     @Override
     public void run(){
-        pathTransition.setDuration(Duration.millis(speed * 150));
-        Path path = new Path();
-        MoveTo moveTo = new MoveTo(BirthX, BirthY);
-        LineTo lineTo = new LineTo(1486 - img.getFitWidth() / 2, 1000 - img.getFitHeight() / 2);
-        pathTransition.setNode(img);
-        path.getElements().addAll(moveTo, lineTo);
-        pane.getChildren().add(img);
-        pathTransition.setCycleCount(-1);
-        pathTransition.setAutoReverse(true);
-        pathTransition.setPath(path);
-        pathTransition.play();
-        if (!Status){
-            try {
-                this.wait();
+        while(true) {
+            if (AIState){
+                synchronized (habitat.objects) {
+                    if (controller.getAIStatusWorker()) { // Если жожни дыргаются, то поток течёт
+                        for (int i = 0; i < habitat.objects.size(); i++) {
+                            if (habitat.objects.get(i) instanceof Worker) {
+                                if (habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING || controller.getStatus() == 2) {
+                                    continue;
+                                }
+                                BirthX = Math.random() * (1200 + 1);
+                                BirthY = Math.random() * (800 + 1);
+                                img = habitat.objects.get(i).getImg();
+                                habitat.getObjects().get(i).getPathTransition().setDuration(Duration.millis(speed * 150));
+                                Path path = new Path();
+                                MoveTo moveTo = new MoveTo(BirthX, BirthY);
+                                LineTo lineTo = new LineTo(1486 - img.getFitWidth() / 2, 1000 - img.getFitHeight() / 2);
+                                habitat.objects.get(i).getPathTransition().setNode(img);
+                                path.getElements().addAll(moveTo, lineTo);
+                                Platform.runLater(() -> {
+                                    pane.getChildren().add(img);
+                                });
+                                habitat.objects.get(i).getPathTransition().setCycleCount(-1);
+                                habitat.objects.get(i).getPathTransition().setAutoReverse(true);
+                                habitat.objects.get(i).getPathTransition().setPath(path);
+                                habitat.objects.get(i).getPathTransition().play();
+                                if (!controller.getAIStatusWorker()) {
+                                    habitat.objects.get(i).getPathTransition().pause();
+                                }
+                                img.setFitWidth(100);
+                                img.setFitHeight(100);
+                                img.setX(BirthX);
+                                img.setY(BirthY);
+                            }
+                        }
+                    }
+                }
+            }
+            try{
+                sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
     }
-    @Override
-    public void everything(AbstractObject x){
-        img.setFitHeight(100);
-        img.setFitWidth(100);
-    }
-    @Override
-    public void allstop(){
-        this.pathTransition.setNode(null);
-        this.img.setImage(null);
-    }
-    public void setController(Controller controller){this.controller = controller;}
-    public void setStatus(Boolean Status){this.Status = Status;}
-    public ImageView getImg(){return this.img;}
-    public void setImg(ImageView img){this.img = img;}
     public AnchorPane getPane(){return this.pane;}
 }

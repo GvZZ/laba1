@@ -1,34 +1,26 @@
 package com.example.laba1_test;
 
 import javafx.animation.Animation;
-import javafx.animation.PathTransition;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
-
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Vector;
 
 public class DroneAI extends BaseAI{
     public static Habitat habitat;
-    ArrayList <Drone> Dobjects = new ArrayList<Drone>();
     ImageView img;
     double x;
     double y;
     double speed = 10;
     AnchorPane pane;
     Controller controller;
-    Boolean Status;
     public DroneAI(Controller controller){
         this.pane = controller.getSceneTwo_Background();
         this.controller = controller;
-        this.Status = controller.getAIStatusDrone();
         this.x = Math.random() * (1200 + 1);
         this.y = Math.random() * (800 + 1);
         habitat = controller.getHabitat();
@@ -37,16 +29,15 @@ public class DroneAI extends BaseAI{
     @Override
     public void run(){
         while(true) {
-            synchronized (habitat.objects) {
-                if (Status) {
+            if (AIState){
+                System.out.println(AIState);
+                synchronized (habitat.objects) {
                     for (int i = 0; i < habitat.objects.size(); i++) {
                         if (habitat.objects.get(i) instanceof Drone) {
-                            Drone Dbee = (Drone) habitat.objects.get(i);
+                            if (habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING || controller.getStatus() == 2) {
+                                continue;
+                            }
                             img = habitat.objects.get(i).getImg();
-                            //System.out.println(i);
-                            System.out.println(habitat.objects.get(i).getPathTransition().getStatus());
-                            if (habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING){System.out.println("биба"); continue;}
-                            System.out.println(habitat.objects.get(i).getPathTransition().getStatus());
                             habitat.objects.get(i).getPathTransition().setDuration(Duration.millis(controller.getLifeTime() * 1000)); // Для i элемента всех пчёл задаём PT прямо в абстрактный объект
                             Path path = new Path();
                             MoveTo moveTo = new MoveTo(x, y);
@@ -60,12 +51,10 @@ public class DroneAI extends BaseAI{
                             Platform.runLater(() -> {
                                 pane.getChildren().add(img);
                             });
-                            System.out.println("Пу-Пу-пу");
                             habitat.objects.get(i).getPathTransition().setCycleCount(1);
                             habitat.objects.get(i).getPathTransition().setPath(path);
                             habitat.objects.get(i).getPathTransition().play();
-                            Dobjects.addLast(Dbee);
-                            if (!Status) {
+                            if (!controller.getAIStatusDrone()) {
                                 habitat.objects.get(i).getPathTransition().pause();
                             }
                             img.setFitWidth(100);
@@ -83,21 +72,5 @@ public class DroneAI extends BaseAI{
             }
         }
     }
-    @Override
-    public void everything(AbstractObject x){
-        img.setFitHeight(100);
-        img.setFitWidth(100);
-    }
-    @Override
-    public void allstop(){
-        for (Drone object : Dobjects) {
-            object.setPathTransition(null);
-        }
-    }
-
-    public void setStatus(Boolean Status){this.Status = Status;}
-    public ImageView getImg(){return this.img;}
-    public void setImg(ImageView img){this.img = img;}
     public AnchorPane getPane(){return this.pane;}
-
 }

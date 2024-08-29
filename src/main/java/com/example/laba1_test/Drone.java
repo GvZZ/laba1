@@ -19,6 +19,4 @@ public class Drone extends AbstractObject{
     }
     public void StopTransition(){this.pathTransition.pause();}
     public void ContinueTransition(){this.pathTransition.play();}
-    public PathTransition getPathTransition() {return pathTransition;}
-    public void setPathTransition(PathTransition pathTransition) {this.pathTransition = pathTransition;}
-}
+    public PathTransition getPathTransition() {return pathTransition;}}

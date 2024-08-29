@@ -26,7 +26,7 @@ public class Main extends Application {
                     case E:
                         try {
                             controller.exit();
-                        } catch (IOException e) {
+                        } catch (IOException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }
                         break;
@@ -38,8 +38,6 @@ public class Main extends Application {
         });
         stage.setTitle("Симулятор пчёл");
         stage.setScene(scene);
-        DroneAI DAI = new DroneAI(controller);
-        DAI.start();
         stage.show();
     }
         public static void main(String[] args) {
