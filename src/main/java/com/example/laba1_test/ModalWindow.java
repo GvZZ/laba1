@@ -57,9 +57,9 @@ public class ModalWindow {
             return false;
         }
     }
-    public static void setSettings(Controller controller, Habitat habitat, AnimationTimer time) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
+    public static void setSettings(Controller controller, Habitat habitat) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
         try {
-            FileReader reader = new FileReader("src/main/resources/save.txt");
+            FileReader reader = new FileReader("src/main/resources/save.bin");
             int data = reader.read();
             String str = "";
             while (data != -1)
@@ -68,7 +68,7 @@ public class ModalWindow {
                 data = reader.read();
             }
             reader.close();
-            String[] result = str.split("\n");
+            String[] result = str.split(System.lineSeparator());
             double Chance = Double.parseDouble(result[0]);
             int Interval = Integer.parseInt(result[1]);
             int lifetime = Integer.parseInt(result[2]);
@@ -85,50 +85,55 @@ public class ModalWindow {
                 controller.setChangeInterval(String.valueOf(Interval));
                 habitat.setChance(Chance);
                 habitat.setInterval(Interval);
-                for (AbstractObject i : habitat.getObjects()) {
-                    i.allstop(); // Разобраться че ваще происходит в коде и сменить функцию на что-то другое. Она дерьмо
-                }
                 habitat.getSpawnSet().clear();
                 int WK = WorkerCount;
                 int DK = DroneCount;
-                String Endingtime = "";
-                for (int minutes = time.getMinute(); minutes <= 10000 & WK > 0; minutes++) {
-                    for (int seconds = time.getSecond(); seconds < 60 & WK > 0; seconds += 1) {
-                        for (int ms = time.getMSecond(); ms < 60 & DK > 0; ms += 1) {
-                            WK--;
-                            Random rand = new Random();
-                            Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
-                            habitat.getObjects().addLast(new_Worker);
-                            String temp = minutes + ":" + seconds + ':' + ms;
-                            habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
-                            new_Worker.start(); // Не виновен, оправдан.
-                            /*habitat.getThreadList().add(new_Worker.everything(new_Worker));*/
-                            Endingtime = temp;
-                        }
+                int minutes = 0;
+                int seconds = 0;
+                int ms = 0;
+                while (WK > 0){
+                    ms = WorkerCount - WK;
+                    while (ms >= 100){
+                        ms -= 100;
+                        seconds++;
                     }
+                    while (seconds >= 60){
+                        seconds -= 60;
+                        minutes++;
+                    }
+                    Random rand = new Random();
+                    Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
+                    habitat.getObjects().addLast(new_Worker);
+                    String temp = minutes + ":" + seconds + ':' + ms;
+                    habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
+                    habitat.getObjects().getLast().getImg().setFitHeight(100);
+                    habitat.getObjects().getLast().getImg().setFitWidth(100);
+                    controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
+                    WK--;
                 }
-                String[] vremya = Endingtime.split(":");
-                int minutes = Integer.parseInt(vremya[0]);
-                int seconds = Integer.parseInt(vremya[1]);
-                int ms = Integer.parseInt(vremya[2]);
                 habitat.setWorkerCount(WorkerCount);
-                for (minutes = time.getMinute(); minutes <= 10000 & DK > 0; minutes++) {
-                    for (seconds = time.getSecond(); seconds < 60 & DK > 0; seconds ++) {
-                        for (ms = time.getMSecond(); ms < 60 & DK > 0; ms += 1)
-                        {
-                            DK--;
-                            Random rand = new Random();
-                            Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
-                            habitat.getObjects().addLast(new_Drone);
-                            String temp = minutes + ":" + seconds + ':' + ms;
-                            habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
-                            new_Drone.start();
-                            /*habitat.getThreadList().add(new_Drone.everything(new_Drone));*/
-                            controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
-                        }
+                while (DK > 0) {
+                    ms += DroneCount - DK;
+                    while (ms >= 100){
+                        ms -= 100;
+                        seconds++;
                     }
-                }
+                    while (seconds >= 60){
+                        seconds -= 60;
+                        minutes++;
+                    }
+                    Random rand = new Random();
+                    Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
+                    habitat.getObjects().addLast(new_Drone);
+                    String temp = minutes + ":" + seconds + ':' + ms;
+                    habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
+                    habitat.getObjects().getLast().getImg().setFitHeight(100);
+                    habitat.getObjects().getLast().getImg().setFitWidth(100);
+                    controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
+                    DK--;
+                    }
                 habitat.setDroneCount(DroneCount);
+                controller.start();
             }
             else
             {
@@ -222,5 +227,12 @@ public class ModalWindow {
         window.setResizable(false);
         window.showAndWait();
         Controller.continueGen();
+    }
+    public static void SaveNotify(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Сохранение пчёл");
+        alert.setHeaderText(null);
+        alert.setContentText("Пчёлы загоняются в улей для дальнейшей эксплуатации.");
+        alert.showAndWait();
     }
 }

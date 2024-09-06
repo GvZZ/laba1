@@ -30,19 +30,13 @@ public class Habitat extends Thread implements Runnable{
                 IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
                 SpawnSet.remove(fintime);
                 objects.getFirst().setImg(null);
+                if (objects.getFirst() instanceof Drone){
+                    DroneCount--;
+                }
+                else {
+                    WorkerCount--;
+                }
                 objects.remove(objects.getFirst());
-                WorkerCount--;
-            }
-            fintime = String.format("%d", finmin) + ":" + String.format("%d", finsec) + ":" + "15";
-            while (SpawnSet.remove(fintime) != null) // if а не while потому что тут не может храниться несколько объектов с одинаковым временем(свойство set)
-            {
-                controller.getSceneTwo_Background().getChildren().remove(objects.getFirst().getImg());
-                objects.getFirst().getPathTransition().setNode(null);
-                IDSet.remove(objects.getFirst().getID()); // Находим ид объекта, который надо удалить и удаляем ид перед удалением объекта
-                SpawnSet.remove(fintime);
-                objects.getFirst().setImg(null);
-                objects.remove(objects.getFirst());
-                DroneCount--;
             }
             BeeDelete.interrupt();
         }

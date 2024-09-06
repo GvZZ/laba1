@@ -1,7 +1,9 @@
 package com.example.laba1_test;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,6 +15,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,45 +36,19 @@ public class Controller {
     @FXML
     private AnchorPane SceneTwo_Background;
     @FXML
-    private Button StartB;
+    private TextArea ChangeInterval, ChangeLifeTime;
     @FXML
-    private TextArea ChangeLifeTime;
+    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn;
     @FXML
-    private Button ObjStateBtn;
+    private Label cout1, cout2, timer, FinalTime, WorkerName, DroneName;
     @FXML
-    private TextArea ChangeInterval;
-    @FXML
-    private Button StopB;
-    @FXML
-    private Button LoadButton;
-    @FXML
-    private Label cout1;
-    @FXML
-    private Label cout2;
-    @FXML
-    private Label timer;
-    @FXML
-    private Label FinalTime;
-    @FXML
-    private Label WorkerName;
-    @FXML
-    private Label DroneName;
-    @FXML
-    private ToggleButton HideTimeB;
-    @FXML
-    private ToggleButton ShowTimeB;
+    private ToggleButton HideTimeB, ShowTimeB;
     @FXML
     private Canvas canvas;
     @FXML
     private CheckBox Report;
-    @FXML
-    private Button DroneControl;
-    @FXML
-    private Button WorkerControl;
-    @FXML
-    private Button ConsoleButton;
     private ComboBox<String> ChangeChance;
-    private Habitat habitat = new Habitat (-1, 5, this);
+    private Habitat habitat = new Habitat(-1, 5, this);
     @FXML
     void HelloWindow() {
         Font CS = new Font("Comic Sans MS Italic", 12.0);
@@ -132,7 +109,7 @@ public class Controller {
 
     @FXML
     void SettingsSet() {
-        ModalWindow.setSettings(this, habitat, time);
+        ModalWindow.setSettings(this, habitat);
     }
 
     void ConsoleCommandAdmin(TextArea text, Label label){
@@ -146,17 +123,17 @@ public class Controller {
         switch (str)
         {
             case("help\n"):
-                label.setText(label.getText() + "help - справка\n"
+                label.setText("help - справка\n"
                         + "get Drone amount - количество трутней\n"
                         + "get Worker amount - количество рабочих\n"
                         + "cls - очистить вывод консоли\n"
                         + "get Bee status - узнать статус пчёл\n");
                 break;
             case("get Drone amount\n"):
-                label.setText(label.getText() + "Количество трутней: " + habitat.getDroneCount() + " время: " + timer.getText() + '\n');
+                label.setText("Количество трутней: " + habitat.getDroneCount() + " время: " + timer.getText() + '\n');
                 break;
             case("get Worker amount\n"):
-                label.setText(label.getText() + "Количество рабочих: " + habitat.getWorkerCount() + " время: " + timer.getText() + '\n');
+                label.setText("Количество рабочих: " + habitat.getWorkerCount() + " время: " + timer.getText() + '\n');
                 break;
             case("cls\n"):
                 label.setText("");
@@ -164,28 +141,28 @@ public class Controller {
             case("get Bee status\n"):
                 if (AIStatusDrone)
                 {
-                    label.setText(label.getText() + "Трутни балдеют, ");
+                    label.setText("Трутни балдеют, ");
                 }
                 else
                 {
-                    label.setText(label.getText() + "Трутни спят, ");
+                    label.setText("Трутни спят, ");
                 }
                 if (AIStatusWorker)
                 {
-                    label.setText(label.getText() + "рабочие работают\n");
+                    label.setText("рабочие работают\n");
                 }
                 else
                 {
-                    label.setText(label.getText() + "у рабочих перекур\n");
+                    label.setText("у рабочих перекур\n");
                 }
                 break;
             case("sus\n"):
             {
-                label.setText(label.getText() + "When Bee is sus\n" + " ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠀ ⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣷⣤⡀⠀⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠋⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⢻⣿⣿⡄⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣸⣿⡏⠀⠀⠀⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣄⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⢰⣿⣿⣯⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⡄⠀\n" + "⠀⠀⣀⣤⣴⣶⣶⣿⡟⠀⠀⠀⢸⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⠀\n" + "⠀⢰⣿⡟⠋⠉⣹⣿⡇⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⠀\n" + "⠀⢸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀\n" + "⠀⣸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⡇⠀⠀\n" + "⠀⣿⣿⠁⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⠀⠀\n" + "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" + "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" + "⠀⢿⣿⡆⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀\n" + "⠀⠸⣿⣧⡀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠃⠀⠀\n" + "⠀⠀⠛⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣰⣿⣿⣷⣶⣶⣶⣶⠶⠀⢠⣿⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⣽⣿⡏⠁⠀⠀⢸⣿⡇⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⢹⣿⡆⠀⠀⠀⣸⣿⠇⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁⠀⠈⠻⣿⣿⣿⣿⡿⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
+                label.setText("When Bee is sus\n" + " ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠀ ⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣷⣤⡀⠀⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠋⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠈⢻⣿⣿⡄⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣸⣿⡏⠀⠀⠀⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣄⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⢰⣿⣿⣯⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣷⡄⠀\n" + "⠀⠀⣀⣤⣴⣶⣶⣿⡟⠀⠀⠀⢸⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣷⠀\n" + "⠀⢰⣿⡟⠋⠉⣹⣿⡇⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⠀\n" + "⠀⢸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀\n" + "⠀⣸⣿⡇⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⡇⠀⠀\n" + "⠀⣿⣿⠁⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⠀⠀\n" + "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" + "⠀⣿⣿⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀\n" + "⠀⢿⣿⡆⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀\n" + "⠀⠸⣿⣧⡀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠃⠀⠀\n" + "⠀⠀⠛⢿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⣰⣿⣿⣷⣶⣶⣶⣶⠶⠀⢠⣿⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⣽⣿⡏⠁⠀⠀⢸⣿⡇⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⣿⣿⡇⠀⢹⣿⡆⠀⠀⠀⣸⣿⠇⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁⠀⠈⠻⣿⣿⣿⣿⡿⠀⠀⠀⠀\n" + "⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
                 break;
             }
             default:
-                label.setText(label.getText() + "Вы ввели несущестующую команду\nЕсли вы забыли список команд введите help");
+                label.setText("Вы ввели несущестующую команду\nЕсли вы забыли список команд введите help");
         }
     }
     @FXML
@@ -198,6 +175,7 @@ public class Controller {
             Pane pane = new Pane();
             pane.setStyle("-fx-background-color: #000000");
             TextArea text = new TextArea();
+            text.setFont(CS);
             text.setPrefHeight(25);
             text.setPrefWidth(200);
             text.setLayoutX(250);
@@ -250,9 +228,18 @@ public class Controller {
         ContinueThreads();
     }
     @FXML
+    void SaveSettings() throws IOException, InterruptedException {
+        pauseGen();
+        ModalWindow.SaveNotify();
+        exit();
+    }
+    @FXML
     void exit() throws IOException, InterruptedException {
         if (status != 0) {
-            for (AbstractObject x : habitat.objects) {SceneTwo_Background.getChildren().remove(x.getImg());}
+            status = 2;
+            AIStatusDrone = false;
+            AIStatusWorker = false;
+            for (AbstractObject x : habitat.objects) {x.getPathTransition().setNode(null); SceneTwo_Background.getChildren().remove(x.getImg());}
             StopB.setDisable(true);
             StartB.setDisable(true);
             ShowTimeB.setDisable(true);
@@ -273,7 +260,8 @@ public class Controller {
             DroneName.setVisible(true);
             WorkerName.setVisible(true);
             try {
-                FileWriter writer = new FileWriter("src/main/resources/save.txt");
+                System.out.println("Начал сейвить");
+                FileWriter writer = new FileWriter("src/main/resources/save.bin");
                 writer.write(Double.toString(habitat.getChance()) + '\n' // Шанс спавна
                 + Integer.toString(habitat.getInterval()) + '\n' // Интервал
                 + Integer.toString(LifeTime) + '\n' // Время жизни
@@ -283,6 +271,7 @@ public class Controller {
                 + Integer.toString(habitat.getDroneCount()) + '\n'
                 );
                 writer.close();
+                System.out.println("Полностью засейвил");
             }
             catch (Exception ignored){
 
@@ -296,12 +285,15 @@ public class Controller {
     @FXML
     void start() {
         LoadButton.setDisable(true);
-        habitat = new Habitat(parseInt(ChangeInterval.getText()), Double.parseDouble(ChangeChance.getValue().substring(0, ChangeChance.getValue().length() - 1)) / 100, this);
+        SaveButton.setDisable(false);
+        if (this.habitat.getInterval() == -1){
+            habitat = new Habitat(parseInt(ChangeInterval.getText()), Double.parseDouble(ChangeChance.getValue().substring(0, ChangeChance.getValue().length() - 1)) / 100, this);
+            LifeTime = parseInt(ChangeLifeTime.getText());
+        }
         DAI = new DroneAI(this);
         WAI = new WorkerAI(this);
         DAI.start();
         WAI.start();
-        LifeTime = parseInt(ChangeLifeTime.getText());
         ChangeInterval.setEditable(false);
         ChangeLifeTime.setEditable(false);
         ChangeChance.setDisable(true);

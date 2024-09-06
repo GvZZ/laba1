@@ -108,5 +108,10 @@
             <Font name="Cambria" size="25.0" />
          </font>
       </Button>
+      <Button fx:id="SaveButton" disable="true" layoutX="1539.0" layoutY="516.0" mnemonicParsing="false" onAction="#SaveSettings" prefHeight="54.0" prefWidth="104.0" text="Save">
+         <font>
+            <Font name="Cambria" size="25.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
