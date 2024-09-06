@@ -11,6 +11,7 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class WorkerAI extends BaseAI{
     public static Habitat habitat;
@@ -29,6 +30,23 @@ public class WorkerAI extends BaseAI{
     @Override
     public void run(){
         while(true) {
+            for (int i = 0; i < habitat.objects.size(); i++) {
+                if (habitat.objects.get(i) instanceof Worker) {
+                    if (pane.getChildren().contains(habitat.objects.get(i).getImg()) || habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING) {
+                        continue;
+                    }
+                    img = habitat.objects.get(i).getImg();
+                    Platform.runLater(() -> {
+                        pane.getChildren().add(img);
+                    });
+                    img.setFitWidth(100);
+                    img.setFitHeight(100);
+                    BirthX = Math.random() * (1200 + 1);
+                    BirthY = Math.random() * (800 + 1);
+                    img.setX(BirthX);
+                    img.setY(BirthY);
+                }
+            }
             if (AIState){
                 synchronized (habitat.objects) {
                     if (controller.getAIStatusWorker()) { // Если жожни дыргаются, то поток течёт
@@ -46,9 +64,6 @@ public class WorkerAI extends BaseAI{
                                 LineTo lineTo = new LineTo(1486 - img.getFitWidth() / 2, 1000 - img.getFitHeight() / 2);
                                 habitat.objects.get(i).getPathTransition().setNode(img);
                                 path.getElements().addAll(moveTo, lineTo);
-                                Platform.runLater(() -> {
-                                    pane.getChildren().add(img);
-                                });
                                 habitat.objects.get(i).getPathTransition().setCycleCount(-1);
                                 habitat.objects.get(i).getPathTransition().setAutoReverse(true);
                                 habitat.objects.get(i).getPathTransition().setPath(path);
@@ -56,10 +71,6 @@ public class WorkerAI extends BaseAI{
                                 if (!controller.getAIStatusWorker()) {
                                     habitat.objects.get(i).getPathTransition().pause();
                                 }
-                                img.setFitWidth(100);
-                                img.setFitHeight(100);
-                                img.setX(BirthX);
-                                img.setY(BirthY);
                             }
                         }
                     }

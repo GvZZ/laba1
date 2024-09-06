@@ -1,11 +1,8 @@
 package com.example.laba1_test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -79,7 +76,7 @@ public class ModalWindow {
             Boolean AIDrone = Boolean.parseBoolean(result[4]);
             int WorkerCount = Integer.parseInt(result[5]);
             int DroneCount = Integer.parseInt(result[6]);
-            if (Chance >= 0 && Chance <= 1 && Interval >= 1 && isNumericInt(result[1]) && isNumericInt(result[2]))
+            if (Chance > 0 && Chance <= 1 && Interval >= 1 && isNumericInt(result[1]) && isNumericInt(result[2]))
             {
                 controller.setAIStatusWorker(AIWorker);
                 controller.setAIStatusDrone(AIDrone);

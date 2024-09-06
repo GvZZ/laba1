@@ -4,23 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="68-70 DroneAI. Картинки добавляются на пейн из дубликата картинки оригинального объекта. Надо придумать как добавлять оригинал чтобы не заёбываться с удалением и обслеживанием пчёл. На бумаге(по массивам) всё идеально, проблема только в том что картинки не делитаются. Снова упёрлись в бессмертие">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="4 поточная. Может быть Ранни переведу на start()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/AbstractObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/BaseAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Drone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Worker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/save.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/AbstractObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Worker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +66,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;bf7ebad9&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;detached8&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/suxov/IdeaProjects/Labs-Laba4&quot;,
@@ -159,6 +151,12 @@
       <workItem from="1724852212697" duration="8605000" />
       <workItem from="1724860939170" duration="327000" />
       <workItem from="1724921282801" duration="4764000" />
+      <workItem from="1725111432860" duration="579000" />
+      <workItem from="1725114052282" duration="116000" />
+      <workItem from="1725115676836" duration="41000" />
+      <workItem from="1725286934494" duration="244000" />
+      <workItem from="1725615358058" duration="319000" />
+      <workItem from="1725615869226" duration="1496000" />
     </task>
     <task id="LOCAL-00001" summary="Почти вторая лаба">
       <option name="closed" value="true" />

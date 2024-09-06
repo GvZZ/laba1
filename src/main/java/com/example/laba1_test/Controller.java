@@ -43,6 +43,8 @@ public class Controller {
     @FXML
     private Button StopB;
     @FXML
+    private Button LoadButton;
+    @FXML
     private Label cout1;
     @FXML
     private Label cout2;
@@ -293,6 +295,7 @@ public class Controller {
     }
     @FXML
     void start() {
+        LoadButton.setDisable(true);
         habitat = new Habitat(parseInt(ChangeInterval.getText()), Double.parseDouble(ChangeChance.getValue().substring(0, ChangeChance.getValue().length() - 1)) / 100, this);
         DAI = new DroneAI(this);
         WAI = new WorkerAI(this);

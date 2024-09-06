@@ -29,8 +29,26 @@ public class DroneAI extends BaseAI{
     @Override
     public void run(){
         while(true) {
+            for (int i = 0; i < habitat.objects.size(); i++) {
+                if (habitat.objects.get(i) instanceof Drone) {
+                    if (pane.getChildren().contains(habitat.objects.get(i).getImg()) || habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING) {
+                        continue;
+                    }
+                    img = habitat.objects.get(i).getImg();
+                    Platform.runLater(() -> {
+                        pane.getChildren().add(img);
+                    });
+                    Random rand = new Random();
+                    double angle = rand.nextDouble();
+                    x = (speed * Math.cos(angle)) * 100;
+                    y = (speed * Math.sin(angle)) * 100;
+                    img.setFitWidth(100);
+                    img.setFitHeight(100);
+                    img.setX(x);
+                    img.setY(y);
+                }
+            }
             if (AIState){
-                System.out.println(AIState);
                 synchronized (habitat.objects) {
                     for (int i = 0; i < habitat.objects.size(); i++) {
                         if (habitat.objects.get(i) instanceof Drone) {
@@ -48,19 +66,13 @@ public class DroneAI extends BaseAI{
                             LineTo lineTo = new LineTo(x, y);
                             habitat.objects.get(i).getPathTransition().setNode(img);
                             path.getElements().addAll(moveTo, lineTo);
-                            Platform.runLater(() -> {
-                                pane.getChildren().add(img);
-                            });
                             habitat.objects.get(i).getPathTransition().setCycleCount(1);
                             habitat.objects.get(i).getPathTransition().setPath(path);
                             habitat.objects.get(i).getPathTransition().play();
                             if (!controller.getAIStatusDrone()) {
                                 habitat.objects.get(i).getPathTransition().pause();
                             }
-                            img.setFitWidth(100);
-                            img.setFitHeight(100);
-                            img.setX(x);
-                            img.setY(y);
+
                         }
                     }
                 }

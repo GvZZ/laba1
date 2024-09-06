@@ -33,10 +33,13 @@ public class Main extends Application {
                     case B:
                         controller.start();
                         break;
+                    case ESCAPE:
+                        System.exit(0);
+                        break;
                 }
             }
         });
-        stage.setTitle("Симулятор пчёл");
+        stage.setTitle("Пчелиная возня");
         stage.setScene(scene);
         stage.show();
     }

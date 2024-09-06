@@ -4,8 +4,6 @@ import javafx.scene.layout.AnchorPane;
 
 public abstract class BaseAI extends Thread{
     boolean AIState = true;
-    public void StopTransition() throws InterruptedException {}
-
     @Override
     public void interrupt() {
         super.interrupt();
