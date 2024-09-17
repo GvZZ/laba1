@@ -103,7 +103,7 @@
       </RadioButton>
       <RadioButton fx:id="HideTimeB" layoutX="1650.0" layoutY="109.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" style="-fx-background-color: white;" text="Скрыть таймер" toggleGroup="$TimerVisible" />
       <CheckBox fx:id="Report" layoutX="1655.0" layoutY="144.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;" text="Показать отчёт" />
-      <Button fx:id="LoadButton" layoutX="1665.0" layoutY="516.0" mnemonicParsing="false" onAction="#SettingsSet" prefHeight="54.0" prefWidth="104.0" text="Load">
+      <Button fx:id="LoadButton" layoutX="1665.0" layoutY="516.0" mnemonicParsing="false" onAction="#LoadSavedData" prefHeight="54.0" prefWidth="104.0" text="Load">
          <font>
             <Font name="Cambria" size="25.0" />
          </font>

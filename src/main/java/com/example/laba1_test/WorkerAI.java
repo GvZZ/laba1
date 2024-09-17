@@ -37,7 +37,9 @@ public class WorkerAI extends BaseAI{
                     }
                     img = habitat.objects.get(i).getImg();
                     Platform.runLater(() -> {
-                        pane.getChildren().add(img);
+                        try {
+                            pane.getChildren().add(img);
+                        } catch (IllegalArgumentException e) {}
                     });
                     img.setFitWidth(100);
                     img.setFitHeight(100);

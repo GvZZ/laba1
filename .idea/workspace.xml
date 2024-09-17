@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="5 + лютый бенгер">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="5 фикс загрузки через FileChooser, далее эксперемент над сахранением через Properties">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/DroneAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/ModalWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/save.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/WorkerAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/save.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/save1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +161,7 @@
       <workItem from="1725857214548" duration="1608000" />
       <workItem from="1725973829516" duration="9000" />
       <workItem from="1726561139571" duration="700000" />
-      <workItem from="1726564392180" duration="2308000" />
+      <workItem from="1726564392180" duration="5072000" />
     </task>
     <task id="LOCAL-00001" summary="Почти вторая лаба">
       <option name="closed" value="true" />
@@ -421,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725858623687</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="5 фикс загрузки через FileChooser, далее эксперемент над сахранением через Properties">
+      <option name="closed" value="true" />
+      <created>1726566781423</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1726566781423</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Почти вторая лаба" />
     <MESSAGE value="Надо сделать логику дерева в ModalWindow 141 стр." />
     <MESSAGE value="Тестовое представление вывода информации об объектах. Почти 3я лаба" />
     <MESSAGE value="Habitat 45 заменить цикл на проход по всем ключам SpawnSet`у и если ключ &gt;= LifeT - Удалять всё что связано с объектом, который записан на данное время" />
@@ -472,6 +477,7 @@
     <MESSAGE value="68-70 DroneAI. Картинки добавляются на пейн из дубликата картинки оригинального объекта. Надо придумать как добавлять оригинал чтобы не заёбываться с удалением и обслеживанием пчёл. На бумаге(по массивам) всё идеально, проблема только в том что картинки не делитаются. Снова упёрлись в бессмертие" />
     <MESSAGE value="4 поточная, пчёлы стоят и рисуются" />
     <MESSAGE value="5 + лютый бенгер" />
-    <option name="LAST_COMMIT_MESSAGE" value="5 + лютый бенгер" />
+    <MESSAGE value="5 фикс загрузки через FileChooser, далее эксперемент над сахранением через Properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="5 фикс загрузки через FileChooser, далее эксперемент над сахранением через Properties" />
   </component>
 </project>

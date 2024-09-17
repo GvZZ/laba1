@@ -6,14 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -60,24 +59,17 @@ public class ModalWindow {
     }
     public static void setSettings(Controller controller, Habitat habitat, File file) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
         try {
-            FileReader reader = new FileReader(file);
-            int data = reader.read();
-            String str = "";
-            while (data != -1)
-            {
-                str += (char)data;
-                data = reader.read();
-            }
-            reader.close();
-            String[] result = str.split("\n"); // Может нужен System.lineSeparator. Хз почему, но пчёлы через раз воспринимают то "\n", то системный сепаратор.
-            double Chance = Double.parseDouble(result[0]);
-            int Interval = Integer.parseInt(result[1]);
-            int lifetime = Integer.parseInt(result[2]);
-            Boolean AIWorker = Boolean.parseBoolean(result[3]);
-            Boolean AIDrone = Boolean.parseBoolean(result[4]);
-            int WorkerCount = Integer.parseInt(result[5]);
-            int DroneCount = Integer.parseInt(result[6]);
-            if (Chance > 0 && Chance <= 1 && Interval >= 1 && isNumericInt(result[1]) && isNumericInt(result[2]))
+            Properties prop = new Properties();
+            prop.loadFromXML(new FileInputStream(file.getPath()));
+            System.out.println(file.getPath());
+            double Chance = Double.parseDouble(prop.getProperty("Spawn Chance"));
+            int Interval = Integer.parseInt(prop.getProperty("Interval"));
+            int lifetime = Integer.parseInt(prop.getProperty("Life Time"));
+            Boolean AIWorker = Boolean.parseBoolean(prop.getProperty("AI Status Worker"));
+            Boolean AIDrone = Boolean.parseBoolean(prop.getProperty("AI Status Drone"));
+            int WorkerCount = Integer.parseInt(prop.getProperty("Worker Count"));
+            int DroneCount = Integer.parseInt(prop.getProperty("Drone Count"));
+            if ((Chance > 0) && (Chance <= 1) && (Interval >= 1))
             {
                 controller.setAIStatusWorker(AIWorker);
                 controller.setAIStatusDrone(AIDrone);
@@ -148,7 +140,7 @@ public class ModalWindow {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-        catch (NumberFormatException e) {
+        catch (NumberFormatException | NullPointerException e) {
             ShowAlertWindow3(habitat);
         }
     }

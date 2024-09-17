@@ -1,9 +1,11 @@
 package com.example.laba1_test;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
@@ -236,7 +238,9 @@ public class Controller {
     }
     @FXML
     void SaveSettings() throws IOException, InterruptedException {
-        pauseGen();
+        status = 2;
+        timeline.pause();
+        StopThreads();
         ModalWindow.SaveNotify();
         exit();
     }
@@ -244,8 +248,6 @@ public class Controller {
     void exit() throws IOException, InterruptedException {
         if (status != 0) {
             status = 2;
-            AIStatusDrone = false;
-            AIStatusWorker = false;
             for (AbstractObject x : habitat.objects) {x.getPathTransition().setNode(null); SceneTwo_Background.getChildren().remove(x.getImg());}
             StopB.setDisable(true);
             StartB.setDisable(true);
@@ -268,21 +270,22 @@ public class Controller {
             WorkerName.setVisible(true);
             try {
                 System.out.println("Начал сейвить");
-                FileWriter writer = new FileWriter("src/main/resources/save.bin");
-                writer.write(Double.toString(habitat.getChance()) + '\n' // Шанс спавна
-                + Integer.toString(habitat.getInterval()) + '\n' // Интервал
-                + Integer.toString(LifeTime) + '\n' // Время жизни
-                + Boolean.toString(AIStatusWorker) + '\n' // Статус рабочих
-                + Boolean.toString(AIStatusDrone) + '\n' // Статус трутней
-                + Integer.toString(habitat.getWorkerCount()) + '\n'
-                + Integer.toString(habitat.getDroneCount()) + '\n'
-                );
-                writer.close();
+                File file = fileChooser.showOpenDialog(new Stage());
+                Properties prop = new Properties();
+                prop.setProperty("Spawn Chance", String.valueOf(habitat.getChance()));
+                prop.setProperty("Interval", String.valueOf(habitat.getInterval()));
+                prop.setProperty("Life Time", String.valueOf(LifeTime));
+                prop.setProperty("AI Status Worker", String.valueOf(AIStatusWorker));
+                prop.setProperty("AI Status Drone", String.valueOf(AIStatusDrone));
+                prop.setProperty("Worker Count", String.valueOf(habitat.getWorkerCount()));
+                prop.setProperty("Drone Count", String.valueOf(habitat.getDroneCount()));
+                prop.storeToXML(new FileOutputStream(file.getPath()), "Saved data for " + " " + file.getName());
                 System.out.println("Полностью засейвил");
             }
             catch (Exception ignored){
-
             }
+            AIStatusDrone = false;
+            AIStatusWorker = false;
             cout1.setText(Integer.toString(habitat.getDroneCount()));
             cout2.setText(Integer.toString(habitat.getWorkerCount()));
             FinalTime.setText(time.getCurrentTime());
@@ -305,8 +308,6 @@ public class Controller {
         ChangeLifeTime.setEditable(false);
         ChangeChance.setDisable(true);
         status = 1;
-        AIStatusDrone = true;
-        AIStatusWorker = true;
         StartB.setDisable(true);
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0:0")) {
