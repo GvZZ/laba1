@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -57,9 +58,9 @@ public class ModalWindow {
             return false;
         }
     }
-    public static void setSettings(Controller controller, Habitat habitat) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
+    public static void setSettings(Controller controller, Habitat habitat, File file) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
         try {
-            FileReader reader = new FileReader("src/main/resources/save.bin");
+            FileReader reader = new FileReader(file);
             int data = reader.read();
             String str = "";
             while (data != -1)
@@ -68,7 +69,7 @@ public class ModalWindow {
                 data = reader.read();
             }
             reader.close();
-            String[] result = str.split(System.lineSeparator());
+            String[] result = str.split("\n"); // Может нужен System.lineSeparator. Хз почему, но пчёлы через раз воспринимают то "\n", то системный сепаратор.
             double Chance = Double.parseDouble(result[0]);
             int Interval = Integer.parseInt(result[1]);
             int lifetime = Integer.parseInt(result[2]);
@@ -146,6 +147,9 @@ public class ModalWindow {
         }
         catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        catch (NumberFormatException e) {
+            ShowAlertWindow3(habitat);
         }
     }
     public static void newWindow(String Name, Controller Controller, Habitat habitat) throws InterruptedException {

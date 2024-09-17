@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Paths;
 import javafx.scene.media.Media;
+import javafx.stage.WindowEvent;
 
 public class Main extends Application {
     @Override
@@ -41,6 +42,12 @@ public class Main extends Application {
                         System.exit(0);
                         break;
                 }
+            }
+        });
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0);
             }
         });
         stage.setTitle("Пчелиная возня");

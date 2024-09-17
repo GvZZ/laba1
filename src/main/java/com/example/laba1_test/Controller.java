@@ -3,20 +3,22 @@ package com.example.laba1_test;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -31,6 +33,7 @@ public class Controller {
     DroneAI DAI;
     WorkerAI WAI;
     private int status = 0; // 0 = не работает 1 = работает 2 = standby
+    FileChooser fileChooser = new FileChooser();
     private Boolean AIStatusDrone = true;
     private Boolean AIStatusWorker = true;
     @FXML
@@ -49,6 +52,11 @@ public class Controller {
     private CheckBox Report;
     private ComboBox<String> ChangeChance;
     private Habitat habitat = new Habitat(-1, 5, this);
+    @FXML
+    void LoadSavedData(){
+        SettingsSet(fileChooser.showOpenDialog(new Stage()));
+
+    }
     @FXML
     void HelloWindow() {
         Font CS = new Font("Comic Sans MS Italic", 12.0);
@@ -107,9 +115,8 @@ public class Controller {
         }
     }
 
-    @FXML
-    void SettingsSet() {
-        ModalWindow.setSettings(this, habitat);
+    void SettingsSet(File file) {
+        ModalWindow.setSettings(this, habitat, file);
     }
 
     void ConsoleCommandAdmin(TextArea text, Label label){
@@ -298,6 +305,8 @@ public class Controller {
         ChangeLifeTime.setEditable(false);
         ChangeChance.setDisable(true);
         status = 1;
+        AIStatusDrone = true;
+        AIStatusWorker = true;
         StartB.setDisable(true);
         StopB.setDisable(false);
         if (time.getCurrentTime().equals("0:0:0")) {
@@ -319,6 +328,7 @@ public class Controller {
     }
     @FXML
     void initialize() {
+        fileChooser.setInitialDirectory(new File("C:\\Users\\suxov\\IdeaProjects\\laba1\\src\\main\\resources"));
         ObservableList<String> percents = FXCollections.observableArrayList("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%");
         ChangeChance = new ComboBox<String>(percents);
         ChangeChance.setValue("90%");

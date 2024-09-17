@@ -31,6 +31,7 @@ public class DroneAI extends BaseAI{
         while(true) {
             for (int i = 0; i < habitat.objects.size(); i++) {
                 if (habitat.objects.get(i) instanceof Drone) {
+                    System.out.println(habitat.objects.get(i).getImg() + " ------- " +  habitat.objects.get(i).getPathTransition().getStatus());
                     if (pane.getChildren().contains(habitat.objects.get(i).getImg()) || habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING) {
                         continue;
                     }
@@ -70,6 +71,7 @@ public class DroneAI extends BaseAI{
                             habitat.objects.get(i).getPathTransition().setPath(path);
                             habitat.objects.get(i).getPathTransition().play();
                             if (!controller.getAIStatusDrone()) {
+                                System.out.println("А схуёв вопрос?");
                                 habitat.objects.get(i).getPathTransition().pause();
                             }
 
