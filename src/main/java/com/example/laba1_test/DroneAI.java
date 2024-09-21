@@ -21,8 +21,6 @@ public class DroneAI extends BaseAI{
     public DroneAI(Controller controller){
         this.pane = controller.getSceneTwo_Background();
         this.controller = controller;
-        this.x = Math.random() * (1200 + 1);
-        this.y = Math.random() * (800 + 1);
         habitat = controller.getHabitat();
     }
     // работаем с habitat.objects чтобы работать напрямую с оригиналом всех пчёл, а не копией(спойлер, всё равно нахуярено на дубликатах).
@@ -31,23 +29,21 @@ public class DroneAI extends BaseAI{
         while(true) {
             for (int i = 0; i < habitat.objects.size(); i++) {
                 if (habitat.objects.get(i) instanceof Drone) {
-                    if (pane.getChildren().contains(habitat.objects.get(i).getImg()) || habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING) {
+                    if (pane.getChildren().contains(habitat.objects.get(i).getImg()) || habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING || controller.getStatus() == 2) {
                         continue;
                     }
                     img = habitat.objects.get(i).getImg();
-                    Platform.runLater(() -> {
-                        try {
-                            pane.getChildren().add(img);
-                        } catch (IllegalArgumentException e) {}
-                    });
-                    Random rand = new Random();
-                    double angle = rand.nextDouble();
-                    x = (speed * Math.cos(angle)) * 100;
-                    y = (speed * Math.sin(angle)) * 100;
+                    x = Math.random() * (1200 + 1);
+                    y = Math.random() * (800 + 1);
                     img.setFitWidth(100);
                     img.setFitHeight(100);
                     img.setX(x);
                     img.setY(y);
+                    Platform.runLater(() -> {
+                        try {
+                            pane.getChildren().addAll(img);
+                        } catch (IllegalArgumentException e) {}
+                    });
                 }
             }
             if (AIState){
@@ -55,6 +51,7 @@ public class DroneAI extends BaseAI{
                     for (int i = 0; i < habitat.objects.size(); i++) {
                         if (habitat.objects.get(i) instanceof Drone) {
                             if (habitat.objects.get(i).getPathTransition().getStatus() == Animation.Status.RUNNING || controller.getStatus() == 2) {
+                                habitat.getObjects().get(i).refreshCords();
                                 continue;
                             }
                             img = habitat.objects.get(i).getImg();
@@ -74,7 +71,6 @@ public class DroneAI extends BaseAI{
                             if (!controller.getAIStatusDrone()) {
                                 habitat.objects.get(i).getPathTransition().pause();
                             }
-
                         }
                     }
                 }

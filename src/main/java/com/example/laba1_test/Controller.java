@@ -1,19 +1,12 @@
 package com.example.laba1_test;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
+import java.io.*;
 import java.util.Properties;
-import java.util.ResourceBundle;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
@@ -28,7 +21,7 @@ import javafx.util.Duration;
 import static java.lang.Integer.parseInt;
 
 
-public class Controller {
+public class Controller implements Serializable {
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime;
@@ -118,7 +111,8 @@ public class Controller {
     }
 
     void SettingsSet(File file) {
-        ModalWindow.setSettings(this, habitat, file);
+        File fileSer = new File(fileChooser.showOpenDialog(new Stage()).getName());
+        ModalWindow.setSettings(this, habitat, file, fileSer);
     }
 
     void ConsoleCommandAdmin(TextArea text, Label label){
@@ -247,6 +241,37 @@ public class Controller {
     @FXML
     void exit() throws IOException, InterruptedException {
         if (status != 0) {
+            try {
+                System.out.println("Начал сейвить");
+                File file = fileChooser.showOpenDialog(new Stage());
+                Properties prop = new Properties();
+                prop.setProperty("Spawn Chance", String.valueOf(habitat.getChance()));
+                prop.setProperty("Interval", String.valueOf(habitat.getInterval()));
+                prop.setProperty("Life Time", String.valueOf(LifeTime));
+                prop.setProperty("AI Status Worker", String.valueOf(AIStatusWorker));
+                prop.setProperty("AI Status Drone", String.valueOf(AIStatusDrone));
+                prop.storeToXML(new FileOutputStream(file.getPath()), "Saved data for " + " " + file.getName());
+                System.out.println("Полностью засейвил");
+            }
+            catch (Exception ignored){
+            }
+            File file = new File("objSave1.ser");
+            System.out.println("Размер файла: " + file.length() + " байт.");
+            try {
+                String name = fileChooser.showOpenDialog(new Stage()).getName();
+                FileOutputStream fileOut = new FileOutputStream(name);
+                System.out.println(name);
+                ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+                objOut.writeObject(habitat.getObjects());
+                fileOut.close();
+                objOut.close();
+            }
+            catch(Exception ignored){
+
+            }
+            System.out.println("Файл существует: " + file.exists());
+            System.out.println("Размер файла: " + file.length() + " байт.");
+
             status = 2;
             for (AbstractObject x : habitat.objects) {x.getPathTransition().setNode(null); SceneTwo_Background.getChildren().remove(x.getImg());}
             StopB.setDisable(true);
@@ -268,22 +293,6 @@ public class Controller {
             FinalTime.setVisible(true);
             DroneName.setVisible(true);
             WorkerName.setVisible(true);
-            try {
-                System.out.println("Начал сейвить");
-                File file = fileChooser.showOpenDialog(new Stage());
-                Properties prop = new Properties();
-                prop.setProperty("Spawn Chance", String.valueOf(habitat.getChance()));
-                prop.setProperty("Interval", String.valueOf(habitat.getInterval()));
-                prop.setProperty("Life Time", String.valueOf(LifeTime));
-                prop.setProperty("AI Status Worker", String.valueOf(AIStatusWorker));
-                prop.setProperty("AI Status Drone", String.valueOf(AIStatusDrone));
-                prop.setProperty("Worker Count", String.valueOf(habitat.getWorkerCount()));
-                prop.setProperty("Drone Count", String.valueOf(habitat.getDroneCount()));
-                prop.storeToXML(new FileOutputStream(file.getPath()), "Saved data for " + " " + file.getName());
-                System.out.println("Полностью засейвил");
-            }
-            catch (Exception ignored){
-            }
             AIStatusDrone = false;
             AIStatusWorker = false;
             cout1.setText(Integer.toString(habitat.getDroneCount()));

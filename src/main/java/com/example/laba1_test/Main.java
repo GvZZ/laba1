@@ -9,11 +9,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Paths;
 import javafx.scene.media.Media;
 import javafx.stage.WindowEvent;
 
-public class Main extends Application {
+public class Main extends Application implements Serializable {
     @Override
     public void start(Stage stage) throws IOException {
         music();

@@ -1,11 +1,14 @@
 package com.example.laba1_test;
 
 import javafx.scene.layout.AnchorPane;
+
+import java.io.Serializable;
 import java.util.*;
 
 import static java.lang.Math.abs;
 
-public class Habitat extends Thread implements Runnable{
+public class Habitat extends Thread implements Runnable, Serializable {
+    private static final long serialVersionUID = 1L;
     Controller controller;
     private static final int K = 30;
     private int N = 1; // интервал для рабочих в секундах
@@ -103,8 +106,11 @@ public class Habitat extends Thread implements Runnable{
     public ArrayList<AbstractObject> getObjects() {
         return objects;
     }
-    public static HashSet<String> getIDSet() {return IDSet;}
+    public HashSet<String> getIDSet() {return IDSet;}
     public TreeMap<String, String> getSpawnSet() {return SpawnSet;}
+    public void setObjects(Object objects) {
+        this.objects = (ArrayList<AbstractObject>) objects;
+    }
     public void setWorkerCount(int workerCount) {this.WorkerCount = workerCount;}
     public void setDroneCount(int droneCount) {this.DroneCount = droneCount;}
 }

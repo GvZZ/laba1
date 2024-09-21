@@ -1,22 +1,21 @@
 package com.example.laba1_test;
+import java.io.*;
 
+import javafx.animation.PathTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.nio.file.Paths;
+import java.util.*;
 
-import java.io.*;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
-import java.util.TreeMap;
-
-public class ModalWindow {
+public class ModalWindow implements Serializable {
     public static void ShowAlertWindow1(Habitat habitat){
         habitat.setInterval(-1);
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -57,20 +56,16 @@ public class ModalWindow {
             return false;
         }
     }
-    public static void setSettings(Controller controller, Habitat habitat, File file) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
-        try {
+    public static void setSettings(Controller controller, Habitat habitat, File file, File fileSer) { // Не будет блять работать с новыми потоками, переделать максимально нахуй
+        try { // Выгрузка параметров хабитата через пропы
             Properties prop = new Properties();
             prop.loadFromXML(new FileInputStream(file.getPath()));
-            System.out.println(file.getPath());
             double Chance = Double.parseDouble(prop.getProperty("Spawn Chance"));
             int Interval = Integer.parseInt(prop.getProperty("Interval"));
             int lifetime = Integer.parseInt(prop.getProperty("Life Time"));
             Boolean AIWorker = Boolean.parseBoolean(prop.getProperty("AI Status Worker"));
             Boolean AIDrone = Boolean.parseBoolean(prop.getProperty("AI Status Drone"));
-            int WorkerCount = Integer.parseInt(prop.getProperty("Worker Count"));
-            int DroneCount = Integer.parseInt(prop.getProperty("Drone Count"));
-            if ((Chance > 0) && (Chance <= 1) && (Interval >= 1))
-            {
+            if ((Chance > 0) && (Chance <= 1) && (Interval >= 1)) {
                 controller.setAIStatusWorker(AIWorker);
                 controller.setAIStatusDrone(AIDrone);
                 controller.setChangeLifeTime(String.valueOf(lifetime));
@@ -79,71 +74,75 @@ public class ModalWindow {
                 habitat.setChance(Chance);
                 habitat.setInterval(Interval);
                 habitat.getSpawnSet().clear();
-                int WK = WorkerCount;
-                int DK = DroneCount;
-                int minutes = 0;
-                int seconds = 0;
-                int ms = 0;
-                while (WK > 0){
-                    ms = WorkerCount - WK;
-                    while (ms >= 100){
-                        ms -= 100;
-                        seconds++;
-                    }
-                    while (seconds >= 60){
-                        seconds -= 60;
-                        minutes++;
-                    }
-                    Random rand = new Random();
-                    Worker new_Worker = new Worker(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
-                    habitat.getObjects().addLast(new_Worker);
-                    String temp = minutes + ":" + seconds + ':' + ms;
-                    habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
-                    habitat.getObjects().getLast().getImg().setFitHeight(100);
-                    habitat.getObjects().getLast().getImg().setFitWidth(100);
-                    controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
-                    WK--;
-                }
-                habitat.setWorkerCount(WorkerCount);
-                while (DK > 0) {
-                    ms += DroneCount - DK;
-                    while (ms >= 100){
-                        ms -= 100;
-                        seconds++;
-                    }
-                    while (seconds >= 60){
-                        seconds -= 60;
-                        minutes++;
-                    }
-                    Random rand = new Random();
-                    Drone new_Drone = new Drone(rand.nextDouble() * 1200, rand.nextDouble() * 900, lifetime, Habitat.getIDSet());
-                    habitat.getObjects().addLast(new_Drone);
-                    String temp = minutes + ":" + seconds + ':' + ms;
-                    habitat.getSpawnSet().put(temp, habitat.getObjects().getLast().getID());
-                    habitat.getObjects().getLast().getImg().setFitHeight(100);
-                    habitat.getObjects().getLast().getImg().setFitWidth(100);
-                    controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().getLast().getImg());
-                    DK--;
-                    }
-                habitat.setDroneCount(DroneCount);
-                controller.start();
             }
-            else
+        }
+        catch (FileNotFoundException e) {}
+        catch (IOException e) {throw new RuntimeException(e);}
+
+        //Десериализация habitat.objects
+
+        try {
+            ObjectInputStream objIn = new ObjectInputStream(new FileInputStream(fileSer.getName()));
+            habitat.setObjects(objIn.readObject());
+            objIn.close();
+        }
+        catch (FileNotFoundException e) {}
+        catch (IOException | ClassNotFoundException e) {throw new RuntimeException(e);}
+        if (habitat.getObjects() == null || habitat.getObjects().isEmpty()) {
+            ShowAlertWindow1(habitat);
+            System.exit(0);
+        }
+        int ms = 0;
+        int sec = 0;
+        int minutes = 0;
+        int DroneCount = 0;
+        int WorkerCount = 0;
+        for (int i = 0; i < habitat.objects.size(); i++) {
+            PathTransition pt = new PathTransition();
+            ms++;
+            while (ms >= 100)
             {
-                ShowAlertWindow3(habitat);
+                sec++;
+                ms -= 100;
+            }
+            while (sec >= 60)
+            {
+                minutes++;
+                sec -= 60;
+            }
+            if (habitat.objects.get(i) instanceof Drone) {
+                Image DroneIMG = new Image("IMGDrone.png");
+                String temp = minutes + ":" + sec + ":" + ms;
+                habitat.getObjects().get(i).SetID(habitat.getIDSet());
+                habitat.getSpawnSet().put(temp, habitat.getObjects().get(i).getID());
+                habitat.getObjects().get(i).setImg(new ImageView(DroneIMG));
+                habitat.getObjects().get(i).getImg().setFitHeight(100);
+                habitat.getObjects().get(i).getImg().setFitWidth(100);
+                habitat.getObjects().get(i).setpathTransition(pt);
+                habitat.getObjects().get(i).getPathTransition().pause();
+                /*controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().get(i).getImg());*/
+                DroneCount++;
+                continue;
+            }
+            if (habitat.objects.get(i) instanceof Worker) {
+                Image WorkerIMG = new Image("IMGWorker.png");
+                String temp = minutes + ":" + sec + ":" + ms;
+                habitat.getObjects().get(i).SetID(habitat.getIDSet());
+                habitat.getSpawnSet().put(temp, habitat.getObjects().get(i).getID());
+                habitat.getObjects().get(i).setImg(new ImageView(WorkerIMG));
+                habitat.getObjects().get(i).getImg().setFitHeight(100);
+                habitat.getObjects().get(i).getImg().setFitWidth(100);
+                habitat.getObjects().get(i).setpathTransition(pt);
+                habitat.getObjects().get(i).getPathTransition().pause();
+                /*controller.getSceneTwo_Background().getChildren().add(habitat.getObjects().get(i).getImg());*/
+                WorkerCount++;
             }
         }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-            System.out.println("Файл сохранения не найден");
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        catch (NumberFormatException | NullPointerException e) {
-            ShowAlertWindow3(habitat);
-        }
+        habitat.setWorkerCount(WorkerCount);
+        habitat.setDroneCount(DroneCount);
+        controller.start();
     }
+
     public static void newWindow(String Name, Controller Controller, Habitat habitat) throws InterruptedException {
         Font CS = new Font("Comic Sans MS Italic", 21.0);
         Stage window = new Stage();
@@ -227,8 +226,8 @@ public class ModalWindow {
     public static void SaveNotify(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Сохранение пчёл");
-        alert.setHeaderText(null);
-        alert.setContentText("Пчёлы загоняются в улей для дальнейшей эксплуатации.");
+        alert.setHeaderText("Пчёлы загоняются в улей для дальнейшей эксплуатации.");
+        alert.setContentText("Сначала выберите файл с расширением .xml для общего статуса программы. Затем выберите файл с расширением .ser для сохранения состояния пчёл");
         alert.showAndWait();
     }
 }
