@@ -37,7 +37,7 @@ public class ModalWindow implements Serializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Ошибка чтения из файла");
         alert.setHeaderText(null);
-        alert.setContentText("Возможно файл был редактирован или намеренно закорапчен.");
+        alert.setContentText("Возможно файл был пустой/ редактирован или намеренно закорапчен.");
         alert.showAndWait();
     }
     public static boolean isNumericInt(String str) {
@@ -66,6 +66,7 @@ public class ModalWindow implements Serializable {
             Boolean AIWorker = Boolean.parseBoolean(prop.getProperty("AI Status Worker"));
             Boolean AIDrone = Boolean.parseBoolean(prop.getProperty("AI Status Drone"));
             if ((Chance > 0) && (Chance <= 1) && (Interval >= 1)) {
+                System.out.println("Вроде работает");
                 controller.setAIStatusWorker(AIWorker);
                 controller.setAIStatusDrone(AIDrone);
                 controller.setChangeLifeTime(String.valueOf(lifetime));
@@ -89,7 +90,7 @@ public class ModalWindow implements Serializable {
         catch (FileNotFoundException e) {}
         catch (IOException | ClassNotFoundException e) {throw new RuntimeException(e);}
         if (habitat.getObjects() == null || habitat.getObjects().isEmpty()) {
-            ShowAlertWindow1(habitat);
+            ShowAlertWindow3(habitat);
             System.exit(0);
         }
         int ms = 0;
@@ -140,6 +141,7 @@ public class ModalWindow implements Serializable {
         }
         habitat.setWorkerCount(WorkerCount);
         habitat.setDroneCount(DroneCount);
+
         controller.start();
     }
 

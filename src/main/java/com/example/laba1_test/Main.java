@@ -60,7 +60,7 @@ public class Main extends Application implements Serializable {
         String s = "src/main/resources/BeeMusic.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaPlayer = new MediaPlayer(h);
-        mediaPlayer.setVolume(0.08);
+        mediaPlayer.setVolume(0.0);
         mediaPlayer.play();
     }
         public static void main(String[] args) {

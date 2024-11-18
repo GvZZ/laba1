@@ -48,7 +48,7 @@ public class Controller implements Serializable {
     private ComboBox<String> ChangeChance;
     private Habitat habitat = new Habitat(-1, 5, this);
     @FXML
-    void LoadSavedData(){
+    void LoadSavedData() throws IOException, InterruptedException {
         SettingsSet(fileChooser.showOpenDialog(new Stage()));
 
     }
@@ -110,9 +110,11 @@ public class Controller implements Serializable {
         }
     }
 
-    void SettingsSet(File file) {
+    void SettingsSet(File file) throws IOException, InterruptedException {
         File fileSer = new File(fileChooser.showOpenDialog(new Stage()).getName());
         ModalWindow.setSettings(this, habitat, file, fileSer);
+        pauseGen();
+        continueGen();
     }
 
     void ConsoleCommandAdmin(TextArea text, Label label){
