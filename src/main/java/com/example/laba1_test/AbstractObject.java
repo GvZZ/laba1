@@ -48,6 +48,8 @@ public abstract class AbstractObject extends BaseAI implements Serializable {
     }
     public double getX() {return x;}
     public double getY() {return y;}
+    public void setX(double x) {this.x = x;}
+    public void setY(double y) {this.y = y;}
     public ImageView getImg(){
         return img;
     }

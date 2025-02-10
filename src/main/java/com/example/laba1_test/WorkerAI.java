@@ -39,6 +39,8 @@ public class WorkerAI extends BaseAI{
                     img.setFitHeight(100);
                     x = Math.random() * (1200 + 1);
                     y = Math.random() * (800 + 1);
+                    habitat.objects.get(i).setX(x);
+                    habitat.objects.get(i).setY(y);
                     img.setX(x);
                     img.setY(y);
                     habitat.objects.get(i).refreshCords();
@@ -60,8 +62,6 @@ public class WorkerAI extends BaseAI{
                                     habitat.getObjects().get(i).refreshCords();
                                     continue;
                                 }
-                                x = habitat.objects.get(i).getX(); // Надо решить проблему координат = 0 при спавне, хз где
-                                y = habitat.objects.get(i).getY();
                                 img = habitat.objects.get(i).getImg();
                                 habitat.getObjects().get(i).getPathTransition().setDuration(Duration.millis(speed * 150));
                                 Path path = new Path();
