@@ -9,7 +9,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.Socket;
 import java.nio.file.Paths;
 import javafx.scene.media.Media;
 import javafx.stage.WindowEvent;
@@ -60,10 +63,12 @@ public class Main extends Application implements Serializable {
         String s = "src/main/resources/BeeMusic.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaPlayer = new MediaPlayer(h);
-        mediaPlayer.setVolume(0.08);
+        mediaPlayer.setVolume(0.00);
         mediaPlayer.play();
     }
-        public static void main(String[] args) {
-            launch();
-        }
+    public static void main(String[] args) throws Exception{
+        try {launch();}
+        catch (Exception e){
+            System.out.println("Проблема.");}
+    }
 }

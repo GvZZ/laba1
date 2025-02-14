@@ -1,7 +1,11 @@
 package com.example.laba1_test;
 
 import java.io.*;
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Scanner;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -22,6 +26,7 @@ import static java.lang.Integer.parseInt;
 
 
 public class Controller implements Serializable {
+    Socket socket;
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime;
@@ -36,7 +41,7 @@ public class Controller implements Serializable {
     @FXML
     private TextArea ChangeInterval, ChangeLifeTime;
     @FXML
-    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn;
+    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn, connectionsBtn;
     @FXML
     private Label cout1, cout2, timer, FinalTime, WorkerName, DroneName;
     @FXML
@@ -83,30 +88,6 @@ public class Controller implements Serializable {
         if (status != 1)
         {
             timer.setVisible(!timer.isVisible());
-        }
-    }
-    boolean CheckCngInt(TextArea x)
-    {
-        try
-        {
-            Integer.parseInt(x.getText());
-            return true;
-        }
-        catch(NumberFormatException e)
-        {
-            return false;
-        }
-    }
-    boolean CheckCngDouble(TextArea x)
-    {
-        try
-        {
-            Double.parseDouble(x.getText());
-            return true;
-        }
-        catch(NumberFormatException e)
-        {
-            return false;
         }
     }
 
@@ -210,6 +191,16 @@ public class Controller implements Serializable {
         timer.setVisible(true);
         ShowTimeB.setSelected(true);
 
+    }
+    @FXML
+    void showAllConnections() throws IOException, ClassNotFoundException {
+        Server.ShowConnectionsList(socket);
+        Scanner in = new Scanner(socket.getInputStream());
+        ArrayList <Socket> socketers = new ArrayList<>();
+        while (in.hasNext()) {
+            System.out.println(in.nextLine());
+        }
+        in.close();
     }
     @FXML
     void ButtonControlNonVisible(){
@@ -339,7 +330,8 @@ public class Controller implements Serializable {
         }
     }
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
+        socket = new Socket("localhost", 8081);
         fileChooser.setInitialDirectory(new File("C:\\Users\\suxov\\IdeaProjects\\laba1\\src\\main\\resources"));
         ObservableList<String> percents = FXCollections.observableArrayList("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%");
         ChangeChance = new ComboBox<String>(percents);
