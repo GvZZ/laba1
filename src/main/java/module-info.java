@@ -3,6 +3,7 @@ module com.example.laba1_test {
     requires javafx.fxml;
     requires java.desktop;
     requires javafx.media;
+    requires java.rmi;
 
 
     opens com.example.laba1_test to javafx.fxml;
