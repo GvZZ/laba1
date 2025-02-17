@@ -40,7 +40,7 @@ public class Controller implements Serializable {
     @FXML
     private TextArea ChangeInterval, ChangeLifeTime;
     @FXML
-    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn;
+    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn, connectionsBtn;
     @FXML
     private Label cout1, cout2, timer, FinalTime, WorkerName, DroneName;
     @FXML

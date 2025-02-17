@@ -23,95 +23,100 @@
                 <Font name="Comic Sans MS Italic" size="21.0" />
             </font>
         </Label>
-      <Label fx:id="cout1" alignment="CENTER" layoutX="764.0" layoutY="462.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="cout2" alignment="CENTER" layoutX="895.0" layoutY="462.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="DroneName" alignment="CENTER" layoutX="764.0" layoutY="390.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Drones">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="WorkerName" alignment="CENTER" layoutX="895.0" layoutY="390.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Workers">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="FinalTime" alignment="CENTER" layoutX="764.0" layoutY="534.0" prefHeight="72.0" prefWidth="262.0" style="-fx-border-color: black;" text="t">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="1012.0" fitWidth="320.0" layoutX="1486.0" layoutY="-7.0">
-         <image>
-            <Image url="@../../../BeeMovie.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="StartB" layoutX="1708.0" layoutY="44.0" mnemonicParsing="false" onAction="#start" text="Старт">
-         <font>
-            <Font size="15.0" />
-         </font></Button>
-      <Button fx:id="StopB" layoutX="1648.0" layoutY="44.0" mnemonicParsing="false" onAction="#pauseGen" text="Стоп">
-         <font>
-            <Font size="15.0" />
-         </font></Button>
-      <Button fx:id="ObjStateBtn" layoutX="1648.0" layoutY="191.0" mnemonicParsing="false" onAction="#ShowCurrentObjectsState" prefHeight="25.0" prefWidth="121.0" text="Текущие объекты" />
-      <Button fx:id="DroneControl" layoutX="1647.0" layoutY="230.0" mnemonicParsing="false" onAction="#PauseAiDrone" prefHeight="25.0" prefWidth="121.0" text="Трутни спать" />
-      <Button fx:id="WorkerControl" layoutX="1648.0" layoutY="267.0" mnemonicParsing="false" onAction="#PauseAiWorker" prefHeight="25.0" prefWidth="121.0" text="Рабочие спать" />
-      <ImageView fitHeight="210.0" fitWidth="144.0" layoutX="1341.0" layoutY="795.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Astolfo.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="1486.0" layoutY="404.0" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white;" text="Интервал">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="1491.0" layoutY="348.0" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white;" text="Время жизни">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="ConsoleButton" layoutX="1648.0" layoutY="305.0" mnemonicParsing="false" onAction="#ConsoleWindow" prefHeight="25.0" prefWidth="121.0" text="Консоль" />
-      <TextArea fx:id="ChangeInterval" layoutX="1575.0" layoutY="399.0" prefHeight="54.0" prefWidth="200.0" text="1" />
-      <TextArea fx:id="ChangeLifeTime" layoutX="1575.0" layoutY="336.0" prefHeight="54.0" prefWidth="200.0" text="5" />
-      <MenuBar layoutY="-4.0" prefHeight="31.0" prefWidth="1800.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#HelloWindow" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <RadioButton fx:id="ShowTimeB" layoutX="1650.0" layoutY="87.0" mnemonicParsing="false" onAction="#ButtonControlVisible" selected="true" style="-fx-background-color: white;" text="Показать таймер">
-         <toggleGroup>
-            <ToggleGroup fx:id="TimerVisible" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="HideTimeB" layoutX="1650.0" layoutY="109.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" style="-fx-background-color: white;" text="Скрыть таймер" toggleGroup="$TimerVisible" />
-      <CheckBox fx:id="Report" layoutX="1655.0" layoutY="144.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;" text="Показать отчёт" />
-      <Button fx:id="LoadButton" layoutX="1665.0" layoutY="516.0" mnemonicParsing="false" onAction="#LoadSavedData" prefHeight="54.0" prefWidth="104.0" text="Load">
-         <font>
-            <Font name="Cambria" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="SaveButton" disable="true" layoutX="1539.0" layoutY="516.0" mnemonicParsing="false" onAction="#SaveSettings" prefHeight="54.0" prefWidth="104.0" text="Save">
-         <font>
-            <Font name="Cambria" size="25.0" />
-         </font>
-      </Button>
+        <Label fx:id="cout1" alignment="CENTER" layoutX="764.0" layoutY="462.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="cout2" alignment="CENTER" layoutX="895.0" layoutY="462.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="DroneName" alignment="CENTER" layoutX="764.0" layoutY="390.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Drones">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="WorkerName" alignment="CENTER" layoutX="895.0" layoutY="390.0" prefHeight="72.0" prefWidth="131.0" style="-fx-border-color: black;" text="Workers">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="FinalTime" alignment="CENTER" layoutX="764.0" layoutY="534.0" prefHeight="72.0" prefWidth="262.0" style="-fx-border-color: black;" text="t">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="1012.0" fitWidth="320.0" layoutX="1486.0" layoutY="-7.0">
+            <image>
+                <Image url="@../../../BeeMovie.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="StartB" layoutX="1708.0" layoutY="44.0" mnemonicParsing="false" onAction="#start" text="Старт">
+            <font>
+                <Font size="15.0" />
+            </font></Button>
+        <Button fx:id="StopB" layoutX="1648.0" layoutY="44.0" mnemonicParsing="false" onAction="#pauseGen" text="Стоп">
+            <font>
+                <Font size="15.0" />
+            </font></Button>
+        <Button fx:id="ObjStateBtn" layoutX="1648.0" layoutY="191.0" mnemonicParsing="false" onAction="#ShowCurrentObjectsState" prefHeight="25.0" prefWidth="121.0" text="Текущие объекты" />
+        <Button fx:id="DroneControl" layoutX="1647.0" layoutY="230.0" mnemonicParsing="false" onAction="#PauseAiDrone" prefHeight="25.0" prefWidth="121.0" text="Трутни спать" />
+        <Button fx:id="WorkerControl" layoutX="1648.0" layoutY="267.0" mnemonicParsing="false" onAction="#PauseAiWorker" prefHeight="25.0" prefWidth="121.0" text="Рабочие спать" />
+        <ImageView fitHeight="210.0" fitWidth="144.0" layoutX="1341.0" layoutY="795.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../Astolfo.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="1486.0" layoutY="404.0" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white;" text="Интервал">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="1491.0" layoutY="348.0" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white;" text="Время жизни">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Button fx:id="ConsoleButton" layoutX="1648.0" layoutY="305.0" mnemonicParsing="false" onAction="#ConsoleWindow" prefHeight="25.0" prefWidth="121.0" text="Консоль" />
+        <TextArea fx:id="ChangeInterval" layoutX="1575.0" layoutY="399.0" prefHeight="54.0" prefWidth="200.0" text="1" />
+        <TextArea fx:id="ChangeLifeTime" layoutX="1575.0" layoutY="336.0" prefHeight="54.0" prefWidth="200.0" text="5" />
+        <MenuBar layoutY="-4.0" prefHeight="31.0" prefWidth="1800.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#HelloWindow" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <RadioButton fx:id="ShowTimeB" layoutX="1650.0" layoutY="87.0" mnemonicParsing="false" onAction="#ButtonControlVisible" selected="true" style="-fx-background-color: white;" text="Показать таймер">
+            <toggleGroup>
+                <ToggleGroup fx:id="TimerVisible" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="HideTimeB" layoutX="1650.0" layoutY="109.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" style="-fx-background-color: white;" text="Скрыть таймер" toggleGroup="$TimerVisible" />
+        <CheckBox fx:id="Report" layoutX="1655.0" layoutY="144.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;" text="Показать отчёт" />
+        <Button fx:id="LoadButton" layoutX="1665.0" layoutY="516.0" mnemonicParsing="false" onAction="#LoadSavedData" prefHeight="54.0" prefWidth="104.0" text="Load">
+            <font>
+                <Font name="Cambria" size="25.0" />
+            </font>
+        </Button>
+        <Button fx:id="SaveButton" disable="true" layoutX="1539.0" layoutY="516.0" mnemonicParsing="false" onAction="#SaveSettings" prefHeight="54.0" prefWidth="104.0" text="Save">
+            <font>
+                <Font name="Cambria" size="25.0" />
+            </font>
+        </Button>
+        <Button fx:id="connectionsBtn" layoutX="1539.0" layoutY="606.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="229.0" text="Посмотреть все подключения">
+            <font>
+                <Font name="Comic Sans MS" size="14.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

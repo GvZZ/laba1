@@ -1,6 +1,7 @@
 package com.example.laba1_test;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,17 +33,32 @@ public class Main extends Application implements Serializable {
             in = new ObjectInputStream(socket.getInputStream());
             System.out.println("Подключение к серверу установлено.");
             getClientsList();
+            new Thread(this::listenForServerMessages).start();
         } catch (IOException e) {
             System.out.println("Ошибка при подключении к серверу: " + e.getMessage());
         }
     }
-    private void handleRefresh() throws IOException, ClassNotFoundException {
-        while (true){
-            String request = (String) in.readObject();
-            System.out.println("Клиент получил запрос от сервера: " + request);
-            if (request.equals("refresh")) {
-                getClientsList();
+    private void listenForServerMessages() {
+        try {
+            while (true) {
+                // Чтение данных от сервера
+                Object response = in.readObject();
+                if (response instanceof ArrayList) {
+                    // Если получен список клиентов
+                    ArrayList<Integer> clientInfos = (ArrayList<Integer>) response;
+                    Platform.runLater(() -> {
+                        System.out.println("Список подключенных клиентов:");
+                        for (Integer clientInfo : clientInfos) {
+                            System.out.println(clientInfo.toString());
+                        }
+                    });
+                } else {
+                    // Если получено другое сообщение
+                    Platform.runLater(() -> System.out.println("Сообщение от сервера: " + response));
+                }
             }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Ошибка при чтении данных от сервера: " + e.getMessage());
         }
     }
     private void getClientsList() {
@@ -57,6 +73,7 @@ public class Main extends Application implements Serializable {
             for (Integer port : ports) {
                 System.out.println(port.toString());
             }
+            System.out.println('\n');
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Ошибка при получении списка клиентов: " + e.getMessage());
         }
@@ -65,7 +82,7 @@ public class Main extends Application implements Serializable {
     @Override
     public void start(Stage stage) throws IOException {
         music();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
         Parent root = fxmlLoader.load();
         Controller controller = fxmlLoader.getController();
         Scene scene = new Scene(root);
@@ -78,10 +95,6 @@ public class Main extends Application implements Serializable {
                         // Отправляем команду на отключение
                         out.writeObject("exit");
                         out.flush();
-
-                        // Закрываем соединение
-                        socket.close();
-                        System.out.println("Соединение с сервером закрыто.");
                         System.exit(0);
                     }
                 } catch (IOException e) {
@@ -114,6 +127,7 @@ public class Main extends Application implements Serializable {
         });
         stage.setTitle("Пчелиная возня");
         stage.show();
+
     }
     MediaPlayer mediaPlayer;
     public void music(){
@@ -123,5 +137,5 @@ public class Main extends Application implements Serializable {
         mediaPlayer.setVolume(0.00);
         mediaPlayer.play();
     }
-    public static void main(String[] args) {launch();}
+    public static void main(String[] args) {launch(); }
 }
