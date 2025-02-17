@@ -25,6 +25,7 @@ public class Main extends Application implements Serializable {
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    private Controller controller;
 
     private void connectToServer() {
         try {
@@ -48,8 +49,10 @@ public class Main extends Application implements Serializable {
                     ArrayList<Integer> clientInfos = (ArrayList<Integer>) response;
                     Platform.runLater(() -> {
                         System.out.println("Список подключенных клиентов:");
+                        controller.ResetConn(); // Очистка списка подключений
                         for (Integer clientInfo : clientInfos) {
                             System.out.println(clientInfo.toString());
+                            controller.PrintConn(clientInfo); // Добавление каждого клиента в интерфейс
                         }
                     });
                 } else {
@@ -69,11 +72,10 @@ public class Main extends Application implements Serializable {
 
             // Получаем список клиентов
             ArrayList<Integer> ports = (ArrayList<Integer>) in.readObject();
-            System.out.println("Список подключенных клиентов:");
+            controller.ResetConn();
             for (Integer port : ports) {
-                System.out.println(port.toString());
+                controller.PrintConn(port);
             }
-            System.out.println('\n');
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Ошибка при получении списка клиентов: " + e.getMessage());
         }
@@ -84,7 +86,7 @@ public class Main extends Application implements Serializable {
         music();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
         Parent root = fxmlLoader.load();
-        Controller controller = fxmlLoader.getController();
+        controller = fxmlLoader.getController();
         Scene scene = new Scene(root);
         connectToServer();
         stage.setOnCloseRequest(new EventHandler<>() {
@@ -126,6 +128,7 @@ public class Main extends Application implements Serializable {
             }
         });
         stage.setTitle("Пчелиная возня");
+        stage.setScene(scene);
         stage.show();
 
     }

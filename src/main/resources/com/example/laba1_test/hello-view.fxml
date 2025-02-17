@@ -48,7 +48,7 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <ImageView fitHeight="1012.0" fitWidth="320.0" layoutX="1486.0" layoutY="-7.0">
+        <ImageView fx:id="ConnectionArea" fitHeight="1012.0" fitWidth="320.0" layoutX="1486.0" layoutY="-7.0">
             <image>
                 <Image url="@../../../BeeMovie.jpg" />
             </image>
@@ -113,10 +113,6 @@
                 <Font name="Cambria" size="25.0" />
             </font>
         </Button>
-        <Button fx:id="connectionsBtn" layoutX="1539.0" layoutY="606.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="229.0" text="Посмотреть все подключения">
-            <font>
-                <Font name="Comic Sans MS" size="14.0" />
-            </font>
-        </Button>
+      <TextArea fx:id="ConnArea" editable="false" layoutX="1547.0" layoutY="595.0" prefHeight="200.0" prefWidth="200.0" />
     </children>
 </AnchorPane>

@@ -10,6 +10,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
     </list>
@@ -58,34 +60,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Main (1).executor": "Run",
-    "Application.Main (2).executor": "Run",
-    "Application.Main (3).executor": "Run",
-    "Application.Main (4).executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MultiClient.executor": "Debug",
-    "Application.Server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "detached8",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/suxov/IdeaProjects/laba1/src/main/java/com/example/laba1_test",
-    "last_opened_file_path": "C:/Users/suxov/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Scene Builder/SceneBuilder.lnk",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main (2).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main (3).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main (4).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MultiClient.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;detached8&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/suxov/IdeaProjects/laba1/src/main/java/com/example/laba1_test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/suxov/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Scene Builder/SceneBuilder.lnk&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.intentionPowerPack&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\suxov\IdeaProjects\laba1\src\main\resources\com\example\laba1_test" />
@@ -136,8 +138,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>

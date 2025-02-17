@@ -26,6 +26,7 @@ import static java.lang.Integer.parseInt;
 
 
 public class Controller implements Serializable {
+    public TextArea ConnArea;
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime;
@@ -40,7 +41,7 @@ public class Controller implements Serializable {
     @FXML
     private TextArea ChangeInterval, ChangeLifeTime;
     @FXML
-    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn, connectionsBtn;
+    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn;
     @FXML
     private Label cout1, cout2, timer, FinalTime, WorkerName, DroneName;
     @FXML
@@ -55,6 +56,14 @@ public class Controller implements Serializable {
     void LoadSavedData() throws IOException, InterruptedException {
         SettingsSet(fileChooser.showOpenDialog(new Stage()));
 
+    }
+    @FXML
+    public void ResetConn(){
+        ConnArea.setText("Список подключенных клиентов:" + "\n");
+    }
+    @FXML
+    public void PrintConn(int port){
+        ConnArea.appendText(Integer.toString(port) + "\n");
     }
     @FXML
     void HelloWindow() {

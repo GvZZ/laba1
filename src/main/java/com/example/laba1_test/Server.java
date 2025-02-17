@@ -41,12 +41,16 @@ public class Server implements Serializable {
         ) {
             OutputSockets.put(clientSocket.getPort(), out);
             InputSockets.put(clientSocket.getPort(), in);
+
+            // Уведомляем всех клиентов о новом подключении
+            broadcastClientList();
+
             // Бесконечный цикл для обработки запросов
             while (true) {
                 // Чтение запроса от клиента
                 String request = (String) in.readObject();
                 System.out.println("Сервер получил запрос от " + clientSocket.getPort() + ": " + request);
-                if ("getClients".equals(request)) { // Чистит данные о подключении в finally, всё нормально
+                if ("getClients".equals(request)) {
                     broadcastClientList();
                 } else if ("exit".equals(request)) {
                     break; // Выход из цикла
@@ -68,6 +72,7 @@ public class Server implements Serializable {
                 System.out.println("Отработал finally");
             }
             System.out.println("Клиент отключен:--------------- " + clientSocket.getPort());
+            // Уведомляем всех клиентов об отключении
             broadcastClientList();
         }
     }
