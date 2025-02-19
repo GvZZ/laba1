@@ -52,9 +52,15 @@ public class Server implements Serializable {
                 System.out.println("Сервер получил запрос от " + clientSocket.getPort() + ": " + request);
                 if ("getClients".equals(request)) {
                     broadcastClientList();
-                } else if ("exit".equals(request)) {
+                }
+                else if ("exit".equals(request)) {
                     break; // Выход из цикла
-                } else {
+                }
+                else if ("Share".equals(request)) {
+                    request = (String) in.readObject();
+                    OutputSockets.get(request).writeObject(request);
+                }
+                else {
                     // Неизвестный запрос
                     out.writeObject("Неизвестная команда: " + request);
                     out.flush();

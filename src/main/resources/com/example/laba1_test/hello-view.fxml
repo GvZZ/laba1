@@ -103,16 +103,21 @@
         </RadioButton>
         <RadioButton fx:id="HideTimeB" layoutX="1650.0" layoutY="109.0" mnemonicParsing="false" onAction="#ButtonControlNonVisible" style="-fx-background-color: white;" text="Скрыть таймер" toggleGroup="$TimerVisible" />
         <CheckBox fx:id="Report" layoutX="1655.0" layoutY="144.0" mnemonicParsing="false" selected="true" style="-fx-background-color: white;" text="Показать отчёт" />
-        <Button fx:id="LoadButton" layoutX="1665.0" layoutY="516.0" mnemonicParsing="false" onAction="#LoadSavedData" prefHeight="54.0" prefWidth="104.0" text="Load">
+        <Button fx:id="LoadButton" layoutX="1664.0" layoutY="471.0" mnemonicParsing="false" onAction="#LoadSavedData" prefHeight="54.0" prefWidth="104.0" text="Load">
             <font>
                 <Font name="Cambria" size="25.0" />
             </font>
         </Button>
-        <Button fx:id="SaveButton" disable="true" layoutX="1539.0" layoutY="516.0" mnemonicParsing="false" onAction="#SaveSettings" prefHeight="54.0" prefWidth="104.0" text="Save">
+        <Button fx:id="SaveButton" disable="true" layoutX="1534.0" layoutY="471.0" mnemonicParsing="false" onAction="#SaveSettings" prefHeight="54.0" prefWidth="104.0" text="Save">
             <font>
                 <Font name="Cambria" size="25.0" />
             </font>
         </Button>
-      <TextArea fx:id="ConnArea" editable="false" layoutX="1547.0" layoutY="595.0" prefHeight="200.0" prefWidth="200.0" />
+        <TextArea fx:id="ConnArea" editable="false" layoutX="1586.0" layoutY="786.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="SendPort" layoutX="1575.0" layoutY="534.0" prefHeight="54.0" prefWidth="200.0" />
+      <TextArea fx:id="SendAmount" layoutX="1575.0" layoutY="595.0" prefHeight="54.0" prefWidth="200.0" />
+      <Label layoutX="1501.0" layoutY="546.0" prefHeight="31.0" prefWidth="65.0" text="Порт" />
+      <Label layoutX="1501.0" layoutY="607.0" prefHeight="31.0" prefWidth="65.0" text="Кол-во" />
+      <Button fx:id="SendBtn" layoutX="1659.0" layoutY="661.0" mnemonicParsing="false" onAction="#SendBees" prefHeight="54.0" prefWidth="115.0" text="Отправить пчёл" />
     </children>
 </AnchorPane>

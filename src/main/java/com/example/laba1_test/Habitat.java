@@ -93,6 +93,13 @@ public class Habitat extends Thread implements Runnable, Serializable {
             }
         }
     }
+
+    public void OrderRemove(ArrayList <AbstractObject> SendingBees, HashSet<String> SendingID, TreeMap<String, String> SendingSpawn){ // Удаляет всё о пчёлах
+
+    }
+    public void OrderAdd(ArrayList <AbstractObject> AddBees , HashSet<String> AddID, TreeMap<String, String> AddSpawn){ // Добавляет всё что нужно пчёлам на клиенте
+
+    }
     public int getDroneCount() {
         return DroneCount;
     }

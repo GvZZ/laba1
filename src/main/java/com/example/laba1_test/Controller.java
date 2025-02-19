@@ -2,9 +2,7 @@ package com.example.laba1_test;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,7 +24,7 @@ import static java.lang.Integer.parseInt;
 
 
 public class Controller implements Serializable {
-    public TextArea ConnArea;
+    public TextArea ConnArea, SendPort, SendAmount;
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
     int LifeTime;
@@ -41,7 +39,7 @@ public class Controller implements Serializable {
     @FXML
     private TextArea ChangeInterval, ChangeLifeTime;
     @FXML
-    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn;
+    private Button LoadButton, SaveButton, StartB, DroneControl, WorkerControl, ConsoleButton, StopB, ObjStateBtn, SendBtn;
     @FXML
     private Label cout1, cout2, timer, FinalTime, WorkerName, DroneName;
     @FXML
@@ -52,6 +50,26 @@ public class Controller implements Serializable {
     private CheckBox Report;
     private ComboBox<String> ChangeChance;
     private Habitat habitat = new Habitat(-1, 5, this);
+    @FXML
+    void SendBees(){ // Отправляем сначала BeesToSend, потом IDToSend, потом SpawnSetToSend
+        int TempPort = Integer.parseInt(SendPort.getText());
+        int TempAmount = Integer.parseInt(SendAmount.getText());
+        if (TempAmount < 0 || TempAmount > habitat.objects.size() || ConnArea.getText().contains(String.valueOf(TempPort))){return;}
+        ArrayList <AbstractObject> BeesToSend = new ArrayList<>(); // Объекты для передачи
+        HashSet <String> IDToSend = new HashSet<>(); // Список айдишников для передачи
+        TreeMap<String, String> SpawnSetToSend = new TreeMap<>(); // Список спавна для передачи
+        HashSet<Integer> tempInd = new HashSet<>();
+        while (tempInd.size() < TempAmount){ // Пока пчёл мало- генерим. Первый в списке возможных ошибок
+            Random rand = new Random();
+            tempInd.add(rand.nextInt(habitat.objects.size()));
+        }
+        for (int idx : tempInd){BeesToSend.add(habitat.objects.get(idx));}
+        for (AbstractObject idx : BeesToSend){
+            IDToSend.add(idx.getID());
+            SpawnSetToSend.put("time", idx.getID()); // Маркер time для того чтобы поставить туда время, которое нужно ИМЕННО ДРУГОМУ УЛЬЮ. ОБЯЗАТЕЛЬНО ДОБАВИТЬ ЭТОТ МОМЕНТ ПРИ ИХ РАСПАКОВКЕ НА ДРУГОМ КОНЦЕ
+        }
+        // Main.PingServerToShare(TempPort); Он статик, а это значит пизда. В теории нужно перенести сервер на контроллер. Иначе никак не вызвать функцию для того чтобы пингануть сервер чтобы начать сам перенос
+    }
     @FXML
     void LoadSavedData() throws IOException, InterruptedException {
         SettingsSet(fileChooser.showOpenDialog(new Stage()));
@@ -367,6 +385,18 @@ public class Controller implements Serializable {
             return null;
         }));
         ChangeInterval.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getText().matches("[0-9]*")) {
+                return change;
+            }
+            return null;
+        }));
+        SendPort.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getText().matches("[0-9]*")) {
+                return change;
+            }
+            return null;
+        }));
+        SendAmount.setTextFormatter(new TextFormatter<>(change -> {
             if (change.getText().matches("[0-9]*")) {
                 return change;
             }

@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="эксперемент над 6. ПОдключает несколько клиентов, отключает по выходу из окна. Из минусов- почему-то форма FXML белая. Из плюсов- должно быть динамическое обновление данных, нужно только их вывести в форму FXML(она всё ещё белая)...">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="эксперемент над 6. Динамически добавляет, отключает клиентов и производит общую рассылку. Всё ещё не работает FXML форма.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="BeeBranch" />
+        <entry key="$PROJECT_DIR$" value="9e363f59298dbd600123c18233d565874568a41f" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -132,13 +131,17 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -241,6 +244,9 @@
       <workItem from="1739543253125" duration="225000" />
       <workItem from="1739630004845" duration="134000" />
       <workItem from="1739765945204" duration="6326000" />
+      <workItem from="1739943950211" duration="210000" />
+      <workItem from="1739968662447" duration="1662000" />
+      <workItem from="1739973824953" duration="5484000" />
     </task>
     <task id="LOCAL-00001" summary="Почти вторая лаба">
       <option name="closed" value="true" />
@@ -587,6 +593,17 @@
                   <entry key="Table.Default.Author.ColumnIdWidth" value="98" />
                   <entry key="Table.Default.Date.ColumnIdWidth" value="114" />
                   <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="114" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="detached8" />
+                      </list>
+                    </value>
+                  </entry>
                 </map>
               </option>
             </State>

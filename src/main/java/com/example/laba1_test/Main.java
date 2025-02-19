@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -17,6 +16,8 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.TreeMap;
 
 import javafx.scene.media.Media;
 import javafx.stage.WindowEvent;
@@ -39,12 +40,39 @@ public class Main extends Application implements Serializable {
             System.out.println("Ошибка при подключении к серверу: " + e.getMessage());
         }
     }
+    public void PingServerToShare(int PortToShare) throws IOException {
+        out.writeObject("Share");
+        out.flush();
+        out.writeObject(PortToShare);
+    }
     private void listenForServerMessages() {
         try {
             while (true) {
                 // Чтение данных от сервера
                 Object response = in.readObject();
-                if (response instanceof ArrayList) {
+                if (response.toString() == String.valueOf(socket.getLocalPort())) { // Обработка обращения по локальному порту. Надо чтобы различать кому именно жожей отправлять
+                    response = in.readObject();
+                    if (response instanceof ArrayList<?>) {
+                        ArrayList<AbstractObject> SentBees = (ArrayList<AbstractObject>) response;
+                        response = in.readObject();
+                        if (response instanceof HashSet<?>) {
+                            HashSet<String> SentID = (HashSet<String>) response;
+                            response = in.readObject();
+                            if (response instanceof TreeMap<?,?>) {
+                                TreeMap<String, String> SentSpawn = (TreeMap<String, String>) response;
+                            }
+                        }
+                        else {
+                            // Если получено другое сообщение
+                            Platform.runLater(() -> System.out.println("Неправильное сообщение от сервера"));
+                        }
+                    }
+                    else {
+                        // Если получено другое сообщение
+                        Platform.runLater(() -> System.out.println("Неправильное сообщение от сервера"));
+                    }
+                }
+                else if (response instanceof ArrayList) {
                     // Если получен список клиентов
                     ArrayList<Integer> clientInfos = (ArrayList<Integer>) response;
                     Platform.runLater(() -> {
@@ -57,7 +85,7 @@ public class Main extends Application implements Serializable {
                     });
                 } else {
                     // Если получено другое сообщение
-                    Platform.runLater(() -> System.out.println("Сообщение от сервера: " + response));
+                    Platform.runLater(() -> System.out.println("Неправильное сообщение от сервера"));
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
