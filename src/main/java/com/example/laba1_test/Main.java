@@ -27,6 +27,7 @@ public class Main extends Application implements Serializable {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private Controller controller;
+    ArrayList<Integer> clientInfos = new ArrayList<>();
 
     private void connectToServer() {
         try {
@@ -34,6 +35,7 @@ public class Main extends Application implements Serializable {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             System.out.println("Подключение к серверу установлено.");
+            controller.setClientOut(out);
             getClientsList();
             new Thread(this::listenForServerMessages).start();
         } catch (IOException e) {
@@ -41,7 +43,7 @@ public class Main extends Application implements Serializable {
         }
     }
     public void PingServerToShare(int PortToShare) throws IOException {
-        out.writeObject("Share");
+        out.writeObject("share");
         out.flush();
         out.writeObject(PortToShare);
     }
@@ -50,31 +52,34 @@ public class Main extends Application implements Serializable {
             while (true) {
                 // Чтение данных от сервера
                 Object response = in.readObject();
-                if (response.toString() == String.valueOf(socket.getLocalPort())) { // Обработка обращения по локальному порту. Надо чтобы различать кому именно жожей отправлять
+                if (!(response instanceof ArrayList<?>) && (int) response == socket.getLocalPort()) { // Обработка обращения по локальному порту. Надо чтобы различать кому именно жожей отправлять
+                    System.out.println("Зашёл по порту");
                     response = in.readObject();
                     if (response instanceof ArrayList<?>) {
+                        System.out.println("Зашёл по листу");
                         ArrayList<AbstractObject> SentBees = (ArrayList<AbstractObject>) response;
                         response = in.readObject();
                         if (response instanceof HashSet<?>) {
+                            System.out.println("Зашёл по сету");
                             HashSet<String> SentID = (HashSet<String>) response;
                             response = in.readObject();
                             if (response instanceof TreeMap<?,?>) {
+                                System.out.println("Зашёл по дереву");
                                 TreeMap<String, String> SentSpawn = (TreeMap<String, String>) response;
+                                controller.SendToHabitat(SentBees, SentID, SentSpawn);
                             }
+                            System.out.println("Не TreeMap");
+                            break;
                         }
-                        else {
-                            // Если получено другое сообщение
-                            Platform.runLater(() -> System.out.println("Неправильное сообщение от сервера"));
-                        }
+                        System.out.println("Не HashSet");
+                        break;
                     }
-                    else {
-                        // Если получено другое сообщение
-                        Platform.runLater(() -> System.out.println("Неправильное сообщение от сервера"));
-                    }
+                    System.out.println("Не ArrayList");
+                    break;
                 }
                 else if (response instanceof ArrayList) {
                     // Если получен список клиентов
-                    ArrayList<Integer> clientInfos = (ArrayList<Integer>) response;
+                    clientInfos = (ArrayList<Integer>) response;
                     Platform.runLater(() -> {
                         System.out.println("Список подключенных клиентов:");
                         controller.ResetConn(); // Очистка списка подключений

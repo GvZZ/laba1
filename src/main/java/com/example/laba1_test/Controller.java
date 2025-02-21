@@ -24,6 +24,7 @@ import static java.lang.Integer.parseInt;
 
 
 public class Controller implements Serializable {
+    private ObjectOutputStream ClientOut;
     public TextArea ConnArea, SendPort, SendAmount;
     AnimationTimer time = new AnimationTimer("0:0:0");
     Timeline timeline = new Timeline();
@@ -50,11 +51,14 @@ public class Controller implements Serializable {
     private CheckBox Report;
     private ComboBox<String> ChangeChance;
     private Habitat habitat = new Habitat(-1, 5, this);
+
     @FXML
-    void SendBees(){ // Отправляем сначала BeesToSend, потом IDToSend, потом SpawnSetToSend
+    void SendBees() throws IOException { // Отправляем сначала BeesToSend, потом IDToSend, потом SpawnSetToSend
+        System.out.println(ConnArea.getText().contains(SendPort.getText()));
         int TempPort = Integer.parseInt(SendPort.getText());
         int TempAmount = Integer.parseInt(SendAmount.getText());
-        if (TempAmount < 0 || TempAmount > habitat.objects.size() || ConnArea.getText().contains(String.valueOf(TempPort))){return;}
+        if (TempAmount < 0 || TempAmount > habitat.objects.size() || !ConnArea.getText().contains(SendPort.getText())){return;}
+        System.out.println("Прошёл проверки");
         ArrayList <AbstractObject> BeesToSend = new ArrayList<>(); // Объекты для передачи
         HashSet <String> IDToSend = new HashSet<>(); // Список айдишников для передачи
         TreeMap<String, String> SpawnSetToSend = new TreeMap<>(); // Список спавна для передачи
@@ -63,12 +67,31 @@ public class Controller implements Serializable {
             Random rand = new Random();
             tempInd.add(rand.nextInt(habitat.objects.size()));
         }
+        System.out.println("Прошёл забивку рандомными индексами");
         for (int idx : tempInd){BeesToSend.add(habitat.objects.get(idx));}
         for (AbstractObject idx : BeesToSend){
             IDToSend.add(idx.getID());
             SpawnSetToSend.put("time", idx.getID()); // Маркер time для того чтобы поставить туда время, которое нужно ИМЕННО ДРУГОМУ УЛЬЮ. ОБЯЗАТЕЛЬНО ДОБАВИТЬ ЭТОТ МОМЕНТ ПРИ ИХ РАСПАКОВКЕ НА ДРУГОМ КОНЦЕ
         }
+        System.out.println("Заполнил всё что нужно");
         // Main.PingServerToShare(TempPort); Он статик, а это значит пизда. В теории нужно перенести сервер на контроллер. Иначе никак не вызвать функцию для того чтобы пингануть сервер чтобы начать сам перенос
+        System.out.println("===========================Закончил алгоритм");
+        ClientOut.writeObject("share");
+        ClientOut.flush();
+        System.out.println("===========================Передал share");
+        ClientOut.writeObject(TempPort);
+        ClientOut.flush();
+        System.out.println("===========================Передал порт");
+        ClientOut.writeObject(BeesToSend);
+        ClientOut.flush();
+        System.out.println("===========================Передал пчёл");
+        ClientOut.writeObject(IDToSend);
+        ClientOut.flush();
+        System.out.println("===========================Передал ид");
+        ClientOut.writeObject(SpawnSetToSend);
+        ClientOut.flush();
+        System.out.println("===========================Передача окончена");
+        habitat.OrderRemove(BeesToSend, IDToSend, SpawnSetToSend);
     }
     @FXML
     void LoadSavedData() throws IOException, InterruptedException {
@@ -488,4 +511,10 @@ public class Controller implements Serializable {
         System.out.println("Отработал");
     }
     public int getStatus() {return this.status;}
+    public void SendToHabitat(ArrayList <AbstractObject> AddBees , HashSet<String> AddID, TreeMap<String, String> AddSpawn){
+        habitat.OrderAdd(AddBees, AddID, AddSpawn);
+    }
+    public void setClientOut(ObjectOutputStream out){
+        ClientOut = out;
+    }
 }

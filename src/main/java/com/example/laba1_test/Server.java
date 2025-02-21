@@ -48,7 +48,7 @@ public class Server implements Serializable {
             // Бесконечный цикл для обработки запросов
             while (true) {
                 // Чтение запроса от клиента
-                String request = (String) in.readObject();
+                Object request = in.readObject();
                 System.out.println("Сервер получил запрос от " + clientSocket.getPort() + ": " + request);
                 if ("getClients".equals(request)) {
                     broadcastClientList();
@@ -56,14 +56,27 @@ public class Server implements Serializable {
                 else if ("exit".equals(request)) {
                     break; // Выход из цикла
                 }
-                else if ("Share".equals(request)) {
-                    request = (String) in.readObject();
-                    OutputSockets.get(request).writeObject(request);
+                else if ("share".equals(request)) {
+                    request = in.readObject();
+                    int TempPort = (int) request;
+                    if (TempPort != clientSocket.getPort()) {
+                        OutputSockets.get(TempPort).writeObject(TempPort);
+                        System.out.println("Сервер нормально обработал передачу в порт");
+                        request = in.readObject(); // ArrayList
+                        OutputSockets.get(TempPort).writeObject(request);
+                        System.out.println("Сервер нормально обработал передачу пчёл");
+                        request = in.readObject(); // HashSet
+                        OutputSockets.get(TempPort).writeObject(request);
+                        System.out.println("Сервер нормально обработал передачу ид");
+                        request = in.readObject(); // TreeMap
+                        OutputSockets.get(TempPort).writeObject(request);
+                        System.out.println("Сервер нормально обработал передачу всего");
+                    }
+
                 }
                 else {
                     // Неизвестный запрос
-                    out.writeObject("Неизвестная команда: " + request);
-                    out.flush();
+                    System.out.println("НЕИЗВЕСТНАЯ КОМАНДА " + request);
                 }
             }
         } catch (IOException | ClassNotFoundException e) {

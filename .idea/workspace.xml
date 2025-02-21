@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="эксперемент над 6. Динамически добавляет, отключает клиентов и производит общую рассылку. Всё ещё не работает FXML форма.">
+    <list default="true" id="0231e1f4-bbd7-43d6-ad22-64ea6147f2ce" name="Changes" comment="эксперемент над 6. Доделать массовую рассылку пчёл">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Habitat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laba1_test/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laba1_test/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Habitat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/laba1_test/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +247,8 @@
       <workItem from="1739765945204" duration="6326000" />
       <workItem from="1739943950211" duration="210000" />
       <workItem from="1739968662447" duration="1662000" />
-      <workItem from="1739973824953" duration="5484000" />
+      <workItem from="1739973824953" duration="5742000" />
+      <workItem from="1740134930870" duration="5352000" />
     </task>
     <task id="LOCAL-00001" summary="Почти вторая лаба">
       <option name="closed" value="true" />
@@ -576,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739543465047</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="эксперемент над 6. Доделать массовую рассылку пчёл">
+      <option name="closed" value="true" />
+      <created>1739980079930</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1739980079930</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +623,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Точно готовая 3я лаба" />
     <MESSAGE value="BeeЗумие" />
     <MESSAGE value="BeeЗумие нахуй" />
     <MESSAGE value="47 Drone альтернативу wait, а то там пиздец" />
@@ -638,7 +647,8 @@
     <MESSAGE value="5 эксперемент над сериализацией оказался успешным + фикс нулевых координат для рабочих" />
     <MESSAGE value="эксперемент над 6. Работает подключение, списки клиентов не работают" />
     <MESSAGE value="эксперемент над 6. ПОдключает несколько клиентов, отключает по выходу из окна. Из минусов- почему-то форма FXML белая. Из плюсов- должно быть динамическое обновление данных, нужно только их вывести в форму FXML(она всё ещё белая)..." />
-    <option name="LAST_COMMIT_MESSAGE" value="эксперемент над 6. ПОдключает несколько клиентов, отключает по выходу из окна. Из минусов- почему-то форма FXML белая. Из плюсов- должно быть динамическое обновление данных, нужно только их вывести в форму FXML(она всё ещё белая)..." />
+    <MESSAGE value="эксперемент над 6. Доделать массовую рассылку пчёл" />
+    <option name="LAST_COMMIT_MESSAGE" value="эксперемент над 6. Доделать массовую рассылку пчёл" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/laba1$Main.ic" NAME="Main Coverage Results" MODIFIED="1739512649649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
