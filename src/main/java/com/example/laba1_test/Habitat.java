@@ -1,5 +1,8 @@
 package com.example.laba1_test;
 
+import javafx.animation.PathTransition;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
@@ -95,10 +98,61 @@ public class Habitat extends Thread implements Runnable, Serializable {
     }
 
     public void OrderRemove(ArrayList <AbstractObject> SendingBees, HashSet<String> SendingID, TreeMap<String, String> SendingSpawn){ // Удаляет всё о пчёлах
-        System.out.println("Дописать алгоритм и считай удалил");
+        for (AbstractObject x : SendingBees) {
+            for (int i = 0; i < objects.size(); i++){
+                if (x.equals(objects.get(i))) {
+                    controller.getSceneTwo_Background().getChildren().remove(objects.get(i).getImg());
+                    objects.get(i).getPathTransition().setNode(null);
+                    IDSet.remove(objects.get(i).getID());
+                    SpawnSet.remove(objects.get(i).getID());
+                    objects.get(i).setImg(null);
+                    if (objects.get(i) instanceof Drone){
+                        DroneCount--;
+                    }
+                    else {
+                        WorkerCount--;
+                    }
+                    objects.remove(objects.get(i));
+                }
+            }
+        }
     }
-    public void OrderAdd(ArrayList <AbstractObject> AddBees , HashSet<String> AddID, TreeMap<String, String> AddSpawn){ // Добавляет всё что нужно пчёлам на клиенте
-        System.out.println("Дописать алгоритм и считай добавил");
+    public void OrderAdd(ArrayList <AbstractObject> AddBees , HashSet<String> AddID, TreeMap<String, String> AddSpawn){ // Добавляет всё что нужно пчёлам на клиенте. По какой-то причине спавнит всех в одной точке(виним PathTransition)
+        int CurrMin = Integer.parseInt(controller.getMinutes());
+        String CurrMinS = String.valueOf(CurrMin);
+        int CurrSec = Integer.parseInt(controller.getSeconds());
+        String CurrSecS = String.valueOf(CurrSec);
+        String AccTime;
+        int k = 1;
+        for (AbstractObject x : AddBees) {
+
+            if (k >= 100) {CurrSec++; k = 1;}
+            if (CurrSec >= 100) {CurrMin++; CurrSec = 0;}
+            if (k == 15) {k++;}
+            if (CurrMin < 10){CurrMinS = "0" + CurrMin;}
+            if (CurrSec < 10){CurrSecS = "0" + CurrSec;}
+            if (k < 10) {
+                AccTime = CurrMinS + ":" + CurrSecS + ":0" + k;
+            }
+            else {
+                AccTime = CurrMinS + ":" + CurrSecS + ":" + k;
+            }
+            if (x instanceof Drone){
+                x.setpathTransition(new PathTransition());
+                x.setImg(new ImageView(new Image("IMGDrone.png")));
+                objects.addLast(x);
+                SpawnSet.put(AccTime, objects.getLast().getID());
+                DroneCount++;
+            }
+            else{
+                x.setpathTransition(new PathTransition());
+                x.setImg(new ImageView(new Image("IMGWorker.png")));
+                objects.addLast(x);
+                SpawnSet.put(AccTime, objects.getLast().getID());
+                WorkerCount++;
+            }
+            k++;
+        }
     }
     public int getDroneCount() {
         return DroneCount;

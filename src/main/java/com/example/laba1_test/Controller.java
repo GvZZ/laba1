@@ -482,6 +482,8 @@ public class Controller implements Serializable {
         }
     }
 
+    public String getMinutes(){return String.valueOf(time.getMinute());}
+    public String getSeconds(){return String.valueOf(time.getSecond());}
     public Boolean getAIStatusWorker(){return AIStatusWorker;}
     public Boolean getAIStatusDrone(){return AIStatusDrone;}
     public Habitat getHabitat() {return habitat;}
